@@ -47,17 +47,18 @@ struct MainButtonView: View {
                         .fontWeight(.light)
                         .lineSpacing(5)
                         .foregroundStyle(Color.black)
+                        .multilineTextAlignment(.leading)
                 }
                    
                 Spacer()
             }
             .padding([.leading, .top], 15)
             .padding(.trailing, 42)
-            .background(Color.white)
-            .overlay(
+            .background(
                 RoundedRectangle(cornerRadius: 15)
+                    .fill(.white)
                     .stroke(Color.packitPurple,lineWidth: 1)
-                    .shadow(radius: 2)
+                    .shadow(radius: 1.3)
             )
             
             Image(systemName: iconName)
