@@ -20,13 +20,15 @@ struct MainButtonView: View {
                 Text(title)
                     .fontWeight(.bold)
                     .font(.system(size: 15))
+                    .foregroundStyle(Color.black)
                 
                 if let highlight = highlight {
                     Text(description)
                         .font(.system(size: 12))
                         .fontWeight(.light)
                         .padding(.bottom, -8)
-                    
+                        .foregroundStyle(Color.black)
+
                     Text("\(highlight)")
                         .font(.system(size: 13))
                         .fontWeight(.bold)
@@ -36,6 +38,7 @@ struct MainButtonView: View {
                     Text("계획이 있어요!")
                         .font(.system(size: 12))
                         .fontWeight(.light)
+                        .foregroundStyle(Color.black)
                 }
                 
                 else {
@@ -43,12 +46,13 @@ struct MainButtonView: View {
                         .font(.system(size: 12))
                         .fontWeight(.light)
                         .lineSpacing(5)
+                        .foregroundStyle(Color.black)
                 }
                    
                 Spacer()
             }
             .padding([.leading, .top], 15)
-            .padding(.trailing, 41)
+            .padding(.trailing, 42)
             .background(Color.white)
             .overlay(
                 RoundedRectangle(cornerRadius: 15)
