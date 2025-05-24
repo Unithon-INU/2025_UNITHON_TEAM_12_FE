@@ -38,7 +38,7 @@ struct CategoryButtonComponent: View {
 struct CategorySelectionView: View {
     let categories = ["의류", "잡동사니", "샤워용품", "추가"]
     
-    @State private var selectedCategory: String = "샤워용품"
+    @State private var selectedCategory: String = "의류"
     
     var body: some View {
         HStack(spacing: 12) {
