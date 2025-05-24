@@ -44,7 +44,7 @@ struct BoxComponent: View {
                     .stroke(Color.packitPurple)
             )
             .padding(.vertical, 6)
-            .padding(.horizontal, 26)
+            .padding(.horizontal, 25)
         }
 
     }
