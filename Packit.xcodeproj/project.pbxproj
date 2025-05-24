@@ -16,6 +16,11 @@
 			path = Packit;
 			sourceTree = "<group>";
 		};
+		B2CCF8BB2DE1B06A00F812A1 /* Preview Content */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,6 +38,7 @@
 			isa = PBXGroup;
 			children = (
 				29A1C5BD2DD83AE600467A03 /* Packit */,
+				B2CCF8BB2DE1B06A00F812A1 /* Preview Content */,
 				29A1C5BC2DD83AE600467A03 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -62,6 +68,7 @@
 			);
 			fileSystemSynchronizedGroups = (
 				29A1C5BD2DD83AE600467A03 /* Packit */,
+				B2CCF8BB2DE1B06A00F812A1 /* Preview Content */,
 			);
 			name = Packit;
 			packageProductDependencies = (
