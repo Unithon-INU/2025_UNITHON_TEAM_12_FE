@@ -8,13 +8,17 @@
 import Foundation
 
 final class MainViewModel: ObservableObject {
-    @Published var trip: Trip
+    @Published var trip: [Trip]
     
-    init(trip: Trip) {
+    init(trip: [Trip]) {
         self.trip = trip
     }
     
     func fetchTripData() {
-        
+        if let trip: [Trip] = JSONParser.parse(fileName: "Trip") {
+            self.trip = trip
+        } else {
+            print("JSON DECODE 에러입니다.")
+        }
     }
 }

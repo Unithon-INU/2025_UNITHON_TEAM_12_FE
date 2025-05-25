@@ -10,7 +10,6 @@ import SwiftUI
 struct MainView: View {
     var body: some View {
         VStack {
-            
             HStack(alignment: .center) {
                 Text("Packit")
                     .font(.system(size: 30))
