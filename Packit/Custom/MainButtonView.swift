@@ -12,8 +12,7 @@ struct MainButtonView: View {
     let description: String
     let highlight: String?
     let iconName: String
-    let iconOffset: CGSize
-    
+
     var body: some View {
         ZStack(alignment: .bottomTrailing) {
             VStack(alignment: .leading, spacing: 12) {
@@ -65,11 +64,7 @@ struct MainButtonView: View {
                 .resizable()
                 .frame(width: 23, height: 30)
                 .foregroundStyle(Color.packitPurple)
-                .offset(iconOffset)
+                .offset(CGSize(width: -12, height: -12))
         }
     }
-}
-
-#Preview {
-    MainButtonView(title: "남은 짐 챙기기", description: "아직 완성되지 않은", highlight: "민지와 부산 짐싸기", iconName: "bag", iconOffset: CGSize(width: -12, height: -12))
 }
