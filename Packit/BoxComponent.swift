@@ -15,8 +15,14 @@ struct BoxComponent: View {
     
     var body: some View {
                 HStack(spacing: 16) {
-                    Image("packagePlus")
-                        .frame(width: 30)
+                    if isSelected {
+                        Image("package")
+                            .frame(width: 30)
+                    } else {
+                        Image("packagePlus")
+                            .frame(width: 30)
+                    }
+
                     
                     
                     VStack(alignment: .leading, spacing: 10){
