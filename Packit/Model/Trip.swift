@@ -14,7 +14,7 @@ struct Trip: Identifiable, Codable {
     var created_at: String
     var travel_type: String
     var companions: Int
-    var companions_type: String
+    var companion_type: String
     var user_id: Int
     
     var id: Int { trip_id }

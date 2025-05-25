@@ -8,16 +8,22 @@
 import SwiftUI
 
 struct PackingListCell: View {
+    @ObservedObject var viewModel: PackingListCellViewModel
+    
+    init(viewModel: PackingListCellViewModel) {
+        self.viewModel = viewModel
+    }
+    
     var body: some View {
         VStack(alignment: .trailing) {
             VStack(alignment: .leading) {
-                Text("D-1")
+                Text(viewModel.trip.end_date.toDateString() ?? "")
                     .font(.system(size: 14))
                     .fontWeight(.light)
                     .padding(.top, 9)
                     .foregroundStyle(.black)
                 
-                Text("민지와의 제주 여행")
+                Text(viewModel.trip.title)
                     .font(.system(size: 16))
                     .fontWeight(.bold)
                     .foregroundStyle(.black)
@@ -35,7 +41,7 @@ struct PackingListCell: View {
                 Spacer()
                 
                 VStack(alignment: .trailing) {
-                    Text("제주도")
+                    Text(viewModel.trip.location)
                         .font(.system(size: 14))
                         .fontWeight(.regular)
                         .foregroundStyle(.black)
@@ -56,8 +62,4 @@ struct PackingListCell: View {
                 .fill(Color.packitLightPurple)
         )
     }
-}
-
-#Preview {
-    PackingListCell()
 }

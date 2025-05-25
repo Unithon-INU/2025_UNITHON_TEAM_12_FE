@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct MainView: View {
+    @ObservedObject var viewModel = MainViewModel()
+    
     var body: some View {
         VStack {
             HStack(alignment: .center) {
@@ -123,9 +125,9 @@ struct MainView: View {
             VStack {
                 ScrollView(.horizontal) {
                     LazyHStack(alignment: .top, spacing: 18) {
-                        ForEach(0..<10) { _ in
+                        ForEach(viewModel.tripList) { trip in
                             Button(action: {}, label: {
-                                PackingListCell()
+                                PackingListCell(viewModel: PackingListCellViewModel(trip: trip))
                             })
                         }
                     }
@@ -158,6 +160,5 @@ struct MainView: View {
     }
 }
 
-#Preview {
-    MainView()
-}
+
+
