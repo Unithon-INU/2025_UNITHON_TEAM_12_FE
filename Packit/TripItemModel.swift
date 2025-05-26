@@ -8,8 +8,6 @@
 import Foundation
 
 struct TripItem: Identifiable, Codable {
-    var id = UUID()
-    
     let tripItemId: Int
     var itemName: String
     var quantity: Int
@@ -17,4 +15,6 @@ struct TripItem: Identifiable, Codable {
     var isAIRecommended: Bool
     var notes: String?
     var tripCategoryId: Int
+    
+    var id: Int { tripItemId }
 }

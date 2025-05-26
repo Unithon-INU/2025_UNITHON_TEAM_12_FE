@@ -25,11 +25,12 @@ struct CategoryButtonComponent: View {
                 .background(
                     RoundedRectangle(cornerRadius: 8)
                         .fill(isSelected ? Color.packitPurple : Color.white)
-                )
-                .overlay {
-                    RoundedRectangle(cornerRadius: 8)
                         .stroke(Color.packitStroke)
-                }
+
+                )
+//                .overlay {
+//                    RoundedRectangle(cornerRadius: 8)
+//                }
         }
         .animation(.easeInOut, value: isSelected)
     }
