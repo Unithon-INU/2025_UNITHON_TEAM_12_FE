@@ -21,7 +21,7 @@ struct SelectBoxComponent: View {
                 HStack(spacing: 8) {
                     Circle()
                         .fill(isSelected ? Color.packitPurple : Color.clear)
-                        .stroke(isSelected ? Color.clear : Color.packitStroke)
+                        .stroke(isSelected ? Color.clear : Color.packitLightGray)
                         .frame(width: 18, height: 18)
                     Text(title)
                         .font(.custom("Pretendard", size: 16))

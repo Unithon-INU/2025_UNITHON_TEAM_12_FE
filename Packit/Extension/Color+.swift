@@ -26,6 +26,6 @@ extension Color {
 extension Color {
     static let packitPurple = Color(hex: "#7C6AF8")
     static let packitLightPurple = Color(hex: "#E8E5FF")
-    static let packitStroke = Color(hex: "#D9D9D9")
-    static let packitText = Color(hex: "#ADADAD")
+    static let packitLightGray = Color(hex: "#D9D9D9")
+    static let packitDarkGray = Color(hex: "#ADADAD")
 }
