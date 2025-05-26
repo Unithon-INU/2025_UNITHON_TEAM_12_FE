@@ -28,9 +28,6 @@ struct CategoryButtonComponent: View {
                         .stroke(Color.packitStroke)
 
                 )
-//                .overlay {
-//                    RoundedRectangle(cornerRadius: 8)
-//                }
         }
         .animation(.easeInOut, value: isSelected)
     }
