@@ -18,13 +18,14 @@ struct PackitTextField: View {
                     .font(.custom("Pretendard", size: 16))
                     .fontWeight(.medium)
                     .foregroundStyle(Color.packitLightGray)
-                    .padding(.leading, 15)
+                    .padding(.leading, 10)
             }
             
             TextField("", text: $text)
+                .padding(.leading, 10)
             
         }
-        .padding()
+        .padding([.top, .bottom], 13)
         .overlay {
             RoundedRectangle(cornerRadius: 8)
                 .stroke(Color.packitPurple, lineWidth: 1)

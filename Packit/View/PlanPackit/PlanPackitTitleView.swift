@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct PlanPackitTitle: View {
+struct PlanPackitTitleView: View {
     @State private var title: String = ""
     
     var body: some View {
@@ -19,17 +19,18 @@ struct PlanPackitTitle: View {
                 .padding(.top, 15)
             
             PackitTextField(text: $title, placeholder: Text("제목을 입력해주세요!"))
-                .padding([.leading, .trailing], 35)
+                .padding([.leading, .trailing], 30)
                 .padding(.top, 30)
             
             Spacer()
             
             PackitButton(title: "다음")
-                .padding()
+                .padding([.leading, .trailing], 20)
+                .padding(.bottom, 15)
         }
     }
 }
 
 #Preview {
-    PlanPackitTitle()
+    PlanPackitTitleView()
 }
