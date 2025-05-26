@@ -1,0 +1,30 @@
+[
+  {
+    "tripItemId": 1,
+    "itemName": "여권",
+    "quantity": 1,
+    "isChecked": false,
+    "isAIRecommended": true,
+    "notes": "만료일 확인 필요",
+    "tripCategoryId": 101
+  },
+  {
+    "tripItemId": 2,
+    "itemName": "치약",
+    "quantity": 1,
+    "isChecked": true,
+    "isAIRecommended": false,
+    "notes": null,
+    "tripCategoryId": 102
+  },
+  {
+    "tripItemId": 3,
+    "itemName": "양말",
+    "quantity": 5,
+    "isChecked": false,
+    "isAIRecommended": true,
+    "notes": "하루에 한 켤레 기준",
+    "tripCategoryId": 103
+  }
+]
+
