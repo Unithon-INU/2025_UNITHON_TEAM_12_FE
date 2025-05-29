@@ -51,9 +51,14 @@ struct PlanPackitTripPropertyView: View {
                 
                 SelectTripProperty()
             }
-            .padding(.vertical, 10)
-            .padding(.leading, 27)
+            .padding(.top, 10)
+            .padding(.bottom, 60)
+            .padding(.leading, 25)
         }
+        
+        PackitButton(title: "다음")
+            .padding(.horizontal, 23)
+            .padding(.bottom, 10)
     }
 }
 
