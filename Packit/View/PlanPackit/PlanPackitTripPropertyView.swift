@@ -23,7 +23,8 @@ struct PlanPackitTripPropertyView: View {
                 }.padding(.bottom, 2)
                 
                 CalendarView()
-                    .padding(13)
+                    .padding(.vertical, 15)
+                    .padding(.horizontal,10)
                     .overlay {
                         RoundedRectangle(cornerRadius: 10)
                             .stroke(Color.packitPurple, lineWidth: 1)
@@ -55,6 +56,9 @@ struct PlanPackitTripPropertyView: View {
             .padding(.bottom, 60)
             .padding(.leading, 25)
         }
+        .onTapGesture {
+            self.endTextEditing()
+        }
         
         PackitButton(title: "다음")
             .padding(.horizontal, 23)
@@ -63,10 +67,8 @@ struct PlanPackitTripPropertyView: View {
 }
 
 struct SelectTripProperty: View {
-    let tags: [String] = ["혼자가는 여행", "둘이 가는 여행", "세심한", "145", "123", "1234", "45678", "677943", "가벼운 여행","세심한", "145", "123", "1234", "45678", "677943", "가벼운 여행","둘이 가는 여행", "세심한", "145", "123", "1234"]
+    let tags: [String] = ["혼자가는 여행1", "둘이 가는 여행2", "세심한3", "1454", "1235", "12346", "456787", "6779438", "가벼운 여행9","세심한1", "1452", "1233", "12344", "456785", "6779436", "가벼운 여행7","둘이 가는 여행8", "세심한9", "1451", "1232", "1234"]
     @State var selectedTags: [String] = []
-    
-
     
     var body: some View {
         VStack {
