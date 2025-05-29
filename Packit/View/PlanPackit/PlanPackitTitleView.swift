@@ -18,14 +18,14 @@ struct PlanPackitTitleView: View {
                 .foregroundStyle(Color.packitPurple)
                 .padding(.top, 15)
             
-            PackitTextField(text: $title, placeholder: Text("제목을 입력해주세요!"))
-                .padding([.leading, .trailing], 30)
+            PackitTextField(text: $title, placeholder: "제목을 입력해주세요!")
+                .padding(.horizontal, 30)
                 .padding(.top, 30)
             
             Spacer()
             
             PackitButton(title: "다음")
-                .padding([.leading, .trailing], 20)
+                .padding(.horizontal, 20)
                 .padding(.bottom, 15)
         }
     }

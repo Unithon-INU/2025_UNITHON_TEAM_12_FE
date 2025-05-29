@@ -11,7 +11,7 @@ import SwiftUI
 struct PackitApp: App {
     var body: some Scene {
         WindowGroup {
-            PlanPackitTitleView()
+            PlanPackitTripPropertyView()
         }
     }
 }

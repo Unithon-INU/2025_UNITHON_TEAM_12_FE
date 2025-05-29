@@ -17,7 +17,7 @@ struct PackitButton: View {
                 .fontWeight(.bold)
                 .foregroundStyle(.white)
         })
-        .padding([.top, .bottom], 16)
+        .padding(.vertical, 16)
         .frame(maxWidth: .infinity)
         .background {
             RoundedRectangle(cornerRadius: 8)
