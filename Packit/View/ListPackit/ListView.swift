@@ -127,10 +127,10 @@ struct TravelListView: View {
     
     // 예정된 섹션의 높이를 계산하는 함수
     private func calculateTopSpacing() -> CGFloat {
-        let headerHeight: CGFloat = 40 // 헤더 높이 (텍스트 + spacing)
-        let sectionTitleHeight: CGFloat = 10 // "예정된 짐싸기" 제목 높이
+        let headerHeight: CGFloat = 59 // 헤더 높이 (텍스트 + spacing)
+        let sectionTitleHeight: CGFloat = 39 // "예정된 짐싸기" 제목 높이
         let cardHeight: CGFloat = 168 // 카드 최대 높이
-        let additionalSpacing: CGFloat = 100 // 기타 패딩 및 여백
+        let additionalSpacing: CGFloat = 50 // 기타 패딩 및 여백
         let requestedGap: CGFloat = 30 // 요청된 간격
         
         if !upcomingTrips.isEmpty {
@@ -147,7 +147,6 @@ struct TravelListView: View {
         NavigationView {
             GeometryReader { geometry in
                 ZStack {
-                    // 배경 (항상 보이는 상단 영역)
                     VStack(spacing: 34) {
                         // 헤더
                         HStack(spacing: 21) {
@@ -193,37 +192,38 @@ struct TravelListView: View {
                                     .padding(.horizontal)
                                 }
                             }
-                        } else {
-                            // 예정된 여행이 없을 때
-                            VStack(spacing: 10) {
-                                Image("clock")
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: 40, height: 40)
-                                    .foregroundColor(.gray)
-                                Text("예정된 여행이 없습니다")
-                                    .font(.custom("Pretendard", size: 16))
-                                    .foregroundColor(.gray)
-                                Text("새로운 여행을 계획해보세요!")
-                                    .font(.custom("Pretendard", size: 14))
-                                    .foregroundColor(.gray)
-                            }
-                            .frame(height: 200)
                         }
+//                        else {
+//                            // 예정된 여행이 없을 때
+//                            VStack(spacing: 10) {
+//                                Image("clock")
+//                                    .resizable()
+//                                    .scaledToFit()
+//                                    .frame(width: 40, height: 40)
+//                                    .foregroundColor(.gray)
+//                                Text("예정된 여행이 없습니다")
+//                                    .font(.custom("Pretendard", size: 16))
+//                                    .foregroundColor(.gray)
+//                                Text("새로운 여행을 계획해보세요!")
+//                                    .font(.custom("Pretendard", size: 14))
+//                                    .foregroundColor(.gray)
+//                            }
+//                            .frame(height: 200)
+//                        }
                         
-                        Spacer() // 남은 공간 채우기
+                        Spacer()
                     }
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
                     .background(Color.white)
-                    .zIndex(0) // 뒤쪽 레이어
+                    .zIndex(0)
                     
                     // 스크롤 가능한 과거 기록 섹션 (오버레이)
                     ScrollView {
                         VStack {
-                            // 동적으로 계산된 상단 공간 (예정된 섹션이 보이도록)
+                            // 예정된 짐싸기와의 공백
                             Rectangle()
                                 .fill(Color.clear)
-                                .frame(height: calculateTopSpacing()) // 예정된 섹션의 높이 + 40만큼 공간 확보
+                                .frame(height: calculateTopSpacing())
                             
                             // 과거 짐 싸기 기록 섹션
                             VStack(alignment: .leading, spacing: 11) {
@@ -248,24 +248,25 @@ struct TravelListView: View {
                                     }
                                     .padding(.horizontal)
                                     .padding(.bottom, 50)
-                                } else {
-                                    // 과거 여행이 없을 때
-                                    VStack(spacing: 10) {
-                                        Image("list")
-                                            .resizable()
-                                            .scaledToFit()
-                                            .frame(width: 40, height: 40)
-                                            .foregroundColor(.gray)
-                                        Text("아직 완료된 여행이 없습니다")
-                                            .font(.custom("Pretendard", size: 16))
-                                            .foregroundColor(.gray)
-                                        Text("첫 번째 여행을 떠나보세요!")
-                                            .font(.custom("Pretendard", size: 14))
-                                            .foregroundColor(.gray)
-                                    }
-                                    .frame(height: 200)
-                                    .padding(.bottom, 50)
                                 }
+//                                else {
+//                                    // 과거 여행이 없을 때
+//                                    VStack(spacing: 10) {
+//                                        Image("list")
+//                                            .resizable()
+//                                            .scaledToFit()
+//                                            .frame(width: 40, height: 40)
+//                                            .foregroundColor(.gray)
+//                                        Text("아직 완료된 여행이 없습니다")
+//                                            .font(.custom("Pretendard", size: 16))
+//                                            .foregroundColor(.gray)
+//                                        Text("첫 번째 여행을 떠나보세요!")
+//                                            .font(.custom("Pretendard", size: 14))
+//                                            .foregroundColor(.gray)
+//                                    }
+//                                    .frame(height: 200)
+//                                    .padding(.bottom, 50)
+//                                }
                             }
                             .background(
                                 UnevenRoundedRectangle(
@@ -280,7 +281,7 @@ struct TravelListView: View {
                         }
                     }
                     .background(Color.clear)
-                    .zIndex(1) // 앞쪽 레이어 (오버레이)
+                    .zIndex(1)
                 }
             }
             .navigationBarHidden(true)
