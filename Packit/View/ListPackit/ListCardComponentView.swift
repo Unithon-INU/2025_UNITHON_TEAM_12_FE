@@ -8,12 +8,12 @@
 import SwiftUI
 
 struct ListCardComponentView: View {
-    @State var isBeen: Bool = false
+    let trip: Trip
     
     var body: some View {
         VStack(spacing: 7) {
             HStack{
-                Text((isBeen ? "3월" : "D-1"))  //viewmodel.start_date(d-day how 처리?)
+                Text(trip.periodText)
                     .font(.custom("Pretendard", size: 17))
                     .fontWeight(.light)
                     .foregroundColor(Color.packitLightText)
@@ -21,44 +21,46 @@ struct ListCardComponentView: View {
             }
             
             HStack{
-                Text("민지와 제주 여행") //viewmodel.title
+                Text(trip.title)
                     .font(.custom("Pretendard", size: 20))
                     .fontWeight(.bold)
-                    .foregroundColor(isBeen ? .black : Color.packitPurple)
+                    .foregroundColor(trip.isBeen ? .black : Color.packitPurple)
+                    .multilineTextAlignment(.leading)
+                    .lineLimit(2) // 제목이 길어질 경우 2줄까지 허용
                 Spacer()
             }
             
-            Spacer()
+            Spacer(minLength: 10) // 최소 간격 보장
             
             HStack{
                 Spacer()
-
-                Text("제주도") //viewmodel.location
-                    .font(.custom("Pretendard", size: 15))
-                    .fontWeight(.ultraLight)
+                Text(trip.location)
+                    .font(.custom("Pretendard-ExtraLight", size: 15))
                     .foregroundColor(.black)
+                    .lineLimit(1)
             }
             HStack{
                 Spacer()
-
-                Text("2박 3일 일정") //viewmodel.enddate~startdate counting?
-                    .font(.custom("Pretendard", size: 15))
-                    .fontWeight(.ultraLight)
+                Text(trip.durationText)
+                    .font(.custom("Pretendard-ExtraLight", size: 15))
                     .foregroundColor(.black)
+                    .lineLimit(1)
             }
             HStack{
                 Spacer()
-
-                Text("2025.05.12")
-                    .font(.custom("Pretendard", size: 18))
-                    .fontWeight(.medium)
+                Text(trip.start_date)
+                    .font(.custom("Pretendard-Medium", size: 18))
                     .foregroundColor(.black)
+                    .lineLimit(1)
             }
-            
-           
-            
         }
-        .frame(width: 170, height: 183)
+        .frame(
+            minWidth: 150,        // 최소 너비
+            maxWidth: 166,        // 최대 너비 (기존 170에서 약간 증가)
+            minHeight: 160,       // 최소 높이
+            maxHeight: 183,       // 최대 높이 (기존 183에서 약간 증가)
+            alignment: .topLeading
+        )
         .padding(13)
         .background(
             RoundedRectangle(cornerRadius: 10)
@@ -66,7 +68,7 @@ struct ListCardComponentView: View {
         )
         .overlay(
             Group {
-                Image(isBeen ? "package" : "packagePlus")
+                Image(trip.isBeen ? "package" : "packagePlus")
                     .resizable()
                     .scaledToFit()
                     .frame(width: 35, height: 35)
@@ -74,11 +76,70 @@ struct ListCardComponentView: View {
             },
             alignment: .bottomLeading
         )
-
     }
 }
 
-#Preview {
-    ListCardComponentView()
+// 더 유연한 버전 (화면 크기에 따라 완전히 자동 조정)
+struct FlexibleListCardComponentView: View {
+    let trip: Trip
+    
+    var body: some View {
+        VStack(spacing: 7) {
+            HStack{
+                Text(trip.periodText)
+                    .font(.custom("Pretendard-Light", size: 17))
+                    .foregroundColor(Color.packitLightText)
+                Spacer()
+            }
+            
+            HStack{
+                Text(trip.title)
+                    .font(.custom("Pretendard-Bold", size: 20))
+                    .foregroundColor(trip.isBeen ? .black : Color.packitPurple)
+                    .multilineTextAlignment(.leading)
+                    .lineLimit(3)
+                Spacer()
+            }
+            
+            Spacer(minLength: 5)
+            
+            VStack(alignment: .trailing, spacing: 3) {
+                Text(trip.location)
+                    .font(.custom("Pretendard-ExtraLight", size: 15))
+                    .foregroundColor(.black)
+                    .frame(maxWidth: .infinity, alignment: .trailing)
+                
+                Text(trip.durationText)
+                    .font(.custom("Pretendard-ExtraLight", size: 15))
+                    .foregroundColor(.black)
+                    .frame(maxWidth: .infinity, alignment: .trailing)
+                
+                Text(trip.start_date)
+                    .font(.custom("Pretendard-Medium", size: 18))
+                    .foregroundColor(.black)
+                    .frame(maxWidth: .infinity, alignment: .trailing)
+            }
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+        .padding(13)
+        .background(
+            RoundedRectangle(cornerRadius: 10)
+                .stroke(Color.packitPurple)
+        )
+        .overlay(
+            Group {
+                Image(trip.isBeen ? "package" : "packagePlus")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 35, height: 35)
+                    .padding(10)
+            },
+            alignment: .bottomLeading
+        )
+        .aspectRatio(0.9, contentMode: .fit) // 가로:세로 비율 유지
+    }
 }
 
+//#Preview {
+//    ListCardComponentView()
+//}
