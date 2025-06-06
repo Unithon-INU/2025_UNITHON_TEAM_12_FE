@@ -8,14 +8,14 @@
 import SwiftUI
 
 struct CalendarView: View {
-    let currentMonth = Date() // 현재 날짜
-    let calendar = Calendar.current
+    let currentMonth = Date()
+    let calendar = Calendar(identifier: .gregorian)
     
-    @State var stardDate: Date = Date.now
-    @State var endDate: Date?
+    @State private var stardDate: Date? = nil
+    @State private var endDate: Date? = nil
     
     private func monthDateRange() -> Range<Date> {
-        let monthInterval = calendar.dateInterval(of: .month, for: currentMonth)! // 현재 날짜의 월
+        let monthInterval = calendar.dateInterval(of: .month, for: currentMonth)!
         return monthInterval.start..<calendar.date(byAdding: .month, value: 1, to: monthInterval.start)!
     }
     
@@ -36,11 +36,11 @@ struct CalendarView: View {
 
         VStack(alignment: .leading) {
             HStack(spacing: 33.3) {
-                ForEach(week, id: \.self) { week in
-                    Text(week)
+                ForEach(week, id: \.self) { day in
+                    Text(day)
                         .font(.custom("Pretendard", size: 15))
                         .fontWeight(.regular)
-                        .foregroundStyle(week=="일" ? .red : .black)
+                        .foregroundStyle(day == "일" ? .red : .black)
                 }
             }
             .padding(.leading, 13)
@@ -53,31 +53,61 @@ struct CalendarView: View {
             LazyVGrid(columns: Array(repeating: GridItem(), count: 7)) {
                 ForEach(dates, id: \.self) { date in
                     ZStack {
-                        if calendar.isDate(date, equalTo: stardDate, toGranularity: .day) ||
-                            calendar.isDate(date, equalTo: endDate ?? Date.init(), toGranularity: .day) {
+                        let isStart = calendar.isDate(date, equalTo: stardDate ?? Date.distantPast, toGranularity: .day)
+                        let isEnd = calendar.isDate(date, equalTo: endDate ?? Date.distantPast, toGranularity: .day)
+                        let isBetween = {
+                            if let start = stardDate, let end = endDate {
+                                return (start...end).contains(date)
+                            }
+                            return false
+                        }()
+                        
+                        if isStart || isEnd {
                             Text("\(calendar.component(.day, from: date))")
                                 .font(.custom("Pretendard", size: 13))
                                 .fontWeight(.semibold)
                                 .foregroundStyle(Color.white)
                                 .frame(width: 34, height: 33)
+                                .padding(.vertical, 10)
                                 .background(
                                     Circle()
                                         .foregroundStyle(Color.packitPurple)
                                 )
-                                .onTapGesture {
-                                    stardDate = date
-                                    print(date)
-                                }
                         }
-                        else {
+                        
+                        else if isBetween {
                             Text("\(calendar.component(.day, from: date))")
                                 .font(.custom("Pretendard", size: 13))
                                 .fontWeight(.semibold)
-                                .padding(.vertical)
-                                .onTapGesture {
-                                    stardDate = date
-                                    print(date)
-                                }
+                                .foregroundStyle(Color.black)
+                                .frame(width: 34, height: 33)
+                                .padding(.vertical, 10)
+                                .background(
+                                    Circle()
+                                        .foregroundStyle(Color.packitLightPurple)
+                                )
+                        }
+                        
+                        else {
+                            Text("\(calendar.component(.day, from: date))")
+                                .font(.custom("Pretendard", size: 13))
+                                .frame(width: 34, height: 33)
+                                .fontWeight(.semibold)
+                                .padding(.vertical, 10)
+                        }
+                    }
+                    .onTapGesture {
+                        if stardDate == nil && endDate == nil {
+                            stardDate = date
+                        } else if stardDate != nil && endDate == nil {
+                            endDate = date
+                            if let start = stardDate, let end = endDate, start > end {
+                                stardDate = end
+                                endDate = start
+                            }
+                        } else {
+                            stardDate = date
+                            endDate = nil
                         }
                     }
                 }
