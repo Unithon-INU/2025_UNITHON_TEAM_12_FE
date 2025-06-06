@@ -11,7 +11,8 @@ struct CalendarView: View {
     let currentMonth = Date() // 현재 날짜
     let calendar = Calendar.current
     
-    @State var selectedDate: Date = Date.now
+    @State var stardDate: Date = Date.now
+    @State var endDate: Date?
     
     private func monthDateRange() -> Range<Date> {
         let monthInterval = calendar.dateInterval(of: .month, for: currentMonth)! // 현재 날짜의 월
@@ -52,19 +53,32 @@ struct CalendarView: View {
             LazyVGrid(columns: Array(repeating: GridItem(), count: 7)) {
                 ForEach(dates, id: \.self) { date in
                     ZStack {
-                        if calendar.isDate(date, equalTo: selectedDate, toGranularity: .day) {
-                            Circle()
-                                .foregroundStyle(Color.packitLightPurple)
+                        if calendar.isDate(date, equalTo: stardDate, toGranularity: .day) ||
+                            calendar.isDate(date, equalTo: endDate ?? Date.init(), toGranularity: .day) {
+                            Text("\(calendar.component(.day, from: date))")
+                                .font(.custom("Pretendard", size: 13))
+                                .fontWeight(.semibold)
+                                .foregroundStyle(Color.white)
+                                .frame(width: 34, height: 33)
+                                .background(
+                                    Circle()
+                                        .foregroundStyle(Color.packitPurple)
+                                )
+                                .onTapGesture {
+                                    stardDate = date
+                                    print(date)
+                                }
                         }
-                        
-                        Text("\(calendar.component(.day, from: date))")
-                            .font(.custom("Pretendard", size: 13))
-                            .fontWeight(.semibold)
-                            .padding(.vertical)
-                            .onTapGesture {
-                                selectedDate = date
-                                print(date)
-                            }
+                        else {
+                            Text("\(calendar.component(.day, from: date))")
+                                .font(.custom("Pretendard", size: 13))
+                                .fontWeight(.semibold)
+                                .padding(.vertical)
+                                .onTapGesture {
+                                    stardDate = date
+                                    print(date)
+                                }
+                        }
                     }
                 }
             }
