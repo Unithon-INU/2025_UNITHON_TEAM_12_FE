@@ -28,4 +28,5 @@ extension Color {
     static let packitLightPurple = Color(hex: "#E8E5FF")
     static let packitLightGray = Color(hex: "#D9D9D9")
     static let packitDarkGray = Color(hex: "#ADADAD")
+    static let packitLightText = Color(hex: "#4C4C4C")
 }
