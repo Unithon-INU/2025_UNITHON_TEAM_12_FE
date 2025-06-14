@@ -11,39 +11,41 @@ struct MainView: View {
     @ObservedObject var viewModel = MainViewModel()
     
     var body: some View {
-        VStack {
-            // MARK: - MainButtonView HStack
-            HStack(spacing: 21) {
-                Button(action: {}, label: {
-                    MainButtonView(
-                        title: "짐싸기 계획하기",
-                        description: "어떤 짐을 챙길지 함께 \n정해보아요!",
-                        highlight: nil,
-                        iconName: "bag.fill"
-                    )
-                })
-                
-                /// - NOTE: 남은 짐 챙기기, 계획 완성하기 부분 처리 방법 생각해보기
-                if let trip = viewModel.tripList.first {
-                    Button(action: {}, label: {
+        NavigationStack{
+            VStack {
+                // MARK: - MainButtonView HStack
+                HStack(spacing: 21) {
+                    NavigationLink(destination: PlanPackitTitleView()) {
                         MainButtonView(
-                            title: "남은 짐 챙기기",
-                            description: "아직 완성되지 않은",
-                            highlight: trip.title,
-                            iconName: "bag"
+                            title: "짐싸기 계획하기",
+                            description: "어떤 짐을 챙길지 함께 \n정해보아요!",
+                            highlight: nil,
+                            iconName: "bag.fill"
                         )
-                    })
+                    }
+                    
+                    /// - NOTE: 남은 짐 챙기기, 계획 완성하기 부분 처리 방법 생각해보기
+                    if let trip = viewModel.tripList.first {
+                        Button(action: {}, label: {
+                            MainButtonView(
+                                title: "남은 짐 챙기기",
+                                description: "아직 완성되지 않은",
+                                highlight: trip.title,
+                                iconName: "bag"
+                            )
+                        })
+                    }
                 }
+                .frame(height: 120)
+                
+                if let trip = viewModel.tripList.first {
+                    UpcomingTrip(trip: trip)
+                } else {
+                    /// - NOTE: 다가오는 여정 없을 시 다른 뷰
+                }
+                
+                PackingListView(tripList: viewModel.tripList)
             }
-            .frame(height: 120)
-            
-            if let trip = viewModel.tripList.first {
-                UpcomingTrip(trip: trip)
-            } else {
-                /// - NOTE: 다가오는 여정 없을 시 다른 뷰
-            }
-            
-            PackingListView(tripList: viewModel.tripList)
         }
     }
 }
@@ -64,7 +66,7 @@ struct UpcomingTrip: View {
         }
 
         ZStack(alignment: .bottom) {
-            VStack() {
+            VStack {
                 HStack(alignment: .center,spacing: 15) {
                     Image(systemName: "pin.fill")
                         .resizable()
@@ -144,7 +146,7 @@ struct PackingListView: View {
             }
             .scrollIndicators(.hidden)
         
-            Button(action: {}, label: {
+            NavigationLink(destination: ListDetailView()) {
                 HStack {
                     Spacer()
                     
@@ -157,7 +159,7 @@ struct PackingListView: View {
                         .foregroundStyle(Color.packitPurple)
                 }
                 .padding([.trailing, .bottom], 12)
-            })
+            }
         }
         .overlay {
             RoundedRectangle(cornerRadius: 15)

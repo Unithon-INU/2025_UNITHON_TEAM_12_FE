@@ -9,13 +9,15 @@ import SwiftUI
 
 struct ListDetailView: View {
     var body: some View {
-        VStack(spacing:22) {
-            
-            CategorySelectionView()
-            
-            MultiBoxView()
+        NavigationStack{
+            VStack(spacing:22) {
+                
+                CategorySelectionView()
+                
+                MultiBoxView()
+            }
+            .frame(maxHeight: .infinity, alignment: .top)
         }
-        .frame(maxHeight: .infinity, alignment: .top)
     }
 }
 
