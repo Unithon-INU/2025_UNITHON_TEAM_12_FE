@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		298783382DFD5750004FB6AD /* PlanPackitListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298783372DFD5750004FB6AD /* PlanPackitListView.swift */; };
+		2987833A2DFD62E7004FB6AD /* PlanPackitList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298783392DFD62E7004FB6AD /* PlanPackitList.swift */; };
 		29F9DC302DE95C0E005ECBA3 /* PackitButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F9DC012DE95C0E005ECBA3 /* PackitButton.swift */; };
 		29F9DC312DE95C0E005ECBA3 /* PackitTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F9DC022DE95C0E005ECBA3 /* PackitTextField.swift */; };
 		29F9DC322DE95C0E005ECBA3 /* PackitToggleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F9DC032DE95C0E005ECBA3 /* PackitToggleButton.swift */; };
@@ -37,6 +39,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		298783372DFD5750004FB6AD /* PlanPackitListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanPackitListView.swift; sourceTree = "<group>"; };
+		298783392DFD62E7004FB6AD /* PlanPackitList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanPackitList.swift; sourceTree = "<group>"; };
 		29A1C5BB2DD83AE600467A03 /* Packit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Packit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		29F9DC012DE95C0E005ECBA3 /* PackitButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PackitButton.swift; sourceTree = "<group>"; };
 		29F9DC022DE95C0E005ECBA3 /* PackitTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PackitTextField.swift; sourceTree = "<group>"; };
@@ -68,27 +72,6 @@
 		29F9DC2E2DE95C0E005ECBA3 /* PackitApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PackitApp.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
-/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		B2517E702DF1E7A60089CB5F /* Exceptions for "Packit" folder in "Packit" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				Info.plist,
-			);
-			target = 29A1C5BA2DD83AE600467A03 /* Packit */;
-		};
-/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
-
-/* Begin PBXFileSystemSynchronizedRootGroup section */
-		29A1C5BD2DD83AE600467A03 /* Packit */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				B2517E702DF1E7A60089CB5F /* Exceptions for "Packit" folder in "Packit" target */,
-			);
-			path = Packit;
-			sourceTree = "<group>";
-		};
-/* End PBXFileSystemSynchronizedRootGroup section */
-
 /* Begin PBXFrameworksBuildPhase section */
 		29A1C5B82DD83AE600467A03 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
@@ -100,6 +83,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		298783342DFD56F1004FB6AD /* View */ = {
+			isa = PBXGroup;
+			children = (
+				29F9DC212DE95C0E005ECBA3 /* PlanPackitTripPropertyView.swift */,
+				29F9DC202DE95C0E005ECBA3 /* PlanPackitTitleView.swift */,
+				298783372DFD5750004FB6AD /* PlanPackitListView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		298783352DFD56F7004FB6AD /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				29F9DC1E2DE95C0E005ECBA3 /* CalendarView.swift */,
+				29F9DC1F2DE95C0E005ECBA3 /* FlowLayout.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
 		29A1C5B22DD83AE500467A03 = {
 			isa = PBXGroup;
 			children = (
@@ -209,10 +211,8 @@
 		29F9DC222DE95C0E005ECBA3 /* PlanPackit */ = {
 			isa = PBXGroup;
 			children = (
-				29F9DC1E2DE95C0E005ECBA3 /* CalendarView.swift */,
-				29F9DC1F2DE95C0E005ECBA3 /* FlowLayout.swift */,
-				29F9DC202DE95C0E005ECBA3 /* PlanPackitTitleView.swift */,
-				29F9DC212DE95C0E005ECBA3 /* PlanPackitTripPropertyView.swift */,
+				298783352DFD56F7004FB6AD /* Components */,
+				298783342DFD56F1004FB6AD /* View */,
 			);
 			path = PlanPackit;
 			sourceTree = "<group>";
@@ -262,6 +262,7 @@
 		29F9DC2A2DE95C0E005ECBA3 /* PlanPackit */ = {
 			isa = PBXGroup;
 			children = (
+				298783392DFD62E7004FB6AD /* PlanPackitList.swift */,
 			);
 			path = PlanPackit;
 			sourceTree = "<group>";
@@ -387,6 +388,8 @@
 				29F9DC3E2DE95C0E005ECBA3 /* MainView.swift in Sources */,
 				29F9DC3F2DE95C0E005ECBA3 /* PackingListCell.swift in Sources */,
 				29F9DC402DE95C0E005ECBA3 /* CalendarView.swift in Sources */,
+				2987833A2DFD62E7004FB6AD /* PlanPackitList.swift in Sources */,
+				298783382DFD5750004FB6AD /* PlanPackitListView.swift in Sources */,
 				29F9DC412DE95C0E005ECBA3 /* FlowLayout.swift in Sources */,
 				29F9DC422DE95C0E005ECBA3 /* PlanPackitTitleView.swift in Sources */,
 				29F9DC432DE95C0E005ECBA3 /* PlanPackitTripPropertyView.swift in Sources */,
