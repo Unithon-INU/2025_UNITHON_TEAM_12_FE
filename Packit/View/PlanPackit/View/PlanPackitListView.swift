@@ -50,6 +50,9 @@ struct PlanPackitListView: View {
                             ZStack(alignment: .topTrailing) {
                                 HStack(spacing: 15) {
                                     Image("package")
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(height: 35)
                                         .padding(.leading, 10)
                                     
                                     VStack(alignment: .leading) {
@@ -58,14 +61,14 @@ struct PlanPackitListView: View {
                                         
                                         if let list = list.notes {
                                             Text(list)
-                                                .padding(.top, 4)
+                                                .padding(.top, 0.1)
                                                 .font(.custom("Pretendard-Light", size: 14))
                                         }
                                     }
                                     
                                     Spacer()
                                     
-                                }.frame(minHeight: 50)
+                                }.frame(minHeight: 45)
                                 
                                 Image(systemName: "x.circle")
                             }

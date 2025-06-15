@@ -69,19 +69,21 @@ struct MultiSelectBoxView: View {
         ]
     
     var body: some View {
-        VStack(spacing: 12) {
-            ForEach(items, id: \.0) { item in
-                SelectBoxComponent (title: item.0,
-                              description: item.1,
-                              isSelected: selectedItems.contains(item.0),
-                              onTap: {
-                                 if selectedItems.contains(item.0) {
-                                     selectedItems.remove(item.0)
-                                 } else {
-                                     selectedItems.insert(item.0)
-                                 }
-                }
-                )}
+        ScrollView{
+            VStack(spacing: 12) {
+                ForEach(items, id: \.0) { item in
+                    SelectBoxComponent (title: item.0,
+                                        description: item.1,
+                                        isSelected: selectedItems.contains(item.0),
+                                        onTap: {
+                        if selectedItems.contains(item.0) {
+                            selectedItems.remove(item.0)
+                        } else {
+                            selectedItems.insert(item.0)
+                        }
+                    }
+                    )}
+            }
         }
     }
 }

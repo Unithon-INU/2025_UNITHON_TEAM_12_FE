@@ -37,14 +37,14 @@ struct MainView: View {
                     
                     /// - NOTE: 남은 짐 챙기기, 계획 완성하기 부분 처리 방법 생각해보기
                     if let trip = viewModel.tripList.first {
-                        Button(action: {}, label: {
+                        NavigationLink(destination: PlanPackitTitleView()) {
                             MainButtonView(
                                 title: "남은 짐 챙기기",
                                 description: "아직 완성되지 않은",
                                 highlight: trip.title,
                                 iconName: "bag"
                             )
-                        })
+                        }
                     }
                 }
                 .frame(height: 120)
@@ -106,13 +106,10 @@ struct UpcomingTrip: View {
             .padding([.leading, .trailing], 30)
             
             // MARK: - 다가오는 여정의 짐챙기기 시작 버튼
-            Button(action: {
-                
-            }, label: {
+            NavigationLink(destination: StartCheckPackitView(title: trip.title)) {
                 Text("\(trip.title) 짐 챙기기 START!")
                     .foregroundStyle(.white)
                     .font(.custom("Pretendard-Bold", size: 15))
-            })
             .padding([.leading, .trailing], 30)
             .padding([.top, .bottom], 12)
             .background(
@@ -121,6 +118,8 @@ struct UpcomingTrip: View {
                     .shadow(radius: 3)
             )
             .offset(CGSize(width: 0, height: 20))
+                
+            }
         }.padding(.bottom, 15)
     }
 }
