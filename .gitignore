@@ -68,4 +68,4 @@ xcuserdata
 /*.gcno
 **/xcshareddata/WorkspaceSettings.xcsettings
 
-MarketPlace/API_URL.plist
+API_URL.plist
