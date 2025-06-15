@@ -13,6 +13,17 @@ struct MainView: View {
     var body: some View {
         NavigationStack{
             VStack {
+                HStack {
+                    Image("Logo")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(height: 50)
+                        .padding(.leading, 25)
+                        .padding(.bottom, 10)
+                    
+                    Spacer()
+                }
+                
                 // MARK: - MainButtonView HStack
                 HStack(spacing: 21) {
                     NavigationLink(destination: PlanPackitTitleView()) {
