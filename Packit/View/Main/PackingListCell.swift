@@ -18,14 +18,12 @@ struct PackingListCell: View {
         VStack(alignment: .trailing) {
             VStack(alignment: .leading) {
                 Text(viewModel.trip.end_date.toDateString() ?? "")
-                    .font(.system(size: 14))
-                    .fontWeight(.light)
+                    .font(.custom("Pretendard-Light", size: 14))
                     .padding(.top, 9)
                     .foregroundStyle(.black)
                 
                 Text(viewModel.trip.title)
-                    .font(.system(size: 16))
-                    .fontWeight(.bold)
+                    .font(.custom("Pretendard-Bold", size: 16))
                     .foregroundStyle(.black)
             }
             .padding([.leading, .trailing], 6)
@@ -42,13 +40,11 @@ struct PackingListCell: View {
                 
                 VStack(alignment: .trailing) {
                     Text(viewModel.trip.location)
-                        .font(.system(size: 14))
-                        .fontWeight(.regular)
+                        .font(.custom("Pretendard-Regular", size: 14))
                         .foregroundStyle(.black)
                     
                     Text("1박 2일")
-                        .font(.system(size: 14))
-                        .fontWeight(.regular)
+                        .font(.custom("Pretendard-Regular", size: 14))
                         .foregroundStyle(.black)
 
                 }

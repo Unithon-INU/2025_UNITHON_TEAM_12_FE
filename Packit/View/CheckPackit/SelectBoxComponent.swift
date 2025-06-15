@@ -24,15 +24,13 @@ struct SelectBoxComponent: View {
                         .stroke(isSelected ? Color.clear : Color.packitLightGray)
                         .frame(width: 18, height: 18)
                     Text(title)
-                        .font(.custom("Pretendard", size: 16))
-                        .fontWeight(.semibold)
+                        .font(.custom("Pretendard-SemiBold", size: 16))
                         .foregroundColor(.black)
                 }
                 
                 
                 Text(description)
-                    .font(.custom("Pretendard", size: 14))
-                    .fontWeight(.light)
+                    .font(.custom("Pretendard-Light", size: 14))
                     .foregroundColor(.black)
             }
             

@@ -38,8 +38,7 @@ struct CalendarView: View {
             HStack(spacing: 33.3) {
                 ForEach(week, id: \.self) { day in
                     Text(day)
-                        .font(.custom("Pretendard", size: 15))
-                        .fontWeight(.regular)
+                        .font(.custom("Pretendard-Regular", size: 15))
                         .foregroundStyle(day == "일" ? .red : .black)
                 }
             }
@@ -47,7 +46,7 @@ struct CalendarView: View {
             .padding(.bottom, 20)
             
             Text("\(String(calendar.component(.year, from: dates.first ?? Date.now)))년 \(String(calendar.component(.month, from: dates.first ?? Date.now)))월")
-                .font(.custom("Pretendard", size: 16))
+                .font(.custom("Pretendard-SemiBold", size: 16))
                 .padding(.leading, 12)
             
             LazyVGrid(columns: Array(repeating: GridItem(), count: 7)) {
@@ -64,8 +63,7 @@ struct CalendarView: View {
                         
                         if isStart || isEnd {
                             Text("\(calendar.component(.day, from: date))")
-                                .font(.custom("Pretendard", size: 13))
-                                .fontWeight(.semibold)
+                                .font(.custom("Pretendard-SemiBold", size: 13))
                                 .foregroundStyle(Color.white)
                                 .frame(width: 34, height: 33)
                                 .padding(.vertical, 10)
@@ -77,8 +75,7 @@ struct CalendarView: View {
                         
                         else if isBetween {
                             Text("\(calendar.component(.day, from: date))")
-                                .font(.custom("Pretendard", size: 13))
-                                .fontWeight(.semibold)
+                                .font(.custom("Pretendard-SemiBold", size: 13))
                                 .foregroundStyle(Color.black)
                                 .frame(width: 34, height: 33)
                                 .padding(.vertical, 10)
@@ -90,9 +87,8 @@ struct CalendarView: View {
                         
                         else {
                             Text("\(calendar.component(.day, from: date))")
-                                .font(.custom("Pretendard", size: 13))
+                                .font(.custom("Pretendard-SemiBold", size: 13))
                                 .frame(width: 34, height: 33)
-                                .fontWeight(.semibold)
                                 .padding(.vertical, 10)
                         }
                     }

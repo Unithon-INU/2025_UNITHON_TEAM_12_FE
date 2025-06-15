@@ -14,8 +14,7 @@ struct PlanPackitTitleView: View {
         NavigationStack{
             VStack {
                 Text("이번 짐의 제목을 정해주세요!")
-                    .font(.custom("Pretendard", size: 24))
-                    .fontWeight(.bold)
+                    .font(.custom("Pretendard-Bold", size: 24))
                     .foregroundStyle(Color.packitPurple)
                     .padding(.top, 15)
                 

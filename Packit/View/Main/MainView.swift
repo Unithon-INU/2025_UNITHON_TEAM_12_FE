@@ -57,8 +57,7 @@ struct UpcomingTrip: View {
     var body: some View {
         HStack {
             Text("다가오는 여정")
-                .font(.system(size: 15))
-                .fontWeight(.bold)
+                .font(.custom("Pretendard-Bold", size: 15))
                 .padding(.leading, 40)
                 .padding(.top)
             
@@ -74,14 +73,13 @@ struct UpcomingTrip: View {
                         .foregroundStyle(Color.packitPurple)
                     
                     Text(trip.title)
-                        .font(.system(size: 18))
-                        .fontWeight(.semibold)
-                    
+                        .font(.custom("Pretendard-SemiBold", size: 18))
+
                     Spacer()
                     
                     Text(trip.end_date.toDateString() ?? "")
-                        .font(.system(size: 20))
-                        .fontWeight(.thin)
+                        .font(.custom("Pretendard-Thin", size: 20))
+
                 }
                 .padding([.leading, .trailing], 15)
                 .padding(.top, 14)
@@ -102,8 +100,7 @@ struct UpcomingTrip: View {
             }, label: {
                 Text("\(trip.title) 짐 챙기기 START!")
                     .foregroundStyle(.white)
-                    .font(.system(size: 15))
-                    .fontWeight(.bold)
+                    .font(.custom("Pretendard-Bold", size: 15))
             })
             .padding([.leading, .trailing], 30)
             .padding([.top, .bottom], 12)
@@ -124,8 +121,7 @@ struct PackingListView: View {
     var body: some View {
         HStack {
             Text("짐 챙기기 기록")
-                .font(.system(size: 15))
-                .fontWeight(.bold)
+                .font(.custom("Pretendard-Bold", size: 15))
                 .padding(.leading, 40)
                 .padding(.top)
             
@@ -151,8 +147,7 @@ struct PackingListView: View {
                     Spacer()
                     
                     Text("더보기")
-                        .font(.system(size: 16))
-                        .fontWeight(.semibold)
+                        .font(.custom("Pretendard-SemiBold", size: 16))
                         .foregroundStyle(Color.packitPurple)
                     
                     Image(systemName: "greaterthan")

@@ -16,8 +16,7 @@ struct PlanPackitTripPropertyView: View {
                 VStack(alignment: .leading) {
                     HStack {
                         Text("언제 여행을 떠나시나요?")
-                            .font(.custom("Pretendard", size: 13))
-                            .fontWeight(.bold)
+                            .font(.custom("Pretendard-Bold", size: 13))
                             .padding(.leading, 4)
                         
                         Spacer()
@@ -36,8 +35,7 @@ struct PlanPackitTripPropertyView: View {
                 
                 VStack(alignment: .leading) {
                     Text("어디로 여행을 가시나요?")
-                        .font(.custom("Pretendard", size: 13))
-                        .fontWeight(.bold)
+                        .font(.custom("Pretendard-Bold", size: 13))
                         .padding(.leading, 4)
                     
                     PackitTextField(text: $tripDestination, placeholder: "여행 지역을 입력해주세요!")
@@ -47,8 +45,7 @@ struct PlanPackitTripPropertyView: View {
                 
                 VStack(alignment: .leading, spacing: 10) {
                     Text("어행 컨셉을 알려주세요!")
-                        .font(.custom("Pretendard", size: 13))
-                        .fontWeight(.bold)
+                        .font(.custom("Pretendard-Bold", size: 13))
                         .padding(.leading, 4)
                     
                     SelectTripProperty()
@@ -65,7 +62,8 @@ struct PlanPackitTripPropertyView: View {
                 PackitButton(title: "다음")
                     .padding(.horizontal, 23)
                     .padding(.bottom, 10)
-            }        }
+            }
+        }
     }
 }
 
