@@ -25,7 +25,7 @@ struct CategoryButtonComponent: View {
                 .background(
                     RoundedRectangle(cornerRadius: 8)
                         .fill(isSelected ? Color.packitPurple : Color.white)
-                        .stroke(Color.packitLightGray)
+                        .stroke(isSelected ? .clear : Color.packitLightGray)
 
                 )
         }

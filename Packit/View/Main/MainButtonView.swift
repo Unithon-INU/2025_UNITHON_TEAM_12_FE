@@ -55,8 +55,9 @@ struct MainButtonView: View {
                     .shadow(radius: 1.3)
             )
             
-            Image(systemName: iconName)
+            Image(iconName)
                 .resizable()
+                .scaledToFill()
                 .frame(width: 23, height: 30)
                 .foregroundStyle(Color.packitPurple)
                 .offset(CGSize(width: -12, height: -12))

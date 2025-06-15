@@ -8,8 +8,26 @@
 import Foundation
 
 final class PlanPackitListViewModel: ObservableObject {
-    @Published var category: [String] = ["샤워용품", "의류", "화장품", "생활용품", "기타"]
-    @Published var planList: [PlanPackitModel] = [PlanPackitModel(itemName: "클렌징폼", notes: "용량을 확인해주세요!"), PlanPackitModel(itemName: "양말", notes: nil)]
+    @Published var category: [String] = ["필수품", "의류", "세면도구", "의약품", "기타"]
+    @Published var planList = [TripItem]()
     
-    @Published var selectedCategory: String = "샤워용품"
+    @Published var selectedCategory: String = "필수품"
+    
+    init() {
+        fetchTripItemList()
+    }
+    
+    func fetchTripItemList() {
+        if let tripItems: [TripItem] = JSONParser.parse(fileName: "TripItem") {
+            self.planList = tripItems
+        } else {
+            print("JSON DECODE 에러입니다.")
+        }
+    }
+    
+    func deleteTripItem(id: Int) {
+        if let index = self.planList.firstIndex(where: { $0.id == id }) {
+            self.planList.remove(at: index)
+        }
+    }
 }

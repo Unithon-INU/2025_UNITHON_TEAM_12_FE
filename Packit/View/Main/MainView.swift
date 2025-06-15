@@ -9,9 +9,10 @@ import SwiftUI
 
 struct MainView: View {
     @ObservedObject var viewModel = MainViewModel()
-    
+    @StateObject private var navigationCoordinator = NavigationCoordinator()
+
     var body: some View {
-        NavigationStack{
+        NavigationStack(path: $navigationCoordinator.path) {
             VStack {
                 HStack {
                     Image("Logo")
@@ -26,25 +27,29 @@ struct MainView: View {
                 
                 // MARK: - MainButtonView HStack
                 HStack(spacing: 21) {
-                    NavigationLink(destination: PlanPackitTitleView()) {
+                    Button(action: {
+                        navigationCoordinator.push(.plan(.title))
+                    }, label: {
                         MainButtonView(
                             title: "짐싸기 계획하기",
                             description: "어떤 짐을 챙길지 함께 \n정해보아요!",
                             highlight: nil,
-                            iconName: "bag.fill"
+                            iconName: "package"
                         )
-                    }
+                    })
                     
                     /// - NOTE: 남은 짐 챙기기, 계획 완성하기 부분 처리 방법 생각해보기
                     if let trip = viewModel.tripList.first {
-                        NavigationLink(destination: PlanPackitTitleView()) {
+                        Button(action: {
+                            navigationCoordinator.push(.plan(.title))
+                        }, label: {
                             MainButtonView(
                                 title: "남은 짐 챙기기",
                                 description: "아직 완성되지 않은",
                                 highlight: trip.title,
-                                iconName: "bag"
+                                iconName: "packageTag"
                             )
-                        }
+                        })
                     }
                 }
                 .frame(height: 120)
@@ -56,13 +61,14 @@ struct MainView: View {
                 }
                 
                 PackingListView(tripList: viewModel.tripList)
-            }
-        }
+            }.navigationDestination(for: AppRoute.self) { $0.destinationView() }
+        }.environmentObject(navigationCoordinator)
     }
 }
 
 // MARK: - "다가오는 여정" View
 struct UpcomingTrip: View {
+    @EnvironmentObject var coordinator: NavigationCoordinator
     let trip: Trip
     
     var body: some View {
@@ -106,26 +112,28 @@ struct UpcomingTrip: View {
             .padding([.leading, .trailing], 30)
             
             // MARK: - 다가오는 여정의 짐챙기기 시작 버튼
-            NavigationLink(destination: StartCheckPackitView(title: trip.title)) {
+            Button(action: {
+                coordinator.push(.checkList(.start(title: trip.title)))
+            }, label: {
                 Text("\(trip.title) 짐 챙기기 START!")
                     .foregroundStyle(.white)
                     .font(.custom("Pretendard-Bold", size: 15))
-            .padding([.leading, .trailing], 30)
-            .padding([.top, .bottom], 12)
-            .background(
-                RoundedRectangle(cornerRadius: 13)
-                    .fill(Color.packitPurple)
-                    .shadow(radius: 3)
-            )
-            .offset(CGSize(width: 0, height: 20))
-                
-            }
+                    .padding([.leading, .trailing], 30)
+                    .padding([.top, .bottom], 12)
+                    .background(
+                        RoundedRectangle(cornerRadius: 13)
+                            .fill(Color.packitPurple)
+                            .shadow(radius: 3)
+                    )
+                    .offset(CGSize(width: 0, height: 20))
+            })
         }.padding(.bottom, 15)
     }
 }
 
 // MARK: - "짐 챙기기 기록" View
 struct PackingListView: View {
+    @EnvironmentObject var coordinator: NavigationCoordinator
     let tripList: [Trip]
     
     var body: some View {
@@ -143,16 +151,20 @@ struct PackingListView: View {
             ScrollView(.horizontal) {
                 LazyHStack(alignment: .top, spacing: 18) {
                     ForEach(tripList) { trip in
-                        NavigationLink(destination: ListDetailView(title: trip.title)) {
+                        Button(action: {
+                            coordinator.push(.trip(.tripDetail(title: trip.title)))
+                        }, label: {
                             PackingListCell(viewModel: PackingListCellViewModel(trip: trip))
-                        }
+                        })
                     }
                 }
                 .padding([.leading, .trailing, .top], 15)
             }
             .scrollIndicators(.hidden)
         
-            NavigationLink(destination: TravelListView()) {
+            Button(action: {
+                coordinator.push(.trip(.tripList))
+            }, label: {
                 HStack {
                     Spacer()
                     
@@ -164,7 +176,7 @@ struct PackingListView: View {
                         .foregroundStyle(Color.packitPurple)
                 }
                 .padding([.trailing, .bottom], 12)
-            }
+            })
         }
         .overlay {
             RoundedRectangle(cornerRadius: 15)

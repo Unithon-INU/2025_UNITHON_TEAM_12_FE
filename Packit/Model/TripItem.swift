@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct TripItem: Identifiable, Codable {
+struct TripItem: Identifiable, Codable, Hashable {
     let tripItemId: Int
     var itemName: String
     var quantity: Int

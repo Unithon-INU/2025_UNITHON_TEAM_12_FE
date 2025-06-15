@@ -20,6 +20,7 @@
 		29275E3C2DFE6E96008CE582 /* ListCardComponentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29275E392DFE6E96008CE582 /* ListCardComponentView.swift */; };
 		29275E402DFE7F7E008CE582 /* StartCheckPackitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29275E3F2DFE7F7E008CE582 /* StartCheckPackitView.swift */; };
 		29275E422DFE92B9008CE582 /* CheckPackitListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29275E412DFE92B9008CE582 /* CheckPackitListView.swift */; };
+		29275E482DFEE4BC008CE582 /* NavigationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29275E472DFEE4BC008CE582 /* NavigationCoordinator.swift */; };
 		298783382DFD5750004FB6AD /* PlanPackitListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298783372DFD5750004FB6AD /* PlanPackitListView.swift */; };
 		2987833A2DFD62E7004FB6AD /* PlanPackitListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298783392DFD62E7004FB6AD /* PlanPackitListViewModel.swift */; };
 		2987833C2DFD640E004FB6AD /* PlanPackitModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2987833B2DFD640E004FB6AD /* PlanPackitModel.swift */; };
@@ -66,6 +67,7 @@
 		29275E3A2DFE6E96008CE582 /* TravelListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelListView.swift; sourceTree = "<group>"; };
 		29275E3F2DFE7F7E008CE582 /* StartCheckPackitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartCheckPackitView.swift; sourceTree = "<group>"; };
 		29275E412DFE92B9008CE582 /* CheckPackitListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckPackitListView.swift; sourceTree = "<group>"; };
+		29275E472DFEE4BC008CE582 /* NavigationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationCoordinator.swift; sourceTree = "<group>"; };
 		298783372DFD5750004FB6AD /* PlanPackitListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanPackitListView.swift; sourceTree = "<group>"; };
 		298783392DFD62E7004FB6AD /* PlanPackitListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanPackitListViewModel.swift; sourceTree = "<group>"; };
 		2987833B2DFD640E004FB6AD /* PlanPackitModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanPackitModel.swift; sourceTree = "<group>"; };
@@ -342,6 +344,7 @@
 				29F9DC2C2DE95C0E005ECBA3 /* Assets.xcassets */,
 				29F9DC2D2DE95C0E005ECBA3 /* Packit.entitlements */,
 				29F9DC2E2DE95C0E005ECBA3 /* PackitApp.swift */,
+				29275E472DFEE4BC008CE582 /* NavigationCoordinator.swift */,
 			);
 			path = Packit;
 			sourceTree = "<group>";
@@ -437,6 +440,7 @@
 				29F9DC322DE95C0E005ECBA3 /* PackitToggleButton.swift in Sources */,
 				29F9DC332DE95C0E005ECBA3 /* Color+.swift in Sources */,
 				29F9DC342DE95C0E005ECBA3 /* String+.swift in Sources */,
+				29275E482DFEE4BC008CE582 /* NavigationCoordinator.swift in Sources */,
 				29F9DC352DE95C0E005ECBA3 /* View+.swift in Sources */,
 				29F9DC362DE95C0E005ECBA3 /* Trip.swift in Sources */,
 				29F9DC372DE95C0E005ECBA3 /* TripItem.swift in Sources */,

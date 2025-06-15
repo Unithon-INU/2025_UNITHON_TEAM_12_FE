@@ -10,6 +10,7 @@ import Foundation
 
 struct TravelListView: View {
     @State private var scrollOffset: CGFloat = 0
+    @EnvironmentObject var coordinator: NavigationCoordinator
     
     // 샘플 데이터
     let sampleTrips = [
@@ -144,151 +145,159 @@ struct TravelListView: View {
     }
     
     var body: some View {
-        NavigationView {
-            GeometryReader { geometry in
-                ZStack {
-                    VStack(spacing: 34) {
-                        // 헤더
-                        HStack(spacing: 21) {
+        GeometryReader { geometry in
+            ZStack {
+                VStack(spacing: 34) {
+                    // 헤더
+                    HStack(spacing: 21) {
+                        Button(action: {
+                            print("버튼들오왔지롱")
+                            coordinator.popToRoot()
+                        }, label: {
                             Image("home")
                                 .resizable()
                                 .scaledToFit()
                                 .frame(width: 20, height: 22)
-                            
-                            Text("짐 리스트")
-                                .font(.custom("Pretendard-bold", size: 25))
-                                .foregroundColor(.black)
-                            
-                            Spacer()
-                            
-                            Image("user")
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 20, height: 19)
-                        }
-                        .padding(.horizontal)
+                        })
                         
-                        // 예정된 짐 싸기 섹션 (고정)
-                        if !upcomingTrips.isEmpty {
-                            VStack(alignment: .leading, spacing: 11) {
-                                HStack {
-                                    Image("clock")
-                                        .resizable()
-                                        .scaledToFit()
-                                        .frame(width: 20, height: 22)
-                                    Text("예정된 짐 싸기")
-                                        .font(.custom("Pretendard-bold", size: 16))
-                                        .foregroundColor(.black)
-                                    Spacer()
-                                }
-                                .padding(.horizontal)
-                                
-                                ScrollView(.horizontal, showsIndicators: false) {
-                                    HStack(spacing: 19) {
-                                        ForEach(upcomingTrips) { trip in
-                                            NavigationLink(destination: ListDetailView(title: trip.title)) {
-                                                ListCardComponentView(trip: trip)
-                                            }
-                                        }
-                                    }
-                                    .padding(.horizontal)
-                                }
-                            }
-                        }
-                        else {
-                            // 예정된 여행이 없을 때
-                            VStack(spacing: 10) {
+                        Text("짐 리스트")
+                            .font(.custom("Pretendard-bold", size: 25))
+                            .foregroundColor(.black)
+                        
+                        Spacer()
+                        
+                        Image("user")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 20, height: 19)
+                    }
+                    .padding(.horizontal)
+                    
+                    // 예정된 짐 싸기 섹션 (고정)
+                    if !upcomingTrips.isEmpty {
+                        VStack(alignment: .leading, spacing: 11) {
+                            HStack {
                                 Image("clock")
                                     .resizable()
                                     .scaledToFit()
-                                    .frame(width: 40, height: 40)
-                                    .foregroundColor(.gray)
-                                Text("예정된 여행이 없습니다")
-                                    .font(.custom("Pretendard", size: 16))
-                                    .foregroundColor(.gray)
-                                Text("새로운 여행을 계획해보세요!")
-                                    .font(.custom("Pretendard", size: 14))
-                                    .foregroundColor(.gray)
+                                    .frame(width: 20, height: 22)
+                                Text("예정된 짐 싸기")
+                                    .font(.custom("Pretendard-bold", size: 16))
+                                    .foregroundColor(.black)
+                                Spacer()
                             }
-                            .frame(height: 200)
-                        }
-                        
-                        Spacer()
-                    }
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    .background(Color.white)
-                    .zIndex(0)
-                    
-                    // 스크롤 가능한 과거 기록 섹션 (오버레이)
-                    ScrollView {
-                        VStack {
-                            // 예정된 짐싸기와의 공백
-                            Rectangle()
-                                .fill(Color.clear)
-                                .frame(height: calculateTopSpacing())
+                            .padding(.horizontal)
                             
-                            // 과거 짐 싸기 기록 섹션
-                            VStack(alignment: .leading, spacing: 11) {
-                                HStack {
+                            ScrollView(.horizontal, showsIndicators: false) {
+                                HStack(spacing: 19) {
+                                    ForEach(upcomingTrips) { trip in
+                                        Button {
+                                            coordinator.push(.trip(.tripDetail(title: trip.title)))
+                                        } label: {
+                                            ListCardComponentView(trip: trip)
+                                        }
+                                    }
+                                }
+                                .padding(.horizontal)
+                            }
+                        }
+                    }
+                    else {
+                        // 예정된 여행이 없을 때
+                        VStack(spacing: 10) {
+                            Image("clock")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 40, height: 40)
+                                .foregroundColor(.gray)
+                            Text("예정된 여행이 없습니다")
+                                .font(.custom("Pretendard", size: 16))
+                                .foregroundColor(.gray)
+                            Text("새로운 여행을 계획해보세요!")
+                                .font(.custom("Pretendard", size: 14))
+                                .foregroundColor(.gray)
+                        }
+                        .frame(height: 200)
+                    }
+                    
+                    Spacer()
+                }
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .background(Color.white)
+                .zIndex(0)
+                
+                // 스크롤 가능한 과거 기록 섹션 (오버레이)
+                ScrollView {
+                    VStack {
+                        // 예정된 짐싸기와의 공백
+                        Rectangle()
+                            .fill(Color.clear)
+                            .frame(height: calculateTopSpacing())
+                        
+                        // 과거 짐 싸기 기록 섹션
+                        VStack(alignment: .leading, spacing: 11) {
+                            HStack {
+                                Image("list")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 16, height: 21)
+                                Text("과거 짐 싸기 기록")
+                                    .font(.custom("Pretendard-bold", size: 16))
+                                    .foregroundColor(.black)
+                                Spacer()
+                            }
+                            .padding(.horizontal)
+                            .padding(.top, 20)
+                            
+                            if !pastTrips.isEmpty {
+                                LazyVGrid(columns: columns, spacing: 19) {
+                                    ForEach(pastTrips) { trip in
+                                        Button {
+                                            coordinator.push(.trip(.tripDetail(title: trip.title)))
+                                        } label: {
+                                            ListCardComponentView(trip: trip)
+                                        }
+                                    }
+                                }
+                                .padding(.horizontal)
+                                .padding(.bottom, 50)
+                            }
+                            else {
+                                // 과거 여행이 없을 때
+                                VStack(spacing: 10) {
                                     Image("list")
                                         .resizable()
                                         .scaledToFit()
-                                        .frame(width: 16, height: 21)
-                                    Text("과거 짐 싸기 기록")
-                                        .font(.custom("Pretendard-bold", size: 16))
-                                        .foregroundColor(.black)
-                                    Spacer()
+                                        .frame(width: 40, height: 40)
+                                        .foregroundColor(.gray)
+                                    Text("아직 완료된 여행이 없습니다")
+                                        .font(.custom("Pretendard", size: 16))
+                                        .foregroundColor(.gray)
+                                    Text("첫 번째 여행을 떠나보세요!")
+                                        .font(.custom("Pretendard", size: 14))
+                                        .foregroundColor(.gray)
                                 }
-                                .padding(.horizontal)
-                                .padding(.top, 20)
-                                
-                                if !pastTrips.isEmpty {
-                                    LazyVGrid(columns: columns, spacing: 19) {
-                                        ForEach(pastTrips) { trip in
-                                            NavigationLink(destination: ListDetailView(title: trip.title)) {
-                                                ListCardComponentView(trip: trip)
-                                            }
-                                        }
-                                    }
-                                    .padding(.horizontal)
-                                    .padding(.bottom, 50)
-                                }
-                                else {
-                                    // 과거 여행이 없을 때
-                                    VStack(spacing: 10) {
-                                        Image("list")
-                                            .resizable()
-                                            .scaledToFit()
-                                            .frame(width: 40, height: 40)
-                                            .foregroundColor(.gray)
-                                        Text("아직 완료된 여행이 없습니다")
-                                            .font(.custom("Pretendard", size: 16))
-                                            .foregroundColor(.gray)
-                                        Text("첫 번째 여행을 떠나보세요!")
-                                            .font(.custom("Pretendard", size: 14))
-                                            .foregroundColor(.gray)
-                                    }
-                                    .frame(height: 200)
-                                    .padding(.bottom, 50)
-                                }
+                                .frame(height: 200)
+                                .padding(.bottom, 50)
                             }
-                            .background(
-                                UnevenRoundedRectangle(
-                                    topLeadingRadius: 15,
-                                    bottomLeadingRadius: 0,
-                                    bottomTrailingRadius: 0,
-                                    topTrailingRadius: 15
-                                )
-                                .fill(Color.packitLightPurple)
-                                .shadow(color: Color.black.opacity(0.15), radius: 10, x: 0, y: -5)
-                            )
                         }
+                        .background(
+                            UnevenRoundedRectangle(
+                                topLeadingRadius: 15,
+                                bottomLeadingRadius: 0,
+                                bottomTrailingRadius: 0,
+                                topTrailingRadius: 15
+                            )
+                            .fill(Color.packitLightPurple)
+                            .shadow(color: Color.black.opacity(0.15), radius: 10, x: 0, y: -5)
+                        )
                     }
-                    .background(Color.clear)
-                    .zIndex(1)
                 }
+                .background(Color.clear)
+                .allowsHitTesting(false)
+                .zIndex(1)
             }
-            .navigationBarHidden(true)
         }
+        .navigationBarHidden(true)
     }
 }

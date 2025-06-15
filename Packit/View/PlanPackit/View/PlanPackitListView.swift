@@ -10,87 +10,96 @@ import SwiftUI
 struct PlanPackitListView: View {
     @ObservedObject private var viewModel = PlanPackitListViewModel()
     @State private var addListText: String = ""
-    @State private var selectedCategory: String = "샤워용품"
-    
+    @State private var selectedCategory: Int = 0
+    @EnvironmentObject var coordinator: NavigationCoordinator
+
     var body: some View {
-        NavigationStack{
-            VStack(spacing: 14) {
-                // MARK: - 상단 카테고리 탭
-                HStack(spacing: 5) {
-                    ForEach(viewModel.category, id: \.self) { category in
-                        Button(action: {
-                            selectedCategory = category
-                        }, label: {
-                            Text(category)
-                                .font(.custom("Pretendard-Bold", size: 14))
-                                .padding(.vertical, 5)
-                                .padding(.horizontal)
-                                .foregroundStyle(selectedCategory==category ? Color.white : Color.packitCharcoal)
-                                .background {
-                                    RoundedRectangle(cornerRadius: 3)
-                                        .fill(selectedCategory==category ? Color.packitPurple : Color.white)
-                                }
-                        })
-                    }
-                }
-                .padding(5)
-                .background {
-                    RoundedRectangle(cornerRadius: 5)
-                        .fill(Color.packitLightGray)
-                }
-                
-                // MARK: - 물품 추가 입력 창
-                PackitTextField(text: $addListText, placeholder: "추가할 물품을 입력해주세요!")
-                    .padding(.horizontal)
-                
-                // MARK: - 물품 리스트 뷰
-                LazyVStack {
-                    ScrollView{
-                        ForEach(viewModel.planList, id: \.self) { list in
-                            ZStack(alignment: .topTrailing) {
-                                HStack(spacing: 15) {
-                                    Image("package")
-                                        .resizable()
-                                        .scaledToFit()
-                                        .frame(height: 35)
-                                        .padding(.leading, 10)
-                                    
-                                    VStack(alignment: .leading) {
-                                        Text(list.itemName)
-                                            .font(.custom("Pretendard-SemiBold", size: 16))
-                                        
-                                        if let list = list.notes {
-                                            Text(list)
-                                                .padding(.top, 0.1)
-                                                .font(.custom("Pretendard-Light", size: 14))
-                                        }
-                                    }
-                                    
-                                    Spacer()
-                                    
-                                }.frame(minHeight: 45)
-                                
-                                Image(systemName: "x.circle")
-                            }
-                            .padding()
+        VStack(spacing: 14) {
+            // MARK: - 상단 카테고리 탭
+            HStack(spacing: 5) {
+                ForEach(Array(viewModel.category.enumerated()), id: \.offset) { index, category in
+                    Button(action: {
+                        selectedCategory = index
+                    }, label: {
+                        Text(category)
+                            .font(.custom("Pretendard-Bold", size: 14))
+                            .padding(.vertical, 5)
+                            .padding(.horizontal)
+                            .foregroundStyle(viewModel.category[selectedCategory]==category ? Color.white : Color.packitCharcoal)
                             .background {
-                                RoundedRectangle(cornerRadius: 10)
-                                    .fill(Color.packitLightPurple)
+                                RoundedRectangle(cornerRadius: 3)
+                                    .fill(viewModel.category[selectedCategory]==category ? Color.packitPurple : Color.white)
                             }
+                    })
+                }
+            }
+            .padding(5)
+            .background {
+                RoundedRectangle(cornerRadius: 5)
+                    .fill(Color.packitLightGray)
+            }
+            
+            // MARK: - 물품 추가 입력 창
+            PackitTextField(text: $addListText, placeholder: "추가할 물품을 입력해주세요!")
+                .padding(.horizontal)
+            
+            // MARK: - 물품 리스트 뷰
+            LazyVStack {
+                ScrollView{
+                    ForEach(viewModel.planList) { list in
+                        ZStack(alignment: .topTrailing) {
+                            HStack(spacing: 15) {
+                                Image("package")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(height: 35)
+                                    .padding(.leading, 10)
+                                
+                                VStack(alignment: .leading) {
+                                    Text(list.itemName)
+                                        .font(.custom("Pretendard-SemiBold", size: 16))
+                                    
+                                    if let notes = list.notes {
+                                        Text(notes)
+                                            .padding(.top, 0.1)
+                                            .font(.custom("Pretendard-Light", size: 14))
+                                    }
+                                }
+                                
+                                Spacer()
+                                
+                            }.frame(minHeight: 45)
+                            Button(action: {
+                                viewModel.deleteTripItem(id: list.id)
+                            }, label: {
+                                Image(systemName: "x.circle")
+                                    .foregroundStyle(Color.black)
+                            })
+                        }
+                        .padding()
+                        .background {
+                            RoundedRectangle(cornerRadius: 10)
+                                .fill(Color.packitLightPurple)
                         }
                     }
-                    .padding(.horizontal)
                 }
-                .frame(maxHeight: .infinity, alignment: .top)
-                
-                PackitButton(title: "다음")
-                    .padding(.horizontal, 20)
-                    .padding(.bottom, 15)         
+                .padding(.horizontal)
             }
+            .frame(maxHeight: .infinity, alignment: .top)
+                            
+            Button(action: {
+                if selectedCategory>=0 && selectedCategory<viewModel.category.count-1 {
+                    selectedCategory += 1
+                }
+                else {
+                    /// - NOTE: 마지막 카테고리 일시에
+                    coordinator.popToRoot()
+                }
+            }, label: {
+                PackitButton(title: selectedCategory==viewModel.category.count-1 ? "완료" : "다음")
+                    .padding(.horizontal, 20)
+                    .padding(.bottom, 15)
+            })
         }
     }
-}
-
-#Preview {
-    PlanPackitListView()
 }

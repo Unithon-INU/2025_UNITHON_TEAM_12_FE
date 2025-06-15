@@ -9,61 +9,62 @@ import SwiftUI
 
 struct PlanPackitTripPropertyView: View {
     @State private var tripDestination: String = ""
+    @EnvironmentObject var coordinator: NavigationCoordinator
     
     var body: some View {
-        NavigationStack{
-            ScrollView {
-                VStack(alignment: .leading) {
-                    HStack {
-                        Text("언제 여행을 떠나시나요?")
-                            .font(.custom("Pretendard-Bold", size: 13))
-                            .padding(.leading, 4)
-                        
-                        Spacer()
-                    }.padding(.bottom, 2)
-                    
-                    CalendarView()
-                        .padding(.vertical, 15)
-                        .padding(.horizontal,10)
-                        .overlay {
-                            RoundedRectangle(cornerRadius: 10)
-                                .stroke(Color.packitPurple, lineWidth: 1)
-                        }
-                }
-                .padding(.vertical, 10)
-                .padding(.horizontal, 27)
-                
-                VStack(alignment: .leading) {
-                    Text("어디로 여행을 가시나요?")
+        ScrollView {
+            VStack(alignment: .leading) {
+                HStack {
+                    Text("언제 여행을 떠나시나요?")
                         .font(.custom("Pretendard-Bold", size: 13))
                         .padding(.leading, 4)
                     
-                    PackitTextField(text: $tripDestination, placeholder: "여행 지역을 입력해주세요!")
-                }
-                .padding(.vertical, 10)
-                .padding(.horizontal, 27)
+                    Spacer()
+                }.padding(.bottom, 2)
                 
-                VStack(alignment: .leading, spacing: 10) {
-                    Text("어행 컨셉을 알려주세요!")
-                        .font(.custom("Pretendard-Bold", size: 13))
-                        .padding(.leading, 4)
-                    
-                    SelectTripProperty()
-                }
-                .padding(.top, 10)
-                .padding(.bottom, 60)
-                .padding(.leading, 25)
+                CalendarView()
+                    .padding(.vertical, 15)
+                    .padding(.horizontal,10)
+                    .overlay {
+                        RoundedRectangle(cornerRadius: 10)
+                            .stroke(Color.packitPurple, lineWidth: 1)
+                    }
             }
-            .onTapGesture {
-                self.endTextEditing()
-            }
+            .padding(.vertical, 10)
+            .padding(.horizontal, 27)
             
-            NavigationLink(destination: PlanPackitListView()) {
-                PackitButton(title: "다음")
-                    .padding(.horizontal, 23)
-                    .padding(.bottom, 10)
+            VStack(alignment: .leading) {
+                Text("어디로 여행을 가시나요?")
+                    .font(.custom("Pretendard-Bold", size: 13))
+                    .padding(.leading, 4)
+                
+                PackitTextField(text: $tripDestination, placeholder: "여행 지역을 입력해주세요!")
             }
+            .padding(.vertical, 10)
+            .padding(.horizontal, 27)
+            
+            VStack(alignment: .leading, spacing: 10) {
+                Text("어행 컨셉을 알려주세요!")
+                    .font(.custom("Pretendard-Bold", size: 13))
+                    .padding(.leading, 4)
+                
+                SelectTripProperty()
+            }
+            .padding(.top, 10)
+            .padding(.bottom, 60)
+            .padding(.leading, 25)
         }
+        .onTapGesture {
+            self.endTextEditing()
+        }
+        
+        Button(action: {
+            coordinator.push(.plan(.list))
+        }, label: {
+            PackitButton(title: "다음")
+                .padding(.horizontal, 23)
+                .padding(.bottom, 10)
+        })
     }
 }
 
