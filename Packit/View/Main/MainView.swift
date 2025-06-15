@@ -137,16 +137,16 @@ struct PackingListView: View {
             ScrollView(.horizontal) {
                 LazyHStack(alignment: .top, spacing: 18) {
                     ForEach(tripList) { trip in
-                        Button(action: {}, label: {
+                        NavigationLink(destination: ListDetailView(title: trip.title)) {
                             PackingListCell(viewModel: PackingListCellViewModel(trip: trip))
-                        })
+                        }
                     }
                 }
                 .padding([.leading, .trailing, .top], 15)
             }
             .scrollIndicators(.hidden)
         
-            NavigationLink(destination: ListDetailView()) {
+            NavigationLink(destination: TravelListView()) {
                 HStack {
                     Spacer()
                     

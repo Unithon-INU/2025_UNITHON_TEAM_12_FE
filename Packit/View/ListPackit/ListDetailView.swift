@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct ListDetailView: View {
+    let title: String
+    
     var body: some View {
         NavigationStack{
             VStack(spacing:22) {
@@ -18,9 +20,7 @@ struct ListDetailView: View {
             }
             .frame(maxHeight: .infinity, alignment: .top)
         }
+        .navigationBarTitleDisplayMode(.inline)
+        .navigationTitle(title)
     }
-}
-
-#Preview {
-    ListDetailView()
 }

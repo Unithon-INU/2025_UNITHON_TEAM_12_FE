@@ -186,30 +186,32 @@ struct TravelListView: View {
                                 ScrollView(.horizontal, showsIndicators: false) {
                                     HStack(spacing: 19) {
                                         ForEach(upcomingTrips) { trip in
-                                            ListCardComponentView(trip: trip)
+                                            NavigationLink(destination: ListDetailView(title: trip.title)) {
+                                                ListCardComponentView(trip: trip)
+                                            }
                                         }
                                     }
                                     .padding(.horizontal)
                                 }
                             }
                         }
-//                        else {
-//                            // 예정된 여행이 없을 때
-//                            VStack(spacing: 10) {
-//                                Image("clock")
-//                                    .resizable()
-//                                    .scaledToFit()
-//                                    .frame(width: 40, height: 40)
-//                                    .foregroundColor(.gray)
-//                                Text("예정된 여행이 없습니다")
-//                                    .font(.custom("Pretendard", size: 16))
-//                                    .foregroundColor(.gray)
-//                                Text("새로운 여행을 계획해보세요!")
-//                                    .font(.custom("Pretendard", size: 14))
-//                                    .foregroundColor(.gray)
-//                            }
-//                            .frame(height: 200)
-//                        }
+                        else {
+                            // 예정된 여행이 없을 때
+                            VStack(spacing: 10) {
+                                Image("clock")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 40, height: 40)
+                                    .foregroundColor(.gray)
+                                Text("예정된 여행이 없습니다")
+                                    .font(.custom("Pretendard", size: 16))
+                                    .foregroundColor(.gray)
+                                Text("새로운 여행을 계획해보세요!")
+                                    .font(.custom("Pretendard", size: 14))
+                                    .foregroundColor(.gray)
+                            }
+                            .frame(height: 200)
+                        }
                         
                         Spacer()
                     }
@@ -243,30 +245,32 @@ struct TravelListView: View {
                                 if !pastTrips.isEmpty {
                                     LazyVGrid(columns: columns, spacing: 19) {
                                         ForEach(pastTrips) { trip in
-                                            ListCardComponentView(trip: trip)
+                                            NavigationLink(destination: ListDetailView(title: trip.title)) {
+                                                ListCardComponentView(trip: trip)
+                                            }
                                         }
                                     }
                                     .padding(.horizontal)
                                     .padding(.bottom, 50)
                                 }
-//                                else {
-//                                    // 과거 여행이 없을 때
-//                                    VStack(spacing: 10) {
-//                                        Image("list")
-//                                            .resizable()
-//                                            .scaledToFit()
-//                                            .frame(width: 40, height: 40)
-//                                            .foregroundColor(.gray)
-//                                        Text("아직 완료된 여행이 없습니다")
-//                                            .font(.custom("Pretendard", size: 16))
-//                                            .foregroundColor(.gray)
-//                                        Text("첫 번째 여행을 떠나보세요!")
-//                                            .font(.custom("Pretendard", size: 14))
-//                                            .foregroundColor(.gray)
-//                                    }
-//                                    .frame(height: 200)
-//                                    .padding(.bottom, 50)
-//                                }
+                                else {
+                                    // 과거 여행이 없을 때
+                                    VStack(spacing: 10) {
+                                        Image("list")
+                                            .resizable()
+                                            .scaledToFit()
+                                            .frame(width: 40, height: 40)
+                                            .foregroundColor(.gray)
+                                        Text("아직 완료된 여행이 없습니다")
+                                            .font(.custom("Pretendard", size: 16))
+                                            .foregroundColor(.gray)
+                                        Text("첫 번째 여행을 떠나보세요!")
+                                            .font(.custom("Pretendard", size: 14))
+                                            .foregroundColor(.gray)
+                                    }
+                                    .frame(height: 200)
+                                    .padding(.bottom, 50)
+                                }
                             }
                             .background(
                                 UnevenRoundedRectangle(
@@ -287,8 +291,4 @@ struct TravelListView: View {
             .navigationBarHidden(true)
         }
     }
-}
-
-#Preview {
-    TravelListView()
 }
