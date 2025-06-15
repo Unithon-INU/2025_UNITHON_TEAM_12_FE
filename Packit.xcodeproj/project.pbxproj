@@ -21,6 +21,12 @@
 		29275E402DFE7F7E008CE582 /* StartCheckPackitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29275E3F2DFE7F7E008CE582 /* StartCheckPackitView.swift */; };
 		29275E422DFE92B9008CE582 /* CheckPackitListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29275E412DFE92B9008CE582 /* CheckPackitListView.swift */; };
 		29275E482DFEE4BC008CE582 /* NavigationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29275E472DFEE4BC008CE582 /* NavigationCoordinator.swift */; };
+		29275E4B2DFF188E008CE582 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29275E4A2DFF188E008CE582 /* Endpoint.swift */; };
+		29275E4F2DFF18C4008CE582 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29275E4E2DFF18C4008CE582 /* NetworkService.swift */; };
+		29275E512DFF18E5008CE582 /* KeyChainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29275E502DFF18E5008CE582 /* KeyChainService.swift */; };
+		29275E532DFF190F008CE582 /* NetworkResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29275E522DFF190F008CE582 /* NetworkResult.swift */; };
+		29275E552DFF1948008CE582 /* URLManage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29275E542DFF1948008CE582 /* URLManage.swift */; };
+		29275E572DFF196B008CE582 /* API_URL.plist in Resources */ = {isa = PBXBuildFile; fileRef = 29275E562DFF196B008CE582 /* API_URL.plist */; };
 		298783382DFD5750004FB6AD /* PlanPackitListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298783372DFD5750004FB6AD /* PlanPackitListView.swift */; };
 		2987833A2DFD62E7004FB6AD /* PlanPackitListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298783392DFD62E7004FB6AD /* PlanPackitListViewModel.swift */; };
 		2987833C2DFD640E004FB6AD /* PlanPackitModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2987833B2DFD640E004FB6AD /* PlanPackitModel.swift */; };
@@ -68,6 +74,12 @@
 		29275E3F2DFE7F7E008CE582 /* StartCheckPackitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartCheckPackitView.swift; sourceTree = "<group>"; };
 		29275E412DFE92B9008CE582 /* CheckPackitListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckPackitListView.swift; sourceTree = "<group>"; };
 		29275E472DFEE4BC008CE582 /* NavigationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationCoordinator.swift; sourceTree = "<group>"; };
+		29275E4A2DFF188E008CE582 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
+		29275E4E2DFF18C4008CE582 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		29275E502DFF18E5008CE582 /* KeyChainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyChainService.swift; sourceTree = "<group>"; };
+		29275E522DFF190F008CE582 /* NetworkResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkResult.swift; sourceTree = "<group>"; };
+		29275E542DFF1948008CE582 /* URLManage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLManage.swift; sourceTree = "<group>"; };
+		29275E562DFF196B008CE582 /* API_URL.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = API_URL.plist; sourceTree = "<group>"; };
 		298783372DFD5750004FB6AD /* PlanPackitListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanPackitListView.swift; sourceTree = "<group>"; };
 		298783392DFD62E7004FB6AD /* PlanPackitListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanPackitListViewModel.swift; sourceTree = "<group>"; };
 		2987833B2DFD640E004FB6AD /* PlanPackitModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanPackitModel.swift; sourceTree = "<group>"; };
@@ -127,6 +139,34 @@
 				29275E2E2DFE6E84008CE582 /* Pretendard-Thin.otf */,
 			);
 			path = Font;
+			sourceTree = "<group>";
+		};
+		29275E492DFF1887008CE582 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				29275E4D2DFF18B7008CE582 /* Service */,
+				29275E4C2DFF18AE008CE582 /* Endpoint */,
+				29275E522DFF190F008CE582 /* NetworkResult.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		29275E4C2DFF18AE008CE582 /* Endpoint */ = {
+			isa = PBXGroup;
+			children = (
+				29275E4A2DFF188E008CE582 /* Endpoint.swift */,
+			);
+			path = Endpoint;
+			sourceTree = "<group>";
+		};
+		29275E4D2DFF18B7008CE582 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				29275E4E2DFF18C4008CE582 /* NetworkService.swift */,
+				29275E502DFF18E5008CE582 /* KeyChainService.swift */,
+				29275E542DFF1948008CE582 /* URLManage.swift */,
+			);
+			path = Service;
 			sourceTree = "<group>";
 		};
 		298783342DFD56F1004FB6AD /* View */ = {
@@ -333,6 +373,7 @@
 		29F9DC2F2DE95C0E005ECBA3 /* Packit */ = {
 			isa = PBXGroup;
 			children = (
+				29275E492DFF1887008CE582 /* API */,
 				29275E2F2DFE6E84008CE582 /* Font */,
 				29F9DC042DE95C0E005ECBA3 /* Component */,
 				29F9DC082DE95C0E005ECBA3 /* Extension */,
@@ -345,6 +386,7 @@
 				29F9DC2D2DE95C0E005ECBA3 /* Packit.entitlements */,
 				29F9DC2E2DE95C0E005ECBA3 /* PackitApp.swift */,
 				29275E472DFEE4BC008CE582 /* NavigationCoordinator.swift */,
+				29275E562DFF196B008CE582 /* API_URL.plist */,
 			);
 			path = Packit;
 			sourceTree = "<group>";
@@ -423,6 +465,7 @@
 				29275E382DFE6E84008CE582 /* Pretendard-ExtraBold.otf in Resources */,
 				29F9DC492DE95C0E005ECBA3 /* TripItem.json in Resources */,
 				29F9DC4A2DE95C0E005ECBA3 /* Assets.xcassets in Resources */,
+				29275E572DFF196B008CE582 /* API_URL.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -439,10 +482,12 @@
 				29F9DC312DE95C0E005ECBA3 /* PackitTextField.swift in Sources */,
 				29F9DC322DE95C0E005ECBA3 /* PackitToggleButton.swift in Sources */,
 				29F9DC332DE95C0E005ECBA3 /* Color+.swift in Sources */,
+				29275E532DFF190F008CE582 /* NetworkResult.swift in Sources */,
 				29F9DC342DE95C0E005ECBA3 /* String+.swift in Sources */,
 				29275E482DFEE4BC008CE582 /* NavigationCoordinator.swift in Sources */,
 				29F9DC352DE95C0E005ECBA3 /* View+.swift in Sources */,
 				29F9DC362DE95C0E005ECBA3 /* Trip.swift in Sources */,
+				29275E4B2DFF188E008CE582 /* Endpoint.swift in Sources */,
 				29F9DC372DE95C0E005ECBA3 /* TripItem.swift in Sources */,
 				29F9DC382DE95C0E005ECBA3 /* JSONParser.swift in Sources */,
 				29F9DC392DE95C0E005ECBA3 /* SelectBoxComponent.swift in Sources */,
@@ -453,8 +498,11 @@
 				29F9DC3E2DE95C0E005ECBA3 /* MainView.swift in Sources */,
 				29275E422DFE92B9008CE582 /* CheckPackitListView.swift in Sources */,
 				29F9DC3F2DE95C0E005ECBA3 /* PackingListCell.swift in Sources */,
+				29275E512DFF18E5008CE582 /* KeyChainService.swift in Sources */,
 				29F9DC402DE95C0E005ECBA3 /* CalendarView.swift in Sources */,
+				29275E4F2DFF18C4008CE582 /* NetworkService.swift in Sources */,
 				29275E402DFE7F7E008CE582 /* StartCheckPackitView.swift in Sources */,
+				29275E552DFF1948008CE582 /* URLManage.swift in Sources */,
 				2987833A2DFD62E7004FB6AD /* PlanPackitListViewModel.swift in Sources */,
 				2987833C2DFD640E004FB6AD /* PlanPackitModel.swift in Sources */,
 				298783382DFD5750004FB6AD /* PlanPackitListView.swift in Sources */,
