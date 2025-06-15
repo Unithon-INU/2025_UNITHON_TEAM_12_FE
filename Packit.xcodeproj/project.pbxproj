@@ -27,6 +27,8 @@
 		29275E532DFF190F008CE582 /* NetworkResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29275E522DFF190F008CE582 /* NetworkResult.swift */; };
 		29275E552DFF1948008CE582 /* URLManage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29275E542DFF1948008CE582 /* URLManage.swift */; };
 		29275E572DFF196B008CE582 /* API_URL.plist in Resources */ = {isa = PBXBuildFile; fileRef = 29275E562DFF196B008CE582 /* API_URL.plist */; };
+		29275E5A2DFF1A8B008CE582 /* AuthEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29275E592DFF1A8B008CE582 /* AuthEndpoint.swift */; };
+		29275E5C2DFF1B3E008CE582 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29275E5B2DFF1B3E008CE582 /* AuthService.swift */; };
 		298783382DFD5750004FB6AD /* PlanPackitListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298783372DFD5750004FB6AD /* PlanPackitListView.swift */; };
 		2987833A2DFD62E7004FB6AD /* PlanPackitListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298783392DFD62E7004FB6AD /* PlanPackitListViewModel.swift */; };
 		2987833C2DFD640E004FB6AD /* PlanPackitModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2987833B2DFD640E004FB6AD /* PlanPackitModel.swift */; };
@@ -80,6 +82,8 @@
 		29275E522DFF190F008CE582 /* NetworkResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkResult.swift; sourceTree = "<group>"; };
 		29275E542DFF1948008CE582 /* URLManage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLManage.swift; sourceTree = "<group>"; };
 		29275E562DFF196B008CE582 /* API_URL.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = API_URL.plist; sourceTree = "<group>"; };
+		29275E592DFF1A8B008CE582 /* AuthEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthEndpoint.swift; sourceTree = "<group>"; };
+		29275E5B2DFF1B3E008CE582 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		298783372DFD5750004FB6AD /* PlanPackitListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanPackitListView.swift; sourceTree = "<group>"; };
 		298783392DFD62E7004FB6AD /* PlanPackitListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanPackitListViewModel.swift; sourceTree = "<group>"; };
 		2987833B2DFD640E004FB6AD /* PlanPackitModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanPackitModel.swift; sourceTree = "<group>"; };
@@ -155,6 +159,7 @@
 			isa = PBXGroup;
 			children = (
 				29275E4A2DFF188E008CE582 /* Endpoint.swift */,
+				29275E592DFF1A8B008CE582 /* AuthEndpoint.swift */,
 			);
 			path = Endpoint;
 			sourceTree = "<group>";
@@ -165,6 +170,14 @@
 				29275E4E2DFF18C4008CE582 /* NetworkService.swift */,
 				29275E502DFF18E5008CE582 /* KeyChainService.swift */,
 				29275E542DFF1948008CE582 /* URLManage.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		29275E582DFF1A6B008CE582 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				29275E5B2DFF1B3E008CE582 /* AuthService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -373,6 +386,7 @@
 		29F9DC2F2DE95C0E005ECBA3 /* Packit */ = {
 			isa = PBXGroup;
 			children = (
+				29275E582DFF1A6B008CE582 /* Service */,
 				29275E492DFF1887008CE582 /* API */,
 				29275E2F2DFE6E84008CE582 /* Font */,
 				29F9DC042DE95C0E005ECBA3 /* Component */,
@@ -498,8 +512,10 @@
 				29F9DC3E2DE95C0E005ECBA3 /* MainView.swift in Sources */,
 				29275E422DFE92B9008CE582 /* CheckPackitListView.swift in Sources */,
 				29F9DC3F2DE95C0E005ECBA3 /* PackingListCell.swift in Sources */,
+				29275E5A2DFF1A8B008CE582 /* AuthEndpoint.swift in Sources */,
 				29275E512DFF18E5008CE582 /* KeyChainService.swift in Sources */,
 				29F9DC402DE95C0E005ECBA3 /* CalendarView.swift in Sources */,
+				29275E5C2DFF1B3E008CE582 /* AuthService.swift in Sources */,
 				29275E4F2DFF18C4008CE582 /* NetworkService.swift in Sources */,
 				29275E402DFE7F7E008CE582 /* StartCheckPackitView.swift in Sources */,
 				29275E552DFF1948008CE582 /* URLManage.swift in Sources */,
