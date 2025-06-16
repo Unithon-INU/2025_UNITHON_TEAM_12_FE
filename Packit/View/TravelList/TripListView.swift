@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct TravelListView: View {
+struct TripListView: View {
     @EnvironmentObject var coordinator: NavigationCoordinator
     @StateObject private var viewModel = TravelListViewModel()
 
@@ -74,7 +74,7 @@ struct TravelListView: View {
                         HStack(spacing: 19) {
                             ForEach(viewModel.upcomingTrips) { trip in
                                 Button {
-                                    coordinator.push(.trip(.tripDetail(title: trip.title)))
+                                    coordinator.push(.trip(.tripDetail(title: trip.title, tripId: trip.id)))
                                 } label: {
                                     ListCardComponentView(trip: trip)
                                 }
@@ -120,7 +120,7 @@ struct TravelListView: View {
                     LazyVGrid(columns: columns, spacing: 19) {
                         ForEach(viewModel.pastTrips) { trip in
                             Button {
-                                coordinator.push(.trip(.tripDetail(title: trip.title)))
+                                coordinator.push(.trip(.tripDetail(title: trip.title, tripId: trip.id)))
                             } label: {
                                 ListCardComponentView(trip: trip)
                             }

@@ -54,7 +54,3 @@ struct StartCheckPackitView: View {
         }.toolbarVisibility(.hidden, for: .navigationBar)
     }
 }
-
-#Preview {
-    StartCheckPackitView(title: "민지와의 제주 여행")
-}

@@ -169,7 +169,7 @@ struct PackingListView: View {
                 LazyHStack(alignment: .top, spacing: 18) {
                     ForEach(tripList) { trip in
                         Button(action: {
-                            coordinator.push(.trip(.tripDetail(title: trip.title)))
+                            coordinator.push(.trip(.tripDetail(title: trip.title, tripId: trip.id)))
                         }, label: {
                             PackingListCell(viewModel: PackingListCellViewModel(trip: trip))
                         })

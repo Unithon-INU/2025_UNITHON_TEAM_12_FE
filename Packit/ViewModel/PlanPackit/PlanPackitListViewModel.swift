@@ -8,7 +8,7 @@
 import Foundation
 
 final class PlanPackitListViewModel: ObservableObject {
-    @Published var category: [TripCategory] = []
+    @Published var category: [TripItemCategory] = []
     @Published var planList = [TripItemResDto]()
     
     @Published var selectedCategory: String = "필수품"

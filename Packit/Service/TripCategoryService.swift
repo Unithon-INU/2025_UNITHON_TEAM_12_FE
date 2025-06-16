@@ -9,7 +9,7 @@ import Foundation
 
 protocol TripCategoryServiceProtocol {
     // MARK: - 여행별 카테고리 목록 조회 API
-    func fetchTripCategory(tripId: Int) async -> NetworkResult<[TripCategory]>
+    func fetchTripCategory(tripId: Int) async -> NetworkResult<[TripItemCategory]>
 }
 
 final class TripCategoryService: TripCategoryServiceProtocol {
@@ -20,7 +20,7 @@ final class TripCategoryService: TripCategoryServiceProtocol {
     }
     
     // MARK: - 여행별 카테고리 목록 조회 API
-    func fetchTripCategory(tripId: Int) async -> NetworkResult<[TripCategory]> {
+    func fetchTripCategory(tripId: Int) async -> NetworkResult<[TripItemCategory]> {
         return await networkService.request(TripCategoryEndpoint.fetchTripCategories(tripId: tripId))
     }
 }
