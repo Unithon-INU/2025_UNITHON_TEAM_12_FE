@@ -11,17 +11,14 @@ struct PackitButton: View {
     let title: String
     
     var body: some View {
-//        Button(action: {}, label: {
-            Text(title)
-                .font(.custom("Pretendard", size: 20))
-                .fontWeight(.bold)
-                .foregroundStyle(.white)
-//        })
-        .padding(.vertical, 16)
-        .frame(maxWidth: .infinity)
-        .background {
-            RoundedRectangle(cornerRadius: 8)
-                .fill(Color.packitPurple)
-        }
+        Text(title)
+            .font(.custom("Pretendard-Bold", size: 20))
+            .foregroundStyle(.white)
+            .padding(.vertical, 16)
+            .frame(maxWidth: .infinity)
+            .background {
+                RoundedRectangle(cornerRadius: 8)
+                    .fill(Color.packitPurple)
+            }
     }
 }

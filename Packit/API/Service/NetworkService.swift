@@ -15,11 +15,11 @@ final class NetworkService: NetworkServiceProtocol {
     func request<T: Decodable>(_ endpoint: Endpoint) async -> NetworkResult<T>  {
         var request = endpoint.urlRequest
         
-        if let token = KeychainManager.getToken() {
-            request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
-        } else {
-            print("[KeyChainError] = 토큰을 찾을 수 없습니다.")
-        }
+//        if let token = KeychainManager.getToken() {
+            request.addValue("Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJyYWJiaXRsaW5AZ21haWwuY29tIiwiYXV0aCI6IlJPTEVfVVNFUiIsImlhdCI6MTc1MDAzODQ4MiwiZXhwIjoxNzUwMDQ1NjgyfQ.gPkGhuaBpi6HsWW1_16DBPSxyWGh7xsRAr1RcheGMvDtyO_6qnUHoeZRrM0zG3rT1--Wtuoa0FByRB29jhKwkw", forHTTPHeaderField: "Authorization")
+//        } else {
+//            print("[KeyChainError] = 토큰을 찾을 수 없습니다.")
+//        }
         
         do {
             
