@@ -9,69 +9,76 @@ import SwiftUI
 
 struct MainView: View {
     @ObservedObject var viewModel = MainViewModel()
-    @StateObject private var navigationCoordinator = NavigationCoordinator()
+    @EnvironmentObject var coordinator: NavigationCoordinator
 
     var body: some View {
-        NavigationStack(path: $navigationCoordinator.path) {
-            VStack {
-                HStack {
-                    Image("Logo")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(height: 50)
-                        .padding(.leading, 25)
-                        .padding(.bottom, 10)
-                    
-                    Spacer()
-                }
+        VStack {
+            HStack {
+                Image("Logo")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(height: 50)
+                    .padding(.leading, 25)
+                    .padding(.bottom, 10)
                 
-                // MARK: - MainButtonView HStack
-                HStack(spacing: 21) {
+                Spacer()
+            }
+            
+            // MARK: - MainButtonView HStack
+            HStack(spacing: 21) {
+                Button(action: {
+                    coordinator.push(.plan(.title))
+                }, label: {
+                    MainButtonView(
+                        title: "짐싸기 계획하기",
+                        description: "어떤 짐을 챙길지 함께 \n정해보아요!",
+                        highlight: nil,
+                        iconName: "package"
+                    )
+                })
+                
+                /// - NOTE: 남은 짐 챙기기, 계획 완성하기 부분 처리 방법 생각해보기
+                if let trip = viewModel.tripList.first {
                     Button(action: {
-                        navigationCoordinator.push(.plan(.title))
+                        coordinator.push(.plan(.title))
                     }, label: {
                         MainButtonView(
-                            title: "짐싸기 계획하기",
-                            description: "어떤 짐을 챙길지 함께 \n정해보아요!",
-                            highlight: nil,
-                            iconName: "package"
+                            title: "남은 짐 챙기기",
+                            description: "를 시작해주세요!",
+                            highlight: trip.title,
+                            iconName: "packageTag"
                         )
                     })
-                    
-                    /// - NOTE: 남은 짐 챙기기, 계획 완성하기 부분 처리 방법 생각해보기
-                    if let trip = viewModel.tripList.first {
-                        Button(action: {
-                            navigationCoordinator.push(.plan(.title))
-                        }, label: {
-                            MainButtonView(
-                                title: "남은 짐 챙기기",
-                                description: "아직 완성되지 않은",
-                                highlight: trip.title,
-                                iconName: "packageTag"
-                            )
-                        })
-                    }
-                }
-                .frame(height: 120)
-                
-                if let trip = viewModel.tripList.first {
-                    UpcomingTrip(trip: trip)
                 } else {
-                    /// - NOTE: 다가오는 여정 없을 시 다른 뷰
+                    Button(action: {
+
+                    }, label: {
+                        MainButtonView(
+                            title: "짐 마저 계획하기",
+                            description: "계획이 있어요!",
+                            highlight: "민지와 부산 짐싸기",
+                            iconName: "packageTag"
+                        )
+                    })
                 }
-                
-                PackingListView(tripList: viewModel.tripList)
-            }.navigationDestination(for: AppRoute.self) { $0.destinationView() }
+            }
+            .frame(height: 120)
+            
+            if let trip = viewModel.tripList.first {
+                UpcomingTrip(trip: trip)
+                    .padding(.horizontal, 30)
+            } else {
+                UpcomingTrip(trip: nil)
+                    .padding(.horizontal, 30)
+            }
+            
+            PackingListView(tripList: viewModel.tripList)
         }
         .onAppear {
             Task{
                 await viewModel.fetchMyTrips()
             }
         }
-        .task(id: navigationCoordinator.path) {
-            await viewModel.fetchMyTrips()
-        }
-        .environmentObject(navigationCoordinator)
     }
 }
 
@@ -84,7 +91,7 @@ struct UpcomingTrip: View {
         HStack {
             Text("다가오는 여정")
                 .font(.custom("Pretendard-Bold", size: 15))
-                .padding(.leading, 40)
+                .padding(.leading, 10)
                 .padding(.top)
             
             Spacer()
@@ -109,8 +116,17 @@ struct UpcomingTrip: View {
                     }
                     
                     else {
+                        Image(systemName: "pin.fill")
+                            .resizable()
+                            .frame(width: 12, height: 20)
+                            .foregroundStyle(Color.packitPurple)
+                        
+                        Spacer()
+                        
                         Text("계획된 여정이 없습니다! \n여행 일정을 등록해주세요!")
-                            .font(.custom("Pretendard-SemiBold", size: 18))
+                            .font(.custom("Pretendard-Light", size: 15))
+                        
+                        Spacer()
                     }
                 }
                 .padding([.leading, .trailing], 15)
@@ -118,13 +134,12 @@ struct UpcomingTrip: View {
                 
                 Spacer()
             }
-            .frame(maxHeight: 200)
+            .frame(maxWidth: .infinity, maxHeight: 200)
             .background(
                 RoundedRectangle(cornerRadius: 15)
                     .stroke(Color.packitPurple,lineWidth: 1)
                     .fill(Color.packitLightPurple)
             )
-            .padding([.leading, .trailing], 30)
             
             // MARK: - 다가오는 여정의 짐챙기기 시작 버튼
             if let trip = trip {

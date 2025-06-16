@@ -16,18 +16,23 @@ final class NetworkService: NetworkServiceProtocol {
         var request = endpoint.urlRequest
         print(request.url)
         
-//        if let token = KeychainManager.getToken() {
-            request.addValue("Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJyYWJiaXRsaW5AZ21haWwuY29tIiwiYXV0aCI6IlJPTEVfVVNFUiIsImlhdCI6MTc1MDA3MzcyNSwiZXhwIjoxNzUwMDgwOTI1fQ.mA9w3lCUO1aVH4RmhIVLFgIoYX1PW8ZiUM4J2DN4sKmaeYBTKnRWKUWrc7zYbx9U5jzG4JmEAl5HVE_8U6QyWQ", forHTTPHeaderField: "Authorization")
-//        } else {
-//            print("[KeyChainError] = 토큰을 찾을 수 없습니다.")
-//        }
-        
+        if let token = KeychainManager.getToken() {
+            request.addValue("\(token)", forHTTPHeaderField: "Authorization")
+        } else {
+            print("[KeyChainError] = 토큰을 찾을 수 없습니다.")
+        }
+                
         do {
-            
             let (data, response) = try await URLSession.shared.data(for: request)
             
             guard let httpResponse = response as? HTTPURLResponse else {
                 return .failure(statusCode: -1, message: "[Error] - Invalid Response")
+            }
+            
+            if let newToken = httpResponse.value(forHTTPHeaderField: "Authorization"),
+                let token = newToken.data(using: .utf8) {
+                print("신규 토큰 수신: \(token)")
+                try KeychainManager.save(token: token)
             }
 
             switch httpResponse.statusCode {

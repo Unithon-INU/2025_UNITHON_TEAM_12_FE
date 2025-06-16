@@ -20,6 +20,26 @@ struct CheckPackitListView: View {
 
     var body: some View {
         VStack {
+            HStack {
+                Button(action: {
+                    coordinator.pop()
+                }, label: {
+                    Image(systemName: "arrow.left")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 23)
+                        .foregroundStyle(.black)
+                })
+                
+                Text(title)
+                    .font(.custom("Pretendard-Bold", size: 15))
+                    .padding(.horizontal)
+                
+                Spacer()
+            }
+            .padding(.vertical, 10)
+            .padding(.horizontal, 30)
+            
             // MARK: - 카테고리 상단 탭
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 12) {
@@ -82,7 +102,5 @@ struct CheckPackitListView: View {
                     .padding(.bottom, 10)
             })
         }
-        .navigationBarTitleDisplayMode(.inline)
-        .navigationTitle(title)
     }
 }

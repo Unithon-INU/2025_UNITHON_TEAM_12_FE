@@ -10,11 +10,25 @@ import SwiftUI
 struct PlanPackitTitleView: View {
     @EnvironmentObject var coordinator: NavigationCoordinator
     @State private var title: String = ""
-    
-//    @ObservedObject var formViewModel: PlanPackitFormViewModel
-    
+        
     var body: some View {
         VStack {
+            HStack {
+                Button(action: {
+                    coordinator.pop()
+                }, label: {
+                    Image(systemName: "arrow.left")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 23)
+                        .foregroundStyle(.black)
+                })
+                
+                Spacer()
+            }
+            .padding(.vertical, 10)
+            .padding(.horizontal, 30)
+            
             Text("이번 짐의 제목을 정해주세요!")
                 .font(.custom("Pretendard-Bold", size: 24))
                 .foregroundStyle(Color.packitPurple)

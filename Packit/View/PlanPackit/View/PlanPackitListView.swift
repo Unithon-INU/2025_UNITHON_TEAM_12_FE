@@ -15,6 +15,22 @@ struct PlanPackitListView: View {
 
     var body: some View {
         VStack(spacing: 14) {
+            HStack {
+                Button(action: {
+                    coordinator.pop()
+                }, label: {
+                    Image(systemName: "arrow.left")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 23)
+                        .foregroundStyle(.black)
+                })
+                
+                Spacer()
+            }
+            .padding(.vertical, 10)
+            .padding(.horizontal, 30)
+            
             // MARK: - 상단 카테고리 탭
             HStack(spacing: 5) {
                 ForEach(viewModel.category) { category in

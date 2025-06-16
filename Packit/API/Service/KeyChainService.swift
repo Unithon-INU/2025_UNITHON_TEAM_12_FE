@@ -14,14 +14,14 @@ class KeychainManager {
         case unknown(OSStatus)
     }
     
-    static func save(studentId: String, token: Data) throws {
+    static func save(token: Data) throws {
         if get() != nil {
             try delete()
         }
         
         let query: [String: AnyObject] = [
             kSecClass as String: kSecClassGenericPassword,
-            kSecAttrAccount as String: studentId as NSString,
+            kSecAttrAccount as String: "id" as NSString,
             kSecValueData as String: token as NSData
         ]
         
@@ -49,10 +49,10 @@ class KeychainManager {
         guard let data = result as? [String: AnyObject],
               let tokenData = data[kSecValueData as String] as? Data,
               let token = String(data: tokenData, encoding: String.Encoding.utf8),
-              let studentId = data[kSecAttrAccount as String] as? String
+              let id = data[kSecAttrAccount as String] as? String
                 else { return nil }
                 
-        return (studentId, token)
+        return (id, token)
     }
     
     static func delete() throws {

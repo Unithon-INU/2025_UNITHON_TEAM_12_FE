@@ -40,7 +40,7 @@ final class PlanPackitListViewModel: ObservableObject {
         let result = await tripItemService.addTripItem(tripCategoryId: tripCategoryId, body: body)
         
         switch result {
-        case .success(let data, let statusCode):
+        case .success(let data, _):
             print(data)
         case .failure(let statusCode, let message):
             print("[addTripItem] - [\(statusCode)]: \(message ?? "알 수 없는 오류")")

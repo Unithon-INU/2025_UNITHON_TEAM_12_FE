@@ -5,11 +5,13 @@
 //  Created by Bowon Han on 6/16/25.
 //
 
-import Foundation
+import SwiftUI
 
 final class LoginViewModel: ObservableObject {
     private var authService: AuthServiceProtocol
     
+    @AppStorage("isLoggedIn") var isLoggedIn: Bool = false
+
     var token: String? {
         KeychainManager.getToken()
     }
@@ -18,14 +20,17 @@ final class LoginViewModel: ObservableObject {
         self.authService = authService
     }
     
-    func signin(email: String, password: String) async {
+    func signin(email: String, password: String) async -> Bool {
         let result = await authService.signin(email: email, password: password)
         
         switch result {
-        case .success(let data, _):
-            print(data)
+        case .success(_, _):
+            print("로그인 성공!")
+            isLoggedIn = true
+            return true
         case .failure(let statusCode, let message):
             print("[signin] - [\(statusCode)]: \(message ?? "알 수 없는 오류")")
+            return false
         }
     }
 }

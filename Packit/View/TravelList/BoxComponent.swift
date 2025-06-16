@@ -10,32 +10,22 @@ import SwiftUI
 struct BoxComponent: View {
     let title: String
     let description: String
-//    let isSelected: Bool
-//    let onTap: () -> Void
     
     var body: some View {
                 HStack(spacing: 16) {
-//                    if isSelected {
-//                        Image("package")
-//                            .frame(width: 30)
-//                    } else {
-                        Image("packagePlus")
-                            .frame(width: 30)
-//                    }
+                    Image("packagePlus")
+                        .frame(width: 30)
 
-                    
                     VStack(alignment: .leading, spacing: 10){
 
                     Text(title)
-                        .font(.custom("Pretendard", size: 16))
-                        .fontWeight(.semibold)
+                        .font(.custom("Pretendard-SemiBold", size: 16))
                         .foregroundColor(.black)
                         
                     Text(description)
-                        .font(.custom("Pretendard", size: 14))
-                        .fontWeight(.light)
+                        .font(.custom("Pretendard-Light", size: 14))
                         .foregroundColor(.black)
-                        .lineLimit(1) // 최대 1줄로 제한
+                        .lineLimit(1)
 
 
                 }

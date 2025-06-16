@@ -10,7 +10,8 @@ import SwiftUI
 struct LoginView: View {
     @State private var email: String = ""
     @State private var password: String = ""
-    
+    @EnvironmentObject var coordinator: NavigationCoordinator
+
     @ObservedObject private var viewModel = LoginViewModel()
     
     var body: some View {
@@ -28,34 +29,45 @@ struct LoginView: View {
             }.padding()
             
             VStack{
-                Text("로그인")
-                    .font(.custom("Pretendard-Bold", size: 17))
-                    .foregroundStyle(.white)
-                    .padding(.vertical, 16)
-                    .frame(height: 45)
-                    .frame(maxWidth: .infinity)
-                    .background {
-                        RoundedRectangle(cornerRadius: 8)
-                            .fill(Color.packitPurple)
+                Button(action: {
+                    Task {
+                        let result = await viewModel.signin(email: email, password: password)
+                        if result {
+                            print("결과로 들어옴")
+//                            viewModel.isLoggedIn = true
+                            coordinator.popToRoot()
+                        }
                     }
+                }, label: {
+                    Text("로그인")
+                        .font(.custom("Pretendard-Bold", size: 17))
+                        .foregroundStyle(.white)
+                        .padding(.vertical, 16)
+                        .frame(height: 45)
+                        .frame(maxWidth: .infinity)
+                        .background {
+                            RoundedRectangle(cornerRadius: 8)
+                                .fill(Color.packitPurple)
+                        }
+                })
                 
-                Text("회원가입")
-                    .font(.custom("Pretendard-Bold", size: 17))
-                    .foregroundStyle(Color.packitPurple)
-                    .padding(.vertical, 16)
-                    .frame(height: 45)
-                    .frame(maxWidth: .infinity)
-                    .background {
-                        RoundedRectangle(cornerRadius: 8)
-                            .fill(Color.packitLightPurple)
-                    }
+                Button(action: {
+                    coordinator.push(.auth(.join))
+                }, label: {
+                    Text("회원가입")
+                        .font(.custom("Pretendard-Bold", size: 17))
+                        .foregroundStyle(Color.packitPurple)
+                        .padding(.vertical, 16)
+                        .frame(height: 45)
+                        .frame(maxWidth: .infinity)
+                        .background {
+                            RoundedRectangle(cornerRadius: 8)
+                                .fill(Color.packitLightPurple)
+                        }
+                })
             }.padding()
             
             Spacer()
         }
     }
-}
-
-#Preview {
-    LoginView()
 }

@@ -13,10 +13,24 @@ struct PlanPackitTripPropertyView: View {
     
     @State private var startDate: Date? = nil
     @State private var endDate: Date? = nil
-    
-//    @ObservedObject var formViewModel: PlanPackitFormViewModel
-    
+        
     var body: some View {
+        HStack {
+            Button(action: {
+                coordinator.pop()
+            }, label: {
+                Image(systemName: "arrow.left")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 23)
+                    .foregroundStyle(.black)
+            })
+            
+            Spacer()
+        }
+        .padding(.vertical, 10)
+        .padding(.horizontal, 30)
+        
         ScrollView {
             VStack(alignment: .leading) {
                 HStack {

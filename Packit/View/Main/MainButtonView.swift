@@ -21,7 +21,7 @@ struct MainButtonView: View {
                     .foregroundStyle(Color.black)
                 
                 if let highlight = highlight {
-                    Text(description)
+                    Text("아직 완료되지 않은 ")
                         .font(.custom("Pretendard-Light", size: 12))
                         .padding(.bottom, -8)
                         .foregroundStyle(Color.black)
@@ -31,7 +31,7 @@ struct MainButtonView: View {
                         .foregroundStyle(Color.packitPurple)
                         .padding(.bottom, -8)
                     
-                    Text("계획이 있어요!")
+                    Text(description)
                         .font(.custom("Pretendard-Light", size: 12))
                         .foregroundStyle(Color.black)
                 }
