@@ -17,16 +17,15 @@ struct CategoryButtonComponent: View {
             onTap()
         }) {
             Text(title)
-                .fontWeight(.bold)
-                .font(.custom("Pretendard", size: 18))
-                .padding(.vertical, 5)
-                .padding(.horizontal, 17)
+                .font(.custom("Pretendard-Bold", size: 15))
+                .lineLimit(1)
+                .padding(.vertical, 7)
+                .padding(.horizontal, 20)
                 .foregroundColor(isSelected ? .white: .gray)
                 .background(
                     RoundedRectangle(cornerRadius: 8)
                         .fill(isSelected ? Color.packitPurple : Color.white)
                         .stroke(isSelected ? .clear : Color.packitLightGray)
-
                 )
         }
         .animation(.easeInOut, value: isSelected)
