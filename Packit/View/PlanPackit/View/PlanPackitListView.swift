@@ -19,7 +19,10 @@ struct PlanPackitListView: View {
             HStack(spacing: 5) {
                 ForEach(viewModel.category) { category in
                     Button(action: {
-                        selectedCategory = category.id
+                        Task{
+                            selectedCategory = category.id
+                            await viewModel.fetchTripItemWithCategory(tripCategoryId: selectedCategory)
+                        }
                     }, label: {
                         Text(category.name)
                             .font(.custom("Pretendard-Bold", size: 14))
@@ -39,9 +42,31 @@ struct PlanPackitListView: View {
                     .fill(Color.packitLightGray)
             }
             
-            // MARK: - 물품 추가 입력 창
-            PackitTextField(text: $addListText, placeholder: "추가할 물품을 입력해주세요!")
-                .padding(.horizontal)
+            HStack(spacing: 10) {
+                // MARK: - 물품 추가 입력 창
+                PackitTextField(text: $addListText, placeholder: "추가할 물품을 입력해주세요!")
+                
+                Button(action: {
+                    let body = AddTripItemReqDto(name: addListText, quantity: 0, memo: "")
+
+                    Task {
+                        await viewModel.addTripItem(tripCategoryId: selectedCategory, body: body)
+                        await viewModel.fetchTripItemWithCategory(tripCategoryId: selectedCategory)
+                        addListText = ""
+                    }
+                }, label: {
+                    Text("추가")
+                        .font(.custom("Pretendard-SemiBold", size: 13))
+                        .foregroundStyle(Color.packitPurple)
+                        
+                })
+                .frame(width: 60, height: 40)
+                .background(
+                    RoundedRectangle(cornerRadius: 4)
+                        .fill(Color.packitLightPurple)
+                )
+            }.padding(.horizontal)
+
             
             // MARK: - 물품 리스트 뷰
             LazyVStack {
@@ -56,10 +81,10 @@ struct PlanPackitListView: View {
                                     .padding(.leading, 10)
                                 
                                 VStack(alignment: .leading) {
-                                    Text(list.itemName)
+                                    Text(list.name)
                                         .font(.custom("Pretendard-SemiBold", size: 16))
                                     
-                                    if let notes = list.notes {
+                                    if let notes = list.memo {
                                         Text(notes)
                                             .padding(.top, 0.1)
                                             .font(.custom("Pretendard-Light", size: 14))
@@ -70,7 +95,7 @@ struct PlanPackitListView: View {
                                 
                             }.frame(minHeight: 45)
                             Button(action: {
-                                viewModel.deleteTripItem(id: list.id)
+                                
                             }, label: {
                                 Image(systemName: "x.circle")
                                     .foregroundStyle(Color.black)
@@ -89,10 +114,16 @@ struct PlanPackitListView: View {
                             
             Button(action: {
                 if selectedCategory == viewModel.category.last?.id {
-                    /// - NOTE: 마지막 카테고리 일시에
-                    coordinator.popToRoot()
+                    Task {
+                        await viewModel.fetchTripItemWithCategory(tripCategoryId: selectedCategory)
+                        /// - NOTE: 마지막 카테고리 일시에
+                        coordinator.popToRoot()
+                    }
                 } else {
-                    selectedCategory += 1
+                    Task{
+                        await viewModel.fetchTripItemWithCategory(tripCategoryId: selectedCategory)
+                        selectedCategory += 1
+                    }
                 }
             }, label: {
                 PackitButton(title: selectedCategory == viewModel.category.last?.id ? "완료" : "다음")

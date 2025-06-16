@@ -9,6 +9,7 @@ import Foundation
 
 enum TripItemEndpoint: Endpoint {
     case addTripItem(tripCategoryId: Int, body: AddTripItemReqDto)
+    case fetchTripItemWithCategory(TripCategoryId: Int)
     
     var baseURL: URL { URLManager.shared.baseURL }
 
@@ -16,6 +17,8 @@ enum TripItemEndpoint: Endpoint {
         switch self {
         case .addTripItem(let tripCategoryId, _):
             "api/trip-categories/\(tripCategoryId)/trip-items"
+        case .fetchTripItemWithCategory(let TripCategoryId):
+            "api/trip-categories/\(TripCategoryId)/trip-items"
         }
     }
     
@@ -23,6 +26,8 @@ enum TripItemEndpoint: Endpoint {
         switch self {
         case .addTripItem:
                 .post
+        case .fetchTripItemWithCategory:
+                .get
         }
     }
     
@@ -32,6 +37,8 @@ enum TripItemEndpoint: Endpoint {
         switch self {
         case .addTripItem(_, let body):
             return try? JSONEncoder().encode(body)
+        default:
+            return nil
         }
     }
     

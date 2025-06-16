@@ -17,7 +17,7 @@ final class NetworkService: NetworkServiceProtocol {
         print(request.url)
         
 //        if let token = KeychainManager.getToken() {
-            request.addValue("Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJyYWJiaXRsaW5AZ21haWwuY29tIiwiYXV0aCI6IlJPTEVfVVNFUiIsImlhdCI6MTc1MDA1Mjc5MywiZXhwIjoxNzUwMDU5OTkzfQ.U5R8mWG_xbh9OUiIhhj1pO389UJdMMNcg4oNVduBf3S_8OIFByDq4cnwIZcFv6vHg417gDyyQ2Pd_sVOv-Qfyw", forHTTPHeaderField: "Authorization")
+            request.addValue("Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJyYWJiaXRsaW5AZ21haWwuY29tIiwiYXV0aCI6IlJPTEVfVVNFUiIsImlhdCI6MTc1MDA1MzM3NCwiZXhwIjoxNzUwMDYwNTc0fQ.EvQIuCydlTooL9DsrLMtcpsfonmhqd92SSTqjcObJ-1QSbQWoWCIQc_6aPa89qzE728E3YCXg2g5TedcyvRYXQ", forHTTPHeaderField: "Authorization")
 //        } else {
 //            print("[KeyChainError] = 토큰을 찾을 수 없습니다.")
 //        }
