@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ListCardComponentView: View {
-    let trip: Trip
+    let trip: TripResDto
     
     var body: some View {
         VStack(spacing: 7) {
@@ -34,7 +34,7 @@ struct ListCardComponentView: View {
             
             HStack{
                 Spacer()
-                Text(trip.location)
+                Text(trip.region)
                     .font(.custom("Pretendard-ExtraLight", size: 15))
                     .foregroundColor(.black)
                     .lineLimit(1)
@@ -48,13 +48,13 @@ struct ListCardComponentView: View {
             }
             HStack{
                 Spacer()
-                Text(trip.start_date)
+                Text(trip.startDate)
                     .font(.custom("Pretendard-Medium", size: 18))
                     .foregroundColor(.black)
                     .lineLimit(1)
             }
         }
-        .frame(minWidth: 155, maxWidth: 166, minHeight: 183, maxHeight: 183, alignment: .topLeading)
+        .frame(width: 140, height: 163, alignment: .topLeading)
         .padding(13)
         .background(trip.isBeen ? Color.packitLightPurple : Color.white)
         .cornerRadius(10)
@@ -78,7 +78,3 @@ struct ListCardComponentView: View {
         )
     }
 }
-
-//#Preview {
-//    ListCardComponentView()
-//}
