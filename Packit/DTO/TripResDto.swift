@@ -12,8 +12,8 @@ struct TripResDto: Identifiable, Codable {
     let title: String
     let region: String
     let tripType: String
-    let startDate: String // 또는 Date로 변환 가능
-    let endDate: String   // 또는 Date로 변환 가능
+    let startDate: String
+    let endDate: String  
     let description: String
     let isCompleted: Bool
 }

@@ -11,6 +11,11 @@ struct PlanPackitTripPropertyView: View {
     @State private var tripDestination: String = ""
     @EnvironmentObject var coordinator: NavigationCoordinator
     
+    @State private var startDate: Date? = nil
+    @State private var endDate: Date? = nil
+    
+//    @ObservedObject var formViewModel: PlanPackitFormViewModel
+    
     var body: some View {
         ScrollView {
             VStack(alignment: .leading) {
@@ -22,7 +27,7 @@ struct PlanPackitTripPropertyView: View {
                     Spacer()
                 }.padding(.bottom, 2)
                 
-                CalendarView()
+                CalendarView(startDate: $startDate, endDate: $endDate)
                     .padding(.vertical, 15)
                     .padding(.horizontal,10)
                     .overlay {
@@ -59,6 +64,22 @@ struct PlanPackitTripPropertyView: View {
         }
         
         Button(action: {
+            let formViewModel = coordinator.formViewModel
+
+            formViewModel.reqBody.region = tripDestination
+            
+            let formatter = DateFormatter()
+            formatter.dateFormat = "yyyy-MM-dd"
+            
+            formViewModel.reqBody.startDate = startDate.map { formatter.string(from: $0) } ?? ""
+            formViewModel.reqBody.endDate = endDate.map { formatter.string(from: $0) } ?? ""
+            
+            formViewModel.reqBody.tripType = "FAMILY"
+            
+            Task {
+                await formViewModel.addTripItem()
+            }
+            
             coordinator.push(.plan(.list))
         }, label: {
             PackitButton(title: "다음")
@@ -90,8 +111,4 @@ struct SelectTripProperty: View {
             }
         }
     }
-}
-
-#Preview {
-    PlanPackitTripPropertyView()
 }

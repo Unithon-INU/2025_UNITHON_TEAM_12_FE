@@ -8,17 +8,25 @@
 import Foundation
 
 final class MainViewModel: ObservableObject {
-    @Published var tripList = [Trip]()
+    @Published var tripList = [TripResDto]()
     
-    init() {
-        fetchTripData()
+    private let tripService: TripServiceProtocol
+    
+    init(tripService: TripServiceProtocol=TripService()) {
+        self.tripService = tripService
     }
     
-    func fetchTripData() {
-        if let trip: [Trip] = JSONParser.parse(fileName: "Trip") {
-            self.tripList = trip
-        } else {
-            print("JSON DECODE 에러입니다.")
+    // MARK: - 내 여행 목록 조회
+    func fetchMyTrips() async {
+        let result = await tripService.fetchMyTrips()
+        
+        switch result {
+        case .success(let data, _):
+            DispatchQueue.main.async {
+                self.tripList = data
+            }
+        case .failure(let statusCode, let message):
+            print("[fetchMyTrips] - [\(statusCode)]: \(message ?? "알 수 없는 오류")")
         }
     }
 }

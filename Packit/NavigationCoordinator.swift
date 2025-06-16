@@ -65,6 +65,7 @@ enum AppRoute: Hashable {
 
 class NavigationCoordinator: ObservableObject {
     @Published var path = NavigationPath()
+    @Published var formViewModel = PlanPackitFormViewModel()
 
     func push(_ route: AppRoute) {
         path.append(route)

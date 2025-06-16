@@ -62,14 +62,23 @@ struct MainView: View {
                 
                 PackingListView(tripList: viewModel.tripList)
             }.navigationDestination(for: AppRoute.self) { $0.destinationView() }
-        }.environmentObject(navigationCoordinator)
+        }
+        .onAppear {
+            Task{
+                await viewModel.fetchMyTrips()
+            }
+        }
+        .task(id: navigationCoordinator.path) {
+            await viewModel.fetchMyTrips()
+        }
+        .environmentObject(navigationCoordinator)
     }
 }
 
 // MARK: - "다가오는 여정" View
 struct UpcomingTrip: View {
     @EnvironmentObject var coordinator: NavigationCoordinator
-    let trip: Trip
+    let trip: TripResDto?
     
     var body: some View {
         HStack {
@@ -84,19 +93,25 @@ struct UpcomingTrip: View {
         ZStack(alignment: .bottom) {
             VStack {
                 HStack(alignment: .center,spacing: 15) {
-                    Image(systemName: "pin.fill")
-                        .resizable()
-                        .frame(width: 12, height: 20)
-                        .foregroundStyle(Color.packitPurple)
+                    if let trip = trip {
+                        Image(systemName: "pin.fill")
+                            .resizable()
+                            .frame(width: 12, height: 20)
+                            .foregroundStyle(Color.packitPurple)
+                        
+                        Text(trip.title)
+                            .font(.custom("Pretendard-SemiBold", size: 18))
+                        
+                        Spacer()
+                        
+                        Text(trip.startDate.toDateString() ?? "")
+                            .font(.custom("Pretendard-Thin", size: 20))
+                    }
                     
-                    Text(trip.title)
-                        .font(.custom("Pretendard-SemiBold", size: 18))
-
-                    Spacer()
-                    
-                    Text(trip.end_date.toDateString() ?? "")
-                        .font(.custom("Pretendard-Thin", size: 20))
-
+                    else {
+                        Text("계획된 여정이 없습니다! \n여행 일정을 등록해주세요!")
+                            .font(.custom("Pretendard-SemiBold", size: 18))
+                    }
                 }
                 .padding([.leading, .trailing], 15)
                 .padding(.top, 14)
@@ -112,21 +127,23 @@ struct UpcomingTrip: View {
             .padding([.leading, .trailing], 30)
             
             // MARK: - 다가오는 여정의 짐챙기기 시작 버튼
-            Button(action: {
-                coordinator.push(.checkList(.start(title: trip.title)))
-            }, label: {
-                Text("\(trip.title) 짐 챙기기 START!")
-                    .foregroundStyle(.white)
-                    .font(.custom("Pretendard-Bold", size: 15))
-                    .padding([.leading, .trailing], 30)
-                    .padding([.top, .bottom], 12)
-                    .background(
-                        RoundedRectangle(cornerRadius: 13)
-                            .fill(Color.packitPurple)
-                            .shadow(radius: 3)
-                    )
-                    .offset(CGSize(width: 0, height: 20))
-            })
+            if let trip = trip {
+                Button(action: {
+                    coordinator.push(.checkList(.start(title: trip.title)))
+                }, label: {
+                    Text("\(trip.title) 짐 챙기기 START!")
+                        .foregroundStyle(.white)
+                        .font(.custom("Pretendard-Bold", size: 15))
+                        .padding([.leading, .trailing], 30)
+                        .padding([.top, .bottom], 12)
+                        .background(
+                            RoundedRectangle(cornerRadius: 13)
+                                .fill(Color.packitPurple)
+                                .shadow(radius: 3)
+                        )
+                        .offset(CGSize(width: 0, height: 20))
+                })
+            }
         }.padding(.bottom, 15)
     }
 }
@@ -134,7 +151,7 @@ struct UpcomingTrip: View {
 // MARK: - "짐 챙기기 기록" View
 struct PackingListView: View {
     @EnvironmentObject var coordinator: NavigationCoordinator
-    let tripList: [Trip]
+    let tripList: [TripResDto]
     
     var body: some View {
         HStack {

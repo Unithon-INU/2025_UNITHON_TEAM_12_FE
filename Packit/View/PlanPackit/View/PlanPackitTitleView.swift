@@ -11,6 +11,8 @@ struct PlanPackitTitleView: View {
     @EnvironmentObject var coordinator: NavigationCoordinator
     @State private var title: String = ""
     
+//    @ObservedObject var formViewModel: PlanPackitFormViewModel
+    
     var body: some View {
         VStack {
             Text("이번 짐의 제목을 정해주세요!")
@@ -25,6 +27,7 @@ struct PlanPackitTitleView: View {
             Spacer()
             
             Button(action: {
+                coordinator.formViewModel.reqBody.title = title
                 coordinator.push(.plan(.tripProperty))
             }, label: {
                 PackitButton(title: "다음")
@@ -33,8 +36,4 @@ struct PlanPackitTitleView: View {
             })
         }
     }
-}
-
-#Preview {
-    PlanPackitTitleView()
 }

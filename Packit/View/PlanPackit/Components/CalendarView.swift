@@ -11,8 +11,8 @@ struct CalendarView: View {
     let currentMonth = Date()
     let calendar = Calendar(identifier: .gregorian)
     
-    @State private var stardDate: Date? = nil
-    @State private var endDate: Date? = nil
+    @Binding var startDate: Date?
+    @Binding var endDate: Date? 
     
     private func monthDateRange() -> Range<Date> {
         let monthInterval = calendar.dateInterval(of: .month, for: currentMonth)!
@@ -52,10 +52,10 @@ struct CalendarView: View {
             LazyVGrid(columns: Array(repeating: GridItem(), count: 7)) {
                 ForEach(dates, id: \.self) { date in
                     ZStack {
-                        let isStart = calendar.isDate(date, equalTo: stardDate ?? Date.distantPast, toGranularity: .day)
+                        let isStart = calendar.isDate(date, equalTo: startDate ?? Date.distantPast, toGranularity: .day)
                         let isEnd = calendar.isDate(date, equalTo: endDate ?? Date.distantPast, toGranularity: .day)
                         let isBetween = {
-                            if let start = stardDate, let end = endDate {
+                            if let start = startDate, let end = endDate {
                                 return (start...end).contains(date)
                             }
                             return false
@@ -93,16 +93,16 @@ struct CalendarView: View {
                         }
                     }
                     .onTapGesture {
-                        if stardDate == nil && endDate == nil {
-                            stardDate = date
-                        } else if stardDate != nil && endDate == nil {
+                        if startDate == nil && endDate == nil {
+                            startDate = date
+                        } else if startDate != nil && endDate == nil {
                             endDate = date
-                            if let start = stardDate, let end = endDate, start > end {
-                                stardDate = end
+                            if let start = startDate, let end = endDate, start > end {
+                                startDate = end
                                 endDate = start
                             }
                         } else {
-                            stardDate = date
+                            startDate = date
                             endDate = nil
                         }
                     }
