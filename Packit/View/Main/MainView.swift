@@ -180,7 +180,7 @@ struct PackingListView: View {
         
         /// - NOTE: 짐챙기기 기록 리스트에서 Scrollview 내부 버튼 클릭 시 버벅이는 현상
         VStack {
-            ScrollView(.horizontal) {
+            ScrollView(.horizontal, showsIndicators: false) {
                 LazyHStack(alignment: .top, spacing: 18) {
                     ForEach(tripList) { trip in
                         Button(action: {
@@ -192,7 +192,6 @@ struct PackingListView: View {
                 }
                 .padding([.leading, .trailing, .top], 15)
             }
-            .scrollIndicators(.hidden)
         
             Button(action: {
                 coordinator.push(.trip(.tripList))

@@ -17,6 +17,7 @@ struct JoinView: View {
     @State private var gender: String = ""
     
     @EnvironmentObject var coordinator: NavigationCoordinator
+    @ObservedObject var viewModel = JoinViewModel()
     
     var body: some View {
         VStack {
@@ -47,11 +48,29 @@ struct JoinView: View {
             .padding(.bottom, 20)
             
             ScrollView {
-                VStack(alignment: .leading) {
-                    Text("이메일")
-                        .font(.custom("Pretendard-Bold", size: 15))
-                        .foregroundStyle(Color.packitPurple)
-                    PackitTextField(text: $email, placeholder: "이메일을 입력해주세요!")
+                HStack(alignment: .bottom) {
+                    VStack(alignment: .leading) {
+                        Text("이메일")
+                            .font(.custom("Pretendard-Bold", size: 15))
+                            .foregroundStyle(Color.packitPurple)
+                        PackitTextField(text: $email, placeholder: "이메일을 입력해주세요!")
+                    }
+                    
+                    Button(action: {
+                        Task {
+                            let _ = await viewModel.checkDuplicateEmail(email: email)
+                        }
+                    }, label: {
+                        Text("중복확인")
+                            .font(.custom("Pretendard-SemiBold", size: 15))
+                            .foregroundStyle(Color.packitPurple)
+                            
+                    })
+                    .frame(width: 60, height: 40)
+                    .background(
+                        RoundedRectangle(cornerRadius: 4)
+                            .fill(Color.packitLightPurple)
+                    ).padding(.bottom, 3)
                 }
                 .padding(.horizontal)
                 .padding(.bottom, 15)
@@ -66,11 +85,28 @@ struct JoinView: View {
                 .padding(.horizontal)
                 .padding(.bottom, 15)
                 
-                VStack(alignment: .leading) {
-                    Text("닉네임")
-                        .font(.custom("Pretendard-Bold", size: 15))
-                        .foregroundStyle(Color.packitPurple)
-                    PackitTextField(text: $nickname, placeholder: "닉네임을 입력해주세요!")
+                HStack(alignment: .bottom) {
+                    VStack(alignment: .leading) {
+                        Text("닉네임")
+                            .font(.custom("Pretendard-Bold", size: 15))
+                            .foregroundStyle(Color.packitPurple)
+                        PackitTextField(text: $nickname, placeholder: "닉네임을 입력해주세요!")
+                    }
+                    
+                    Button(action: {
+                        Task {
+                            let _ = await viewModel.checkDuplicateNickname(nickname: nickname)
+                        }
+                    }, label: {
+                        Text("중복확인")
+                            .font(.custom("Pretendard-SemiBold", size: 15))
+                            .foregroundStyle(Color.packitPurple)
+                    })
+                    .frame(width: 60, height: 40)
+                    .background(
+                        RoundedRectangle(cornerRadius: 4)
+                            .fill(Color.packitLightPurple)
+                    ).padding(.bottom,3)
                 }
                 .padding(.horizontal)
                 .padding(.bottom, 15)
@@ -104,7 +140,21 @@ struct JoinView: View {
             }
             
             Button(action: {
-                
+                Task{
+                    let body = JoinReqDto(
+                        email: email,
+                        password: password,
+                        nickname: nickname,
+                        name: name,
+                        age: Int(age) ?? 0,
+                        gender: gender
+                    )
+                    
+                    let result = await viewModel.signup(body: body)
+                    if result {
+                        coordinator.pop()
+                    }
+                }
             }, label: {
                 PackitButton(title: "완료")
                     .padding(.horizontal, 20)

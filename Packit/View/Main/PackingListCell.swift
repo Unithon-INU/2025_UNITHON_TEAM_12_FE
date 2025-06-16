@@ -15,7 +15,7 @@ struct PackingListCell: View {
     }
     
     var body: some View {
-        VStack(alignment: .trailing) {
+        VStack(alignment: .leading) {
             VStack(alignment: .leading) {
                 Text(viewModel.trip.endDate.toDateString() ?? "")
                     .font(.custom("Pretendard-Light", size: 14))
@@ -26,13 +26,15 @@ struct PackingListCell: View {
                     .font(.custom("Pretendard-Bold", size: 16))
                     .foregroundStyle(.black)
             }
-            .padding([.leading, .trailing], 6)
+            .padding(.top, 5)
+            .padding(.horizontal, 15)
             .padding(.bottom, 30)
             
             
             HStack(alignment: .bottom) {
-                Image(systemName: "bag.fill")
+                Image("packageWhite")
                     .resizable()
+                    .scaledToFit()
                     .frame(width: 24, height: 31)
                     .foregroundStyle(.white)
                 
@@ -49,9 +51,10 @@ struct PackingListCell: View {
 
                 }
             }
+            .frame(minWidth: 130)
             .padding(.top, 30)
-            .padding([.leading, .trailing], 7)
-            .padding(.bottom, 11)
+            .padding(.horizontal, 15)
+            .padding(.bottom, 15)
         }
         .background(
             RoundedRectangle(cornerRadius: 10)

@@ -48,6 +48,7 @@ struct MainButtonView: View {
             }
             .padding([.leading, .top], 15)
             .padding(.trailing, 42)
+            .frame(minWidth: 140)
             .background(
                 RoundedRectangle(cornerRadius: 15)
                     .fill(.white)
