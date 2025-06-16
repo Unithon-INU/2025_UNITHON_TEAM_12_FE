@@ -13,6 +13,9 @@ protocol TripItemServiceProtocol {
     
     // MARK: - 카테고리별 여행 아이템 조회 API
     func fetchTripItemWithCategory(tripCategoryId: Int) async -> NetworkResult<[TripItemResDto]>
+    
+    // MARK: - 아이템 상태 토글 API
+    func toggleItemStatus(tripItemId: Int) async -> NetworkResult<CommonResDto>
 }
 
 final class TripItemService: TripItemServiceProtocol {
@@ -30,5 +33,10 @@ final class TripItemService: TripItemServiceProtocol {
     // MARK: - 카테고리별 여행 아이템 조회 API
     func fetchTripItemWithCategory(tripCategoryId: Int) async -> NetworkResult<[TripItemResDto]> {
         return await networkService.request(TripItemEndpoint.fetchTripItemWithCategory(TripCategoryId: tripCategoryId))
+    }
+    
+    // MARK: - 아이템 상태 토글 API
+    func toggleItemStatus(tripItemId: Int) async -> NetworkResult<CommonResDto> {
+        return await networkService.request(TripItemEndpoint.toggleItemStatus(tripItemId: tripItemId))
     }
 }

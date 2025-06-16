@@ -129,7 +129,7 @@ struct UpcomingTrip: View {
             // MARK: - 다가오는 여정의 짐챙기기 시작 버튼
             if let trip = trip {
                 Button(action: {
-                    coordinator.push(.checkList(.start(title: trip.title)))
+                    coordinator.push(.checkList(.start(title: trip.title, tripId: trip.id)))
                 }, label: {
                     Text("\(trip.title) 짐 챙기기 START!")
                         .foregroundStyle(.white)

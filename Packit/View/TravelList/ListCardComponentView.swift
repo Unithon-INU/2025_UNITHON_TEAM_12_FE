@@ -14,16 +14,14 @@ struct ListCardComponentView: View {
         VStack(spacing: 7) {
             HStack{
                 Text(trip.periodText)
-                    .font(.custom("Pretendard", size: 17))
-                    .fontWeight(.light)
+                    .font(.custom("Pretendard-Light", size: 17))
                     .foregroundColor(Color.packitLightText)
                 Spacer()
             }
             
             HStack{
                 Text(trip.title)
-                    .font(.custom("Pretendard", size: 20))
-                    .fontWeight(.bold)
+                    .font(.custom("Pretendard-Bold", size: 20))
                     .foregroundColor(trip.isBeen ? .black : Color.packitPurple)
                     .multilineTextAlignment(.leading)
                     .lineLimit(2)

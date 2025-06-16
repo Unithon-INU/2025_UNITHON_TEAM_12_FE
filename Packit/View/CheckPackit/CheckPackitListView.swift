@@ -9,31 +9,72 @@ import SwiftUI
 
 struct CheckPackitListView: View {
     let title: String
-    let categories = ["의류", "잡동사니", "샤워용품", "추가"]
+    let tripId: Int
     
     @EnvironmentObject var coordinator: NavigationCoordinator
-    
+    @ObservedObject var viewModel = CheckPackitListViewModel()
+
     @State private var selectedCategory: Int = 0
+    
+    @State private var isSelected: Bool = false
 
     var body: some View {
         VStack {
-//            CategorySelectionView()
-//                .padding(.bottom)
-            HStack(spacing: 12) {
-                ForEach(Array(categories.enumerated()), id: \.offset) {
-                    index, category in CategoryButtonComponent(title: category, isSelected: categories[selectedCategory] == category, onTap: {selectedCategory = index})
+            // MARK: - 카테고리 상단 탭
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack(spacing: 12) {
+                    ForEach(viewModel.categories) { category in CategoryButtonComponent(
+                        title: category.name,
+                        isSelected: selectedCategory == category.id,
+                        onTap: {
+                            Task {
+                                selectedCategory = category.id
+                                await viewModel.fetchTripItem(tripCategoryId: selectedCategory)
+                            }
+                        })
+                    }
+                }.onAppear {
+                    Task {
+                        await viewModel.fetchItemCategory(tripId: tripId)
+                        selectedCategory = viewModel.categories.first?.id ?? 0
+                        await viewModel.fetchTripItem(tripCategoryId: selectedCategory)
+                    }
+                }.padding(.horizontal)
+            }
+            
+            // MARK: - 체크박스 리스트
+            ScrollView{
+                VStack(spacing: 12) {
+                    ForEach(viewModel.tripItems) { item in
+                        SelectBoxComponent (
+                            title: item.name,
+                            description: item.memo,
+                            isSelected: isSelected,
+                            onTap: {
+                                Task {
+                                    isSelected.toggle()
+                                    await viewModel.toggleItemStatus(tripItemId: item.id)
+                                }
+                            }
+                        ).onAppear {
+                            isSelected = item.isChecked
+                        }
+                    }
                 }
             }
             
-            MultiSelectBoxView()
-            
             Button(action: {
-                if selectedCategory>=0 && selectedCategory<categories.count-1 {
-                    selectedCategory += 1
-                }
-                else {
-                    /// - NOTE: 마지막 카테고리 일시에 
-                    coordinator.popToRoot()
+                if selectedCategory == viewModel.categories.last?.id {
+                    Task {
+                        await viewModel.fetchTripItem(tripCategoryId: selectedCategory)
+                        /// - NOTE: 마지막 카테고리 일시에
+                        coordinator.popToRoot()
+                    }
+                } else {
+                    Task{
+                        await viewModel.fetchTripItem(tripCategoryId: selectedCategory)
+                        selectedCategory += 1
+                    }
                 }
             }, label: {
                 PackitButton(title: "다음")
@@ -44,8 +85,4 @@ struct CheckPackitListView: View {
         .navigationBarTitleDisplayMode(.inline)
         .navigationTitle(title)
     }
-}
-
-#Preview {
-    CheckPackitListView(title: "민지와의 제주 여행")
 }

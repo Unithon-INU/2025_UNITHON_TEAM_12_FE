@@ -10,6 +10,7 @@ import Foundation
 enum TripItemEndpoint: Endpoint {
     case addTripItem(tripCategoryId: Int, body: AddTripItemReqDto)
     case fetchTripItemWithCategory(TripCategoryId: Int)
+    case toggleItemStatus(tripItemId: Int)
     
     var baseURL: URL { URLManager.shared.baseURL }
 
@@ -19,6 +20,8 @@ enum TripItemEndpoint: Endpoint {
             "api/trip-categories/\(tripCategoryId)/trip-items"
         case .fetchTripItemWithCategory(let TripCategoryId):
             "api/trip-categories/\(TripCategoryId)/trip-items"
+        case .toggleItemStatus(let tripItemId):
+            "api/trip-items/\(tripItemId)/check"
         }
     }
     
@@ -28,6 +31,8 @@ enum TripItemEndpoint: Endpoint {
                 .post
         case .fetchTripItemWithCategory:
                 .get
+        case .toggleItemStatus:
+                .patch
         }
     }
     

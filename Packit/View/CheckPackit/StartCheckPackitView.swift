@@ -9,6 +9,7 @@ import SwiftUI
 
 struct StartCheckPackitView: View {
     let title: String
+    let tripId: Int
     @EnvironmentObject var coordinator: NavigationCoordinator
 
     var body: some View {
@@ -45,7 +46,7 @@ struct StartCheckPackitView: View {
             Spacer()
             
             Button(action: {
-                coordinator.push(.checkList(.checkList(title: title)))
+                coordinator.push(.checkList(.checkList(title: title, tripId: tripId)))
             }, label: {
                 PackitButton(title: "짐 챙기기 START!")
                     .padding(.horizontal, 23)

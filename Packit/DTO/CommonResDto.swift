@@ -8,5 +8,5 @@
 import Foundation
 
 struct CommonResDto: Codable {
-    let message: String
+    let message: String?
 }

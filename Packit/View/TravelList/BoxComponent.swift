@@ -53,31 +53,3 @@ struct BoxComponent: View {
         }
 
     }
-
-
-//struct MultiBoxView: View {
-//    @State private var selectedItems: Set<String> = []
-//    
-//    let items = [
-//            ("클렌징폼", "국내선은 기내에 소지한 후 탑승이 가능합니다."),
-//            ("선크림", "액체류는 100ml 이하로 제한됩니다."),
-//            ("치약", "개인 위생용품은 별도 포장이 필요합니다.")
-//        ]
-//    
-//    var body: some View {
-//        VStack(spacing: 12) {
-//            ForEach(items, id: \.0) { item in
-//                BoxComponent (title: item.0,
-//                              description: item.1,
-////                              isSelected: selectedItems.contains(item.0),
-////                              onTap: {
-////                                 if selectedItems.contains(item.0) {
-////                                     selectedItems.remove(item.0)
-////                                 } else {
-////                                     selectedItems.insert(item.0)
-////                                 }
-////                }
-////            )}
-//        }
-//    }
-//}

@@ -22,8 +22,8 @@ enum TripFlow: Hashable {
 
 // MARK: - 짐 체크리스트 화면 전환 Flow
 enum CheckListFlow: Hashable {
-    case start(title: String)
-    case checkList(title: String)
+    case start(title: String, tripId: Int)
+    case checkList(title: String, tripId: Int)
 }
 
 enum AppRoute: Hashable {
@@ -54,10 +54,10 @@ enum AppRoute: Hashable {
             
         case .checkList(let checkListRoute):
             switch checkListRoute {
-            case .start(let title):
-                StartCheckPackitView(title: title)
-            case .checkList(let title):
-                CheckPackitListView(title: title)
+            case .start(let title, let tripId):
+                StartCheckPackitView(title: title, tripId: tripId)
+            case .checkList(let title, let tripId):
+                CheckPackitListView(title: title, tripId: tripId)
             }
         }
     }
