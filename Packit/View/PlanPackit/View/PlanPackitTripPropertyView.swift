@@ -78,9 +78,9 @@ struct PlanPackitTripPropertyView: View {
             
             Task {
                 await formViewModel.addTripItem()
+                coordinator.push(.plan(.list))
             }
             
-            coordinator.push(.plan(.list))
         }, label: {
             PackitButton(title: "다음")
                 .padding(.horizontal, 23)

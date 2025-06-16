@@ -8,13 +8,28 @@
 import Foundation
 
 final class PlanPackitListViewModel: ObservableObject {
-    @Published var category: [String] = ["필수품", "의류", "세면도구", "의약품", "기타"]
+    @Published var category: [TripCategory] = []
     @Published var planList = [TripItem]()
     
     @Published var selectedCategory: String = "필수품"
     
-    init() {
+    private let tripCategoryService: TripCategoryServiceProtocol
+    
+    init(tripCategoryService: TripCategoryServiceProtocol=TripCategoryService()) {
+        self.tripCategoryService = tripCategoryService
         fetchTripItemList()
+    }
+    
+    // MARK: - 여행 아이템 카테고리 조회
+    func fetchTripCategory(tripId: Int) async {
+        let result = await tripCategoryService.fetchTripCategory(tripId: tripId)
+        
+        switch result {
+        case .success(let data, _):
+            self.category = data
+        case .failure(let statusCode, let message):
+            print("[fetchTripCategory] - [\(statusCode)]: \(message ?? "알 수 없는 오류")")
+        }
     }
     
     func fetchTripItemList() {

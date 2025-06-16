@@ -17,18 +17,18 @@ struct PlanPackitListView: View {
         VStack(spacing: 14) {
             // MARK: - 상단 카테고리 탭
             HStack(spacing: 5) {
-                ForEach(Array(viewModel.category.enumerated()), id: \.offset) { index, category in
+                ForEach(viewModel.category) { category in
                     Button(action: {
-                        selectedCategory = index
+                        selectedCategory = category.id
                     }, label: {
-                        Text(category)
+                        Text(category.name)
                             .font(.custom("Pretendard-Bold", size: 14))
                             .padding(.vertical, 5)
                             .padding(.horizontal)
-                            .foregroundStyle(viewModel.category[selectedCategory]==category ? Color.white : Color.packitCharcoal)
+                            .foregroundStyle(selectedCategory == category.id ? Color.white : Color.packitCharcoal)
                             .background {
                                 RoundedRectangle(cornerRadius: 3)
-                                    .fill(viewModel.category[selectedCategory]==category ? Color.packitPurple : Color.white)
+                                    .fill(selectedCategory == category.id ? Color.packitPurple : Color.white)
                             }
                     })
                 }
@@ -88,18 +88,23 @@ struct PlanPackitListView: View {
             .frame(maxHeight: .infinity, alignment: .top)
                             
             Button(action: {
-                if selectedCategory>=0 && selectedCategory<viewModel.category.count-1 {
-                    selectedCategory += 1
-                }
-                else {
+                if selectedCategory == viewModel.category.last?.id {
                     /// - NOTE: 마지막 카테고리 일시에
                     coordinator.popToRoot()
+                } else {
+                    selectedCategory += 1
                 }
             }, label: {
-                PackitButton(title: selectedCategory==viewModel.category.count-1 ? "완료" : "다음")
+                PackitButton(title: selectedCategory == viewModel.category.last?.id ? "완료" : "다음")
                     .padding(.horizontal, 20)
                     .padding(.bottom, 15)
             })
+        }.onAppear {
+            Task {
+                let result = coordinator.formViewModel.result
+                await viewModel.fetchTripCategory(tripId: result.id)
+                selectedCategory = viewModel.category.first?.id ?? 0
+            }
         }
     }
 }

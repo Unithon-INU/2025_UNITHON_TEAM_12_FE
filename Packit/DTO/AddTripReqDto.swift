@@ -7,8 +7,7 @@
 
 import Foundation
 
-struct AddTripReqDto: Codable, Identifiable {
-    let id: Int
+struct AddTripReqDto: Codable {
     var title: String
     var region: String
     var tripType: String
