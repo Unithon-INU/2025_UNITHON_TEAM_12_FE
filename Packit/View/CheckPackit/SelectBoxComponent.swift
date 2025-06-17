@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SelectBoxComponent: View {
     let title: String
-    let description: String
+    let description: String?
     let isSelected: Bool
     let onTap: () -> Void
     
@@ -24,16 +24,15 @@ struct SelectBoxComponent: View {
                         .stroke(isSelected ? Color.clear : Color.packitLightGray)
                         .frame(width: 18, height: 18)
                     Text(title)
-                        .font(.custom("Pretendard", size: 16))
-                        .fontWeight(.semibold)
+                        .font(.custom("Pretendard-SemiBold", size: 16))
                         .foregroundColor(.black)
                 }
                 
-                
-                Text(description)
-                    .font(.custom("Pretendard", size: 14))
-                    .fontWeight(.light)
-                    .foregroundColor(.black)
+                if let description = description {
+                    Text(description)
+                        .font(.custom("Pretendard-Light", size: 14))
+                        .foregroundColor(.black)
+                }
             }
             
             Spacer()
@@ -59,40 +58,3 @@ struct SelectBoxComponent: View {
         }
 
     }
-
-
-struct MultiSelectBoxView: View {
-    @State private var selectedItems: Set<String> = []
-    
-    let items = [
-            ("클렌징폼", "국내선은 기내에 소지한 후 탑승이 가능합니다."),
-            ("선크림", "액체류는 100ml 이하로 제한됩니다."),
-            ("치약", "개인 위생용품은 별도 포장이 필요합니다.")
-        ]
-    
-    var body: some View {
-        VStack(spacing: 12) {
-            ForEach(items, id: \.0) { item in
-                SelectBoxComponent (title: item.0,
-                              description: item.1,
-                              isSelected: selectedItems.contains(item.0),
-                              onTap: {
-                                 if selectedItems.contains(item.0) {
-                                     selectedItems.remove(item.0)
-                                 } else {
-                                     selectedItems.insert(item.0)
-                                 }
-                }
-                )}
-        }
-    }
-}
-
-// 프리뷰
-struct SelectBoxComponent_Previews: PreviewProvider {
-    static var previews: some View {
-        VStack {
-            MultiSelectBoxView()
-        }
-    }
-}

@@ -17,33 +17,28 @@ struct MainButtonView: View {
         ZStack(alignment: .bottomTrailing) {
             VStack(alignment: .leading, spacing: 12) {
                 Text(title)
-                    .fontWeight(.bold)
-                    .font(.system(size: 15))
+                    .font(.custom("Pretendard-Bold", size: 15))
                     .foregroundStyle(Color.black)
                 
                 if let highlight = highlight {
-                    Text(description)
-                        .font(.system(size: 12))
-                        .fontWeight(.light)
+                    Text("아직 완료되지 않은 ")
+                        .font(.custom("Pretendard-Light", size: 12))
                         .padding(.bottom, -8)
                         .foregroundStyle(Color.black)
 
                     Text("\(highlight)")
-                        .font(.system(size: 13))
-                        .fontWeight(.bold)
+                        .font(.custom("Pretendard-Bold", size: 13))
                         .foregroundStyle(Color.packitPurple)
                         .padding(.bottom, -8)
                     
-                    Text("계획이 있어요!")
-                        .font(.system(size: 12))
-                        .fontWeight(.light)
+                    Text(description)
+                        .font(.custom("Pretendard-Light", size: 12))
                         .foregroundStyle(Color.black)
                 }
                 
                 else {
                     Text(description)
-                        .font(.system(size: 12))
-                        .fontWeight(.light)
+                        .font(.custom("Pretendard-Light", size: 12))
                         .lineSpacing(5)
                         .foregroundStyle(Color.black)
                         .multilineTextAlignment(.leading)
@@ -53,6 +48,7 @@ struct MainButtonView: View {
             }
             .padding([.leading, .top], 15)
             .padding(.trailing, 42)
+            .frame(minWidth: 140)
             .background(
                 RoundedRectangle(cornerRadius: 15)
                     .fill(.white)
@@ -60,8 +56,9 @@ struct MainButtonView: View {
                     .shadow(radius: 1.3)
             )
             
-            Image(systemName: iconName)
+            Image(iconName)
                 .resizable()
+                .scaledToFill()
                 .frame(width: 23, height: 30)
                 .foregroundStyle(Color.packitPurple)
                 .offset(CGSize(width: -12, height: -12))

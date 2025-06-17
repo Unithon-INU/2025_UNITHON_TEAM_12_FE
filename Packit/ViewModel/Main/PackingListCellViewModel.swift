@@ -8,9 +8,9 @@
 import Foundation
 
 final class PackingListCellViewModel: ObservableObject {
-    @Published var trip: Trip
+    @Published var trip: TripResDto
     
-    init(trip: Trip) {
+    init(trip: TripResDto) {
         self.trip = trip
     }
     

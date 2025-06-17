@@ -1,0 +1,51 @@
+//
+//  TripitemEndpoint.swift
+//  Packit
+//
+//  Created by Bowon Han on 6/16/25.
+//
+
+import Foundation
+
+enum TripItemEndpoint: Endpoint {
+    case addTripItem(tripCategoryId: Int, body: AddTripItemReqDto)
+    case fetchTripItemWithCategory(TripCategoryId: Int)
+    case toggleItemStatus(tripItemId: Int)
+    
+    var baseURL: URL { URLManager.shared.baseURL }
+
+    var path: String {
+        switch self {
+        case .addTripItem(let tripCategoryId, _):
+            "api/trip-categories/\(tripCategoryId)/trip-items"
+        case .fetchTripItemWithCategory(let TripCategoryId):
+            "api/trip-categories/\(TripCategoryId)/trip-items"
+        case .toggleItemStatus(let tripItemId):
+            "api/trip-items/\(tripItemId)/check"
+        }
+    }
+    
+    var method: HTTPMethod {
+        switch self {
+        case .addTripItem:
+                .post
+        case .fetchTripItemWithCategory:
+                .get
+        case .toggleItemStatus:
+                .patch
+        }
+    }
+    
+    var headers: [String : String]? { ["Content-Type": "application/json"] }
+
+    var body: Data? {
+        switch self {
+        case .addTripItem(_, let body):
+            return try? JSONEncoder().encode(body)
+        default:
+            return nil
+        }
+    }
+    
+    var queryItems: [URLQueryItem]? { return nil }
+}

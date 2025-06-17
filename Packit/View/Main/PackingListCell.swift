@@ -15,47 +15,46 @@ struct PackingListCell: View {
     }
     
     var body: some View {
-        VStack(alignment: .trailing) {
+        VStack(alignment: .leading) {
             VStack(alignment: .leading) {
-                Text(viewModel.trip.end_date.toDateString() ?? "")
-                    .font(.system(size: 14))
-                    .fontWeight(.light)
+                Text(viewModel.trip.endDate?.toDateString() ?? "")
+                    .font(.custom("Pretendard-Light", size: 14))
                     .padding(.top, 9)
                     .foregroundStyle(.black)
                 
                 Text(viewModel.trip.title)
-                    .font(.system(size: 16))
-                    .fontWeight(.bold)
+                    .font(.custom("Pretendard-Bold", size: 16))
                     .foregroundStyle(.black)
             }
-            .padding([.leading, .trailing], 6)
+            .padding(.top, 5)
+            .padding(.horizontal, 15)
             .padding(.bottom, 30)
             
             
             HStack(alignment: .bottom) {
-                Image(systemName: "bag.fill")
+                Image("packageWhite")
                     .resizable()
+                    .scaledToFit()
                     .frame(width: 24, height: 31)
                     .foregroundStyle(.white)
                 
                 Spacer()
                 
                 VStack(alignment: .trailing) {
-                    Text(viewModel.trip.location)
-                        .font(.system(size: 14))
-                        .fontWeight(.regular)
+                    Text(viewModel.trip.region)
+                        .font(.custom("Pretendard-Regular", size: 14))
                         .foregroundStyle(.black)
                     
                     Text("1박 2일")
-                        .font(.system(size: 14))
-                        .fontWeight(.regular)
+                        .font(.custom("Pretendard-Regular", size: 14))
                         .foregroundStyle(.black)
 
                 }
             }
+            .frame(minWidth: 130)
             .padding(.top, 30)
-            .padding([.leading, .trailing], 7)
-            .padding(.bottom, 11)
+            .padding(.horizontal, 15)
+            .padding(.bottom, 15)
         }
         .background(
             RoundedRectangle(cornerRadius: 10)
