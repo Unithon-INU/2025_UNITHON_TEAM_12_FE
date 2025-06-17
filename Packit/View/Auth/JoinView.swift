@@ -35,7 +35,7 @@ struct JoinView: View {
                 Spacer()
             }
             .padding(.vertical, 10)
-            .padding(.horizontal, 30)
+            .padding(.horizontal, 20)
             
             HStack{
                 Text("회원가입")
@@ -79,8 +79,44 @@ struct JoinView: View {
                     Text("비밀번호")
                         .font(.custom("Pretendard-Bold", size: 15))
                         .foregroundStyle(Color.packitPurple)
-                    PackitTextField(text: $password, placeholder: "비밀번호를 입력해주세요!")
-                    PackitTextField(text: $passwordCheck, placeholder: "비밀번호를 한번 더 입력해주세요!")
+                    
+                    ZStack(alignment: .leading) {
+                        if password.isEmpty {
+                            Text("비밀번호를 입력해주세요!")
+                                .font(.custom("Pretendard", size: 16))
+                                .fontWeight(.medium)
+                                .foregroundStyle(Color.packitLightGray)
+                                .padding(.leading, 10)
+                        }
+                        
+                        SecureField("", text: $password)
+                            .padding(.leading, 10)
+                        
+                    }
+                    .padding(.vertical, 13)
+                    .overlay {
+                        RoundedRectangle(cornerRadius: 8)
+                            .stroke(Color.packitPurple, lineWidth: 1)
+                    }
+                    
+                    ZStack(alignment: .leading) {
+                        if passwordCheck.isEmpty {
+                            Text("비밀번호를 한번 더 입력해주세요!")
+                                .font(.custom("Pretendard", size: 16))
+                                .fontWeight(.medium)
+                                .foregroundStyle(Color.packitLightGray)
+                                .padding(.leading, 10)
+                        }
+                        
+                        SecureField("", text: $passwordCheck)
+                            .padding(.leading, 10)
+                        
+                    }
+                    .padding(.vertical, 13)
+                    .overlay {
+                        RoundedRectangle(cornerRadius: 8)
+                            .stroke(Color.packitPurple, lineWidth: 1)
+                    }
                 }
                 .padding(.horizontal)
                 .padding(.bottom, 15)
@@ -141,18 +177,20 @@ struct JoinView: View {
             
             Button(action: {
                 Task{
-                    let body = JoinReqDto(
-                        email: email,
-                        password: password,
-                        nickname: nickname,
-                        name: name,
-                        age: Int(age) ?? 0,
-                        gender: gender
-                    )
-                    
-                    let result = await viewModel.signup(body: body)
-                    if result {
-                        coordinator.pop()
+                    if password == passwordCheck {
+                        let body = JoinReqDto(
+                            email: email,
+                            password: password,
+                            nickname: nickname,
+                            name: name,
+                            age: Int(age) ?? 0,
+                            gender: gender
+                        )
+                        
+                        let result = await viewModel.signup(body: body)
+                        if result {
+                            coordinator.pop()
+                        }
                     }
                 }
             }, label: {

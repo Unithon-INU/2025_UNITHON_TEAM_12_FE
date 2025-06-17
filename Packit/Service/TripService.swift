@@ -9,10 +9,10 @@ import Foundation
 
 protocol TripServiceProtocol {
     // MARK: - 내 여행 목록 조회 API
-    func fetchMyTrips() async -> NetworkResult<[TripResDto]>
+    func fetchMyTrips() async -> NetworkResult<APIResDto<[TripResDto]>>
     
     // MARK: - 여행 생성 API
-    func addTrip(body: AddTripReqDto) async -> NetworkResult<TripResDto>
+    func addTrip(body: AddTripReqDto) async -> NetworkResult<APIResDto<TripResDto>>
 }
 
 final class TripService: TripServiceProtocol {
@@ -23,12 +23,12 @@ final class TripService: TripServiceProtocol {
     }
     
     // MARK: - 내 여행 목록 조회 API
-    func fetchMyTrips() async -> NetworkResult<[TripResDto]> {
+    func fetchMyTrips() async -> NetworkResult<APIResDto<[TripResDto]>> {
         return await networkService.request(TripEndpoint.fetchMyTrips)
     }
     
     // MARK: - 여행 생성 API
-    func addTrip(body: AddTripReqDto) async -> NetworkResult<TripResDto> {
+    func addTrip(body: AddTripReqDto) async -> NetworkResult<APIResDto<TripResDto>> {
         return await networkService.request(TripEndpoint.addTrip(body: body))
     }
 }

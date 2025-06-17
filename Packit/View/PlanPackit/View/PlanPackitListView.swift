@@ -41,9 +41,9 @@ struct PlanPackitListView: View {
                         }
                     }, label: {
                         Text(category.name)
-                            .font(.custom("Pretendard-Bold", size: 14))
+                            .font(.custom("Pretendard-Bold", size: 12))
                             .padding(.vertical, 5)
-                            .padding(.horizontal)
+                            .padding(.horizontal, 12)
                             .foregroundStyle(selectedCategory == category.id ? Color.white : Color.packitCharcoal)
                             .background {
                                 RoundedRectangle(cornerRadius: 3)

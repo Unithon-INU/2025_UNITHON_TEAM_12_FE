@@ -17,7 +17,7 @@ struct PackingListCell: View {
     var body: some View {
         VStack(alignment: .leading) {
             VStack(alignment: .leading) {
-                Text(viewModel.trip.endDate.toDateString() ?? "")
+                Text(viewModel.trip.endDate?.toDateString() ?? "")
                     .font(.custom("Pretendard-Light", size: 14))
                     .padding(.top, 9)
                     .foregroundStyle(.black)

@@ -46,7 +46,7 @@ struct ListCardComponentView: View {
             }
             HStack{
                 Spacer()
-                Text(trip.startDate)
+                Text(trip.startDate ?? "")
                     .font(.custom("Pretendard-Medium", size: 18))
                     .foregroundColor(.black)
                     .lineLimit(1)

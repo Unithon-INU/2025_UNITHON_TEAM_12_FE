@@ -39,15 +39,17 @@ struct TripListDetailView: View {
             
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 12) {
-                    ForEach(viewModel.categories) { category in CategoryButtonComponent(
-                        title: category.name,
-                        isSelected: selectedCategory == category.id,
-                        onTap: {
-                            Task {
-                                selectedCategory = category.id
-                                await viewModel.fetchTripItem(tripCategoryId: selectedCategory)
+                    ForEach(viewModel.categories) { category in
+                        CategoryButtonComponent(
+                            title: category.name,
+                            isSelected: selectedCategory == category.id,
+                            onTap: {
+                                Task {
+                                    selectedCategory = category.id
+                                    await viewModel.fetchTripItem(tripCategoryId: selectedCategory)
+                                }
                             }
-                        })
+                        )
                     }
                 }.onAppear {
                     Task {

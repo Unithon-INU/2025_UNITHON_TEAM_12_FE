@@ -17,13 +17,13 @@ final class PlanPackitFormViewModel: ObservableObject {
         self.tripService = tripService
     }
     
-    func addTripItem() async {
+    func addTrip() async {
         let result = await tripService.addTrip(body: reqBody)
         
         switch result {
         case .success(let data, _):
             print(data)
-            self.result = data
+            self.result = data.data
         case .failure(let statusCode, let message):
             print("[addTripItem] - [\(statusCode)]: \(message ?? "알 수 없는 오류")")
         }

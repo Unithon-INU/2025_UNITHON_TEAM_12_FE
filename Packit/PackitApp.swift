@@ -13,6 +13,10 @@ struct PackitApp: App {
     @StateObject private var loginViewModel = LoginViewModel()
     @StateObject private var navigationCoordinator = NavigationCoordinator()
     
+    init() {
+        UserDefaults.standard.set(false, forKey: "isLoggedIn")
+    }
+    
     var body: some Scene {
         WindowGroup {
             NavigationStack(path: $navigationCoordinator.path) {

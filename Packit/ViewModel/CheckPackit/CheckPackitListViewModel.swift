@@ -27,7 +27,7 @@ final class CheckPackitListViewModel: ObservableObject {
         
         switch result {
         case .success(let data, _):
-            self.categories = data
+            self.categories = data.data
         case .failure(let statusCode, let message):
             print("[fetchItemCategory] - [\(statusCode)]: \(message ?? "알 수 없는 오류")")
         }
@@ -39,7 +39,7 @@ final class CheckPackitListViewModel: ObservableObject {
         
         switch result {
         case .success(let data, _):
-            self.tripItems = data
+            self.tripItems = data.data
         case .failure(let statusCode, let message):
             print("[fetchTripItem] - [\(statusCode)]: \(message ?? "알 수 없는 오류")")
         }

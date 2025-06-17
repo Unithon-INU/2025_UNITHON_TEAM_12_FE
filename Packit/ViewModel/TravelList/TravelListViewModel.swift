@@ -33,7 +33,7 @@ final class TravelListViewModel: ObservableObject {
         
         switch result {
         case .success(let data, _):
-            self.tripList = data
+            self.tripList = data.data
         case .failure(let statusCode, let message):
             print("[fetchTripList] - [\(statusCode)]: \(message ?? "알 수 없는 오류")")
         }

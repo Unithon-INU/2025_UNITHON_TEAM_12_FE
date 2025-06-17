@@ -129,20 +129,28 @@ struct TripListView: View {
                     .padding()
                 }
             } else {
-                VStack(spacing: 10) {
-                    Image("list")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 40, height: 40)
-                    Text("아직 완료된 여행이 없습니다")
-                        .font(.custom("Pretendard", size: 16))
-                    Text("첫 번째 여행을 떠나보세요!")
-                        .font(.custom("Pretendard", size: 14))
+                HStack {
+                    Spacer()
+                    VStack(spacing: 10) {
+                        Image("list")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 40, height: 40)
+                        Text("아직 완료된 여행이 없습니다")
+                            .font(.custom("Pretendard", size: 16))
+                        Text("첫 번째 여행을 떠나보세요!")
+                            .font(.custom("Pretendard", size: 14))
+                    }
+                    .foregroundColor(.gray)
+                    .frame(height: 200)
+                    
+                    Spacer()
                 }
-                .foregroundColor(.gray)
-                .frame(height: 200)
             }
+            
+            Spacer()
         }
+        .frame(maxHeight: .infinity)
         .background(
             UnevenRoundedRectangle(
                 topLeadingRadius: 15,
@@ -152,6 +160,7 @@ struct TripListView: View {
             )
             .fill(Color.packitLightPurple)
             .shadow(color: Color.black.opacity(0.15), radius: 10, x: 0, y: -5)
+            .ignoresSafeArea(edges: .bottom)
         )
     }
 }

@@ -13,6 +13,8 @@ struct PlanPackitTripPropertyView: View {
     
     @State private var startDate: Date? = nil
     @State private var endDate: Date? = nil
+    
+    @State private var tripType = TripType(index: "")
         
     var body: some View {
         HStack {
@@ -67,7 +69,7 @@ struct PlanPackitTripPropertyView: View {
                     .font(.custom("Pretendard-Bold", size: 13))
                     .padding(.leading, 4)
                 
-                SelectTripProperty()
+                SelectTripProperty(selectedTag: $tripType)
             }
             .padding(.top, 10)
             .padding(.bottom, 60)
@@ -88,10 +90,10 @@ struct PlanPackitTripPropertyView: View {
             formViewModel.reqBody.startDate = startDate.map { formatter.string(from: $0) } ?? ""
             formViewModel.reqBody.endDate = endDate.map { formatter.string(from: $0) } ?? ""
             
-            formViewModel.reqBody.tripType = "FAMILY"
+            formViewModel.reqBody.tripType = self.tripType?.toString() ?? "FAMILY"
             
             Task {
-                await formViewModel.addTripItem()
+                await formViewModel.addTrip()
                 coordinator.push(.plan(.list))
             }
             
@@ -104,8 +106,11 @@ struct PlanPackitTripPropertyView: View {
 }
 
 struct SelectTripProperty: View {
-    let tags: [String] = ["혼자가는 여행1", "둘이 가는 여행2", "세심한3", "1454", "1235", "12346", "456787", "6779438", "가벼운 여행9","세심한1", "1452", "1233", "12344", "456785", "6779436", "가벼운 여행7","둘이 가는 여행8", "세심한9", "1451", "1232", "1234"]
-    @State var selectedTags: [String] = []
+//    let tags: [String] = ["혼자가는 여행1", "둘이 가는 여행2", "세심한3", "1454", "1235", "12346", "456787", "6779438", "가벼운 여행9","세심한1", "1452", "1233", "12344", "456785", "6779436", "가벼운 여행7","둘이 가는 여행8", "세심한9", "1451", "1232", "1234"]
+    
+    let tags: [String] = TripType.orderedCases.map { $0.toUIName() }
+    
+    @Binding var selectedTag: TripType?
     
     var body: some View {
         VStack {
@@ -113,13 +118,14 @@ struct SelectTripProperty: View {
                 ForEach(tags, id: \.self) { tag in
                     PackitToggleButton(
                         content: tag,
-                        isSelected: selectedTags.contains(tag),
+                        isSelected: selectedTag==TripType(index: tag),
                         onTap: {
-                            if selectedTags.contains(tag) {
-                                selectedTags.removeAll { $0 == tag }
-                            } else {
-                                selectedTags.append(tag)
-                            }
+//                            if selectedTags.contains(tag) {
+//                                selectedTags.removeAll { $0 == tag }
+//                            } else {
+//                                selectedTags.append(tag)
+//                            }
+                            selectedTag = TripType(index: tag) ?? .other
                         })
                 }
             }

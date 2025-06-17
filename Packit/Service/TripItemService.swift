@@ -12,7 +12,7 @@ protocol TripItemServiceProtocol {
     func addTripItem(tripCategoryId: Int, body: AddTripItemReqDto) async -> NetworkResult<TripItemResDto>
     
     // MARK: - 카테고리별 여행 아이템 조회 API
-    func fetchTripItemWithCategory(tripCategoryId: Int) async -> NetworkResult<[TripItemResDto]>
+    func fetchTripItemWithCategory(tripCategoryId: Int) async -> NetworkResult<APIResDto<[TripItemResDto]>>
     
     // MARK: - 아이템 상태 토글 API
     func toggleItemStatus(tripItemId: Int) async -> NetworkResult<CommonResDto>
@@ -31,7 +31,7 @@ final class TripItemService: TripItemServiceProtocol {
     }
     
     // MARK: - 카테고리별 여행 아이템 조회 API
-    func fetchTripItemWithCategory(tripCategoryId: Int) async -> NetworkResult<[TripItemResDto]> {
+    func fetchTripItemWithCategory(tripCategoryId: Int) async -> NetworkResult<APIResDto<[TripItemResDto]>> {
         return await networkService.request(TripItemEndpoint.fetchTripItemWithCategory(TripCategoryId: tripCategoryId))
     }
     

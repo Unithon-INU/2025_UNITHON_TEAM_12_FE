@@ -111,7 +111,7 @@ struct UpcomingTrip: View {
                         
                         Spacer()
                         
-                        Text(trip.startDate.toDateString() ?? "")
+                        Text(trip.startDate?.toDateString() ?? "")
                             .font(.custom("Pretendard-Thin", size: 20))
                     }
                     

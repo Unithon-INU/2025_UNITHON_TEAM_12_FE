@@ -24,7 +24,7 @@ final class MainViewModel: ObservableObject {
         switch result {
         case .success(let data, _):
             DispatchQueue.main.async {
-                self.tripList = data
+                self.tripList = data.data
             }
         case .failure(let statusCode, let message):
             print("[fetchMyTrips] - [\(statusCode)]: \(message ?? "알 수 없는 오류")")

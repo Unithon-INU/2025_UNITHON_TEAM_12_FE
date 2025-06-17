@@ -12,8 +12,9 @@ struct LoginView: View {
     @State private var password: String = ""
     @EnvironmentObject var coordinator: NavigationCoordinator
 
-    @ObservedObject private var viewModel = LoginViewModel()
-    
+//    @ObservedObject private var viewModel = LoginViewModel()
+    @EnvironmentObject var viewModel: LoginViewModel
+
     var body: some View {
         VStack {
             Image("package")
@@ -25,7 +26,25 @@ struct LoginView: View {
             
             VStack{
                 PackitTextField(text: $email, placeholder: "이메일을 입력해주세요!")
-                PackitTextField(text: $password, placeholder: "비밀번호를 입력해주세요!")
+                ZStack(alignment: .leading) {
+                    if password.isEmpty {
+                        Text("비밀번호를 입력해주세요!")
+                            .font(.custom("Pretendard", size: 16))
+                            .fontWeight(.medium)
+                            .foregroundStyle(Color.packitLightGray)
+                            .padding(.leading, 10)
+                    }
+                    
+                    SecureField("", text: $password)
+                        .padding(.leading, 10)
+                    
+                }
+                .padding(.vertical, 13)
+                .overlay {
+                    RoundedRectangle(cornerRadius: 8)
+                        .stroke(Color.packitPurple, lineWidth: 1)
+                }
+                
             }.padding()
             
             VStack{
@@ -34,7 +53,6 @@ struct LoginView: View {
                         let result = await viewModel.signin(email: email, password: password)
                         if result {
                             print("결과로 들어옴")
-//                            viewModel.isLoggedIn = true
                             coordinator.popToRoot()
                         }
                     }

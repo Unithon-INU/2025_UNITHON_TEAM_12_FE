@@ -12,8 +12,8 @@ struct TripResDto: Identifiable, Codable {
     let title: String
     let region: String
     let tripType: String
-    let startDate: String
-    let endDate: String  
+    let startDate: String?
+    let endDate: String?
     let description: String
     let isCompleted: Bool
 }
@@ -32,11 +32,11 @@ extension TripResDto {
 
     // 문자열을 Date로 변환
     var start_date: Date? {
-        dateFormatter.date(from: startDate)
+        dateFormatter.date(from: startDate ?? "")
     }
 
     var end_date: Date? {
-        dateFormatter.date(from: endDate)
+        dateFormatter.date(from: endDate ?? "")
     }
 
     // 현재 날짜 기준으로 여행이 끝났는지 확인
