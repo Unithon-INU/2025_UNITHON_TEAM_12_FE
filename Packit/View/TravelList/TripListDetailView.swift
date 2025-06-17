@@ -17,7 +17,7 @@ struct TripListDetailView: View {
     
     var body: some View {
         VStack(spacing:22) {
-            HStack {
+            HStack(alignment: .center) {
                 Button(action: {
                     coordinator.pop()
                 }, label: {
@@ -33,10 +33,25 @@ struct TripListDetailView: View {
                     .padding(.horizontal)
                 
                 Spacer()
+                
+                Button(action: {
+                    coordinator.push(.checkList(.start(title: title, tripId: tripId)))
+                }, label: {
+                    Text("지금 짐 챙기기!")
+                        .font(.custom("Pretendard-SemiBold", size: 15))
+                        .foregroundStyle(Color.packitPurple)
+                        .padding(.horizontal)
+                })
+                .frame(height: 40)
+                .background(
+                    RoundedRectangle(cornerRadius: 7)
+                        .fill(Color.packitLightPurple)
+                )
             }
             .padding(.vertical, 10)
             .padding(.horizontal, 30)
             
+            // MARK: - 상단 카테고리 탭
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 12) {
                     ForEach(viewModel.categories) { category in
@@ -60,9 +75,12 @@ struct TripListDetailView: View {
                 }.padding(.horizontal)
             }
             
-            VStack(spacing: 12) {
-                ForEach(viewModel.tripItems) { item in
-                    BoxComponent (title: item.name, description: item.memo ?? "")
+            // MARK: - 짐 리스트
+            ScrollView(showsIndicators: false) {
+                VStack(spacing: 12) {
+                    ForEach(viewModel.tripItems) { item in
+                        BoxComponent (title: item.name, description: item.memo ?? "")
+                    }
                 }
             }
         }

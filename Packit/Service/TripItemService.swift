@@ -16,6 +16,12 @@ protocol TripItemServiceProtocol {
     
     // MARK: - 아이템 상태 토글 API
     func toggleItemStatus(tripItemId: Int) async -> NetworkResult<CommonResDto>
+    
+    // MARK: - 여행 짐 리스트 추가 API
+    func addTripItems(tripId: Int, tripCategoryId: Int, body: AddTripItemsReqDto) async -> NetworkResult<APIResDto<String?>>
+    
+    // MARK: - 템플릿 아이템 조회 API
+    func fetchTemplateItems(categoryId: Int) async -> NetworkResult<APIResDto<[TemplateItemResDto]>>
 }
 
 final class TripItemService: TripItemServiceProtocol {
@@ -38,5 +44,15 @@ final class TripItemService: TripItemServiceProtocol {
     // MARK: - 아이템 상태 토글 API
     func toggleItemStatus(tripItemId: Int) async -> NetworkResult<CommonResDto> {
         return await networkService.request(TripItemEndpoint.toggleItemStatus(tripItemId: tripItemId))
+    }
+    
+    // MARK: - 여행 짐 리스트 추가 API
+    func addTripItems(tripId: Int, tripCategoryId: Int, body: AddTripItemsReqDto) async -> NetworkResult<APIResDto<String?>> {
+        return await networkService.request(TripItemEndpoint.addTripItems(tripId: tripId, tripCategoryId: tripCategoryId, body: body))
+    }
+    
+    // MARK: - 템플릿 아이템 조회 API
+    func fetchTemplateItems(categoryId: Int) async -> NetworkResult<APIResDto<[TemplateItemResDto]>> {
+        return await networkService.request(TripItemEndpoint.fetchTemplateItems(categoryId: categoryId))
     }
 }

@@ -12,6 +12,10 @@ struct PlanPackitListView: View {
     @State private var addListText: String = ""
     @State private var selectedCategory: Int = 0
     @EnvironmentObject var coordinator: NavigationCoordinator
+    
+    @State private var templateCategory: Int = 1
+    
+    @State private var tripId: Int = 0
 
     var body: some View {
         VStack(spacing: 14) {
@@ -35,10 +39,10 @@ struct PlanPackitListView: View {
             HStack(spacing: 5) {
                 ForEach(viewModel.category) { category in
                     Button(action: {
-                        Task{
-                            selectedCategory = category.id
-                            await viewModel.fetchTripItemWithCategory(tripCategoryId: selectedCategory)
-                        }
+//                        Task{
+//                            selectedCategory = category.id
+//                            await viewModel.fetchTripItemWithCategory(tripCategoryId: selectedCategory)
+//                        }
                     }, label: {
                         Text(category.name)
                             .font(.custom("Pretendard-Bold", size: 12))
@@ -63,13 +67,9 @@ struct PlanPackitListView: View {
                 PackitTextField(text: $addListText, placeholder: "추가할 물품을 입력해주세요!")
                 
                 Button(action: {
-                    let body = AddTripItemReqDto(name: addListText, quantity: 0, memo: "")
-
-                    Task {
-                        await viewModel.addTripItem(tripCategoryId: selectedCategory, body: body)
-                        await viewModel.fetchTripItemWithCategory(tripCategoryId: selectedCategory)
-                        addListText = ""
-                    }
+                    let item = TripItemModel(name: addListText, quantity: 1, memo: nil)
+                    viewModel.addItem(item: item)
+                    addListText = ""
                 }, label: {
                     Text("추가")
                         .font(.custom("Pretendard-SemiBold", size: 13))
@@ -85,8 +85,8 @@ struct PlanPackitListView: View {
 
             
             // MARK: - 물품 리스트 뷰
-            LazyVStack {
-                ScrollView{
+            ScrollView(showsIndicators: false) {
+                LazyVStack {
                     ForEach(viewModel.planList) { list in
                         ZStack(alignment: .topTrailing) {
                             HStack(spacing: 15) {
@@ -111,7 +111,7 @@ struct PlanPackitListView: View {
                                 
                             }.frame(minHeight: 45)
                             Button(action: {
-                                
+                                viewModel.deleteItem(id: list.id)
                             }, label: {
                                 Image(systemName: "x.circle")
                                     .foregroundStyle(Color.black)
@@ -124,21 +124,21 @@ struct PlanPackitListView: View {
                         }
                     }
                 }
-                .padding(.horizontal)
-            }
-            .frame(maxHeight: .infinity, alignment: .top)
+            }.padding(.horizontal)
                             
             Button(action: {
                 if selectedCategory == viewModel.category.last?.id {
                     Task {
-                        await viewModel.fetchTripItemWithCategory(tripCategoryId: selectedCategory)
+                        await viewModel.addTripItems(tripId: self.tripId, tripCategoryId: selectedCategory)
                         /// - NOTE: 마지막 카테고리 일시에
                         coordinator.popToRoot()
                     }
                 } else {
                     Task{
-                        await viewModel.fetchTripItemWithCategory(tripCategoryId: selectedCategory)
+                        await viewModel.addTripItems(tripId: self.tripId, tripCategoryId: selectedCategory)
                         selectedCategory += 1
+                        templateCategory += 1
+                        await viewModel.fetchTemplateItem(categoryId: templateCategory)
                     }
                 }
             }, label: {
@@ -148,9 +148,10 @@ struct PlanPackitListView: View {
             })
         }.onAppear {
             Task {
-                let result = coordinator.formViewModel.result
-                await viewModel.fetchTripCategory(tripId: result.id)
+                self.tripId = coordinator.formViewModel.result.id
+                await viewModel.fetchTripCategory(tripId: self.tripId)
                 selectedCategory = viewModel.category.first?.id ?? 0
+                await viewModel.fetchTemplateItem(categoryId: templateCategory)
             }
         }
     }
