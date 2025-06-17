@@ -201,7 +201,3 @@ struct JoinView: View {
         }
     }
 }
-
-#Preview {
-    JoinView()
-}

@@ -16,8 +16,6 @@ struct CheckPackitListView: View {
 
     @State private var selectedCategory: Int = 0
     
-    @State private var isSelected: Bool = false
-
     var body: some View {
         VStack {
             HStack {
@@ -69,16 +67,13 @@ struct CheckPackitListView: View {
                         SelectBoxComponent (
                             title: item.name,
                             description: item.memo,
-                            isSelected: isSelected,
+                            isSelected: item.isChecked,
                             onTap: {
                                 Task {
-                                    isSelected.toggle()
                                     await viewModel.toggleItemStatus(tripItemId: item.id)
                                 }
                             }
-                        ).onAppear {
-                            isSelected = item.isChecked
-                        }
+                        )
                     }
                 }
             }

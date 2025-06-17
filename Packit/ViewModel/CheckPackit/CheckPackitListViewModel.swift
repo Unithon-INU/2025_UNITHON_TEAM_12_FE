@@ -48,10 +48,12 @@ final class CheckPackitListViewModel: ObservableObject {
     // MARK: - 아이템 상태 토글 API
     func toggleItemStatus(tripItemId: Int) async {
         let result = await tripItemService.toggleItemStatus(tripItemId: tripItemId)
-        
+
         switch result {
-        case .success(let data, _):
-            print(data)
+        case .success(_, _):
+            if let index = tripItems.firstIndex(where: { $0.id == tripItemId }) {
+                tripItems[index].isChecked.toggle()
+            }
         case .failure(let statusCode, let message):
             print("[toggleItemStatus] - [\(statusCode)]: \(message ?? "알 수 없는 오류")")
         }
