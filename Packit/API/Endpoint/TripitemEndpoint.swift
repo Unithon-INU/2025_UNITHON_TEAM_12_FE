@@ -11,6 +11,8 @@ enum TripItemEndpoint: Endpoint {
     case addTripItem(tripCategoryId: Int, body: AddTripItemReqDto)
     case fetchTripItemWithCategory(TripCategoryId: Int)
     case toggleItemStatus(tripItemId: Int)
+    case addTripItems(tripId: Int, tripCategoryId: Int, body: AddTripItemsReqDto)
+    case fetchTemplateItems(categoryId: Int)
     
     var baseURL: URL { URLManager.shared.baseURL }
 
@@ -22,14 +24,18 @@ enum TripItemEndpoint: Endpoint {
             "api/trip-categories/\(TripCategoryId)/trip-items"
         case .toggleItemStatus(let tripItemId):
             "api/trip-items/\(tripItemId)/check"
+        case .addTripItems(let tripId, let tripCategoryId, _):
+            "api/trips/\(tripId)/categories/\(tripCategoryId)/items"
+        case .fetchTemplateItems(let categoryId):
+            "api/categories/\(categoryId)/template-items"
         }
     }
     
     var method: HTTPMethod {
         switch self {
-        case .addTripItem:
+        case .addTripItem, .addTripItems:
                 .post
-        case .fetchTripItemWithCategory:
+        case .fetchTripItemWithCategory, .fetchTemplateItems:
                 .get
         case .toggleItemStatus:
                 .patch
@@ -42,6 +48,10 @@ enum TripItemEndpoint: Endpoint {
         switch self {
         case .addTripItem(_, let body):
             return try? JSONEncoder().encode(body)
+            
+        case .addTripItems(_, _, let body):
+            return try? JSONEncoder().encode(body)
+
         default:
             return nil
         }

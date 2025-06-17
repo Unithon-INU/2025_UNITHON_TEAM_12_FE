@@ -51,6 +51,7 @@ struct TripListDetailView: View {
             .padding(.vertical, 10)
             .padding(.horizontal, 30)
             
+            // MARK: - 상단 카테고리 탭
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 12) {
                     ForEach(viewModel.categories) { category in
@@ -74,9 +75,12 @@ struct TripListDetailView: View {
                 }.padding(.horizontal)
             }
             
-            VStack(spacing: 12) {
-                ForEach(viewModel.tripItems) { item in
-                    BoxComponent (title: item.name, description: item.memo ?? "")
+            // MARK: - 짐 리스트
+            ScrollView(showsIndicators: false) {
+                VStack(spacing: 12) {
+                    ForEach(viewModel.tripItems) { item in
+                        BoxComponent (title: item.name, description: item.memo ?? "")
+                    }
                 }
             }
         }
