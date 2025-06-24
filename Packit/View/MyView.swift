@@ -57,39 +57,19 @@ struct MyView: View {
                     .cornerRadius(17)
                 
                 HStack(spacing: 25) {
-                    VStack(spacing: 9) {
-                        Text("N")
-                            .font(.custom("Pretendard-SemiBold", size: 22))
-                            .foregroundColor(.black)
-                        Text("총 여행 횟수")
-                            .font(.custom("Pretendard-Light", size: 12))
-                            .foregroundColor(Color.packitDarkGray)
-                    }
-                    Divider()
-                        .frame(width: 1, height: 70)
-                        .foregroundStyle(Color.packitPurple)
-                    
-                    VStack(spacing: 9) {
-                        Text("N")
-                            .font(.custom("Pretendard-SemiBold", size: 22))
-                            .foregroundColor(.black)
-                        Text("총 여행 횟수")
-                            .font(.custom("Pretendard-Light", size: 12))
-                            .foregroundColor(Color.packitDarkGray)
-                    }
+                    TextStyleView(title: "N", subtitle: "총 여행 횟수")
                     
                     Divider()
                         .frame(width: 1, height: 70)
                         .foregroundStyle(Color.packitPurple)
                     
-                    VStack(spacing: 9) {
-                        Text("N")
-                            .font(.custom("Pretendard-SemiBold", size: 22))
-                            .foregroundColor(.black)
-                        Text("총 여행 횟수")
-                            .font(.custom("Pretendard-Light", size: 12))
-                            .foregroundColor(Color.packitDarkGray)
-                    }
+                    TextStyleView(title: "N", subtitle: "계획 중인 여행")
+                    
+                    Divider()
+                        .frame(width: 1, height: 70)
+                        .foregroundStyle(Color.packitPurple)
+                    
+                    TextStyleView(title: "N", subtitle: "완료한 여행")
                     
                     
                 }
@@ -163,16 +143,27 @@ struct MyView: View {
                 .cornerRadius(12)
             }
             .padding(.horizontal, 27)
+            .padding(.bottom, 30)
             
         }
         .background(Color(hex: "#F4F3F8"))
-        
-
-            
-
     }
+}
+
+struct TextStyleView: View {
+    var title: String
+    var subtitle: String
     
-       
+    var body: some View {
+        VStack(spacing: 9) {
+            Text(title)
+                .font(.custom("Pretendard-SemiBold", size: 22))
+                .foregroundColor(.black)
+            Text(subtitle)
+                .font(.custom("Pretendard-Light", size: 12))
+                .foregroundColor(Color.packitDarkGray)
+        }
+    }
 }
 
 #Preview {
