@@ -9,8 +9,8 @@ import Foundation
 
 @MainActor
 final class MyViewModel: ObservableObject {
-    @Published var myInfo = [MyInfoModel]()
-    @Published var myTrip = [MyTripModel]()
+    @Published var myInfo = MyInfoModel()
+    @Published var myTrip = MyTripModel()
     
     private let myService: MyServiceProtocol
     

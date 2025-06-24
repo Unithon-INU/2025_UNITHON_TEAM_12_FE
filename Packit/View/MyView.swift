@@ -9,6 +9,7 @@ import SwiftUI
 
 struct MyView: View {
     let title: String
+    @ObservedObject var viewModel = MyViewModel()
     @EnvironmentObject var coordinator: NavigationCoordinator
     
     var body: some View {
@@ -18,15 +19,15 @@ struct MyView: View {
                 Button(action: {
                     coordinator.pop()
                 }, label: {
-                    Image(systemName: "arrow.left")
+                    Image("home")
                         .resizable()
                         .scaledToFit()
-                        .frame(width: 23)
+                        .frame(width: 20)
                         .foregroundStyle(.black)
                 })
                 
                 Text(title)
-                    .font(.custom("Pretendard-Bold", size: 15))
+                    .font(.custom("Pretendard-Bold", size: 25))
                     .padding(.horizontal)
                 
                 Spacer()
@@ -40,12 +41,7 @@ struct MyView: View {
                     .resizable()
                     .scaledToFit()
                     .frame(width: 70, height: 70)
-                Text("nickname")
-                    .font(.custom("Pretendard-SemiBold", size: 22))
-                    .foregroundColor(.black)
-                Text("email")
-                    .font(.custom("Pretendard-Light", size: 12))
-                    .foregroundColor(.packitDarkGray)
+                TextStyleView(title: $viewModel.myInfo.nickname, subtitle: $viewModel.myInfo.email)
             }
             .padding(.top, 30)
             
@@ -57,19 +53,19 @@ struct MyView: View {
                     .cornerRadius(17)
                 
                 HStack(spacing: 25) {
-                    TextStyleView(title: "N", subtitle: "총 여행 횟수")
+                    TextStyleView(title: viewModel.myTrip.totalCount, subtitle: "총 여행 횟수")
                     
                     Divider()
                         .frame(width: 1, height: 70)
                         .foregroundStyle(Color.packitPurple)
                     
-                    TextStyleView(title: "N", subtitle: "계획 중인 여행")
+                    TextStyleView(title: viewModel.myTrip.plannedCount, subtitle: "계획 중인 여행")
                     
                     Divider()
                         .frame(width: 1, height: 70)
                         .foregroundStyle(Color.packitPurple)
                     
-                    TextStyleView(title: "N", subtitle: "완료한 여행")
+                    TextStyleView(title: viewModel.myTrip.completedCount, subtitle: "완료한 여행")
                     
                     
                 }
@@ -151,8 +147,8 @@ struct MyView: View {
 }
 
 struct TextStyleView: View {
-    var title: String
-    var subtitle: String
+    @Binding var title: String
+    @Binding var subtitle: String
     
     var body: some View {
         VStack(spacing: 9) {
