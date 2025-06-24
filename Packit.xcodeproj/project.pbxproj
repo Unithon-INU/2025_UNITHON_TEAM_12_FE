@@ -86,6 +86,7 @@
 		29F9DC462DE95C0E005ECBA3 /* PackitApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F9DC2E2DE95C0E005ECBA3 /* PackitApp.swift */; };
 		29F9DC472DE95C0E005ECBA3 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 29F9DC0C2DE95C0E005ECBA3 /* Preview Assets.xcassets */; };
 		29F9DC4A2DE95C0E005ECBA3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 29F9DC2C2DE95C0E005ECBA3 /* Assets.xcassets */; };
+		B293AB872E0AF979006CC68F /* MyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B293AB862E0AF979006CC68F /* MyView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -170,6 +171,7 @@
 		29F9DC2C2DE95C0E005ECBA3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		29F9DC2D2DE95C0E005ECBA3 /* Packit.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Packit.entitlements; sourceTree = "<group>"; };
 		29F9DC2E2DE95C0E005ECBA3 /* PackitApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PackitApp.swift; sourceTree = "<group>"; };
+		B293AB862E0AF979006CC68F /* MyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MyView.swift; path = Packit/View/MyView.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -422,6 +424,7 @@
 		29F9DC1D2DE95C0E005ECBA3 /* MyPage */ = {
 			isa = PBXGroup;
 			children = (
+				B293AB862E0AF979006CC68F /* MyView.swift */,
 			);
 			path = MyPage;
 			sourceTree = "<group>";
@@ -625,6 +628,7 @@
 				29D79D2F2E01BE320050FBD1 /* AuthEndpoint.swift in Sources */,
 				29D79D302E01BE320050FBD1 /* URLManage.swift in Sources */,
 				29D79D312E01BE320050FBD1 /* KeyChainService.swift in Sources */,
+				B293AB872E0AF979006CC68F /* MyView.swift in Sources */,
 				29D79D322E01BE320050FBD1 /* NetworkService.swift in Sources */,
 				29D79D332E01BE320050FBD1 /* TripCategoryEndpoint.swift in Sources */,
 				29D79D342E01BE320050FBD1 /* TripEndpoint.swift in Sources */,
