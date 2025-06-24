@@ -90,6 +90,7 @@
 		B293AB892E0B43AD006CC68F /* MyEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = B293AB882E0B43AD006CC68F /* MyEndpoint.swift */; };
 		B293AB8B2E0B44E2006CC68F /* MyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B293AB8A2E0B44E2006CC68F /* MyModel.swift */; };
 		B293AB8D2E0B45B0006CC68F /* MyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B293AB8C2E0B45B0006CC68F /* MyService.swift */; };
+		B293AB8F2E0B49B3006CC68F /* MyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B293AB8E2E0B49B3006CC68F /* MyViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -178,6 +179,7 @@
 		B293AB882E0B43AD006CC68F /* MyEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyEndpoint.swift; sourceTree = "<group>"; };
 		B293AB8A2E0B44E2006CC68F /* MyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyModel.swift; sourceTree = "<group>"; };
 		B293AB8C2E0B45B0006CC68F /* MyService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyService.swift; sourceTree = "<group>"; };
+		B293AB8E2E0B49B3006CC68F /* MyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MyViewModel.swift; path = Packit/ViewModel/MyViewModel.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -472,6 +474,7 @@
 		29F9DC292DE95C0E005ECBA3 /* MyPage */ = {
 			isa = PBXGroup;
 			children = (
+				B293AB8E2E0B49B3006CC68F /* MyViewModel.swift */,
 			);
 			path = MyPage;
 			sourceTree = "<group>";
@@ -635,6 +638,7 @@
 				29D79D362E01BE740050FBD1 /* ContentView.swift in Sources */,
 				29D79D2E2E01BE320050FBD1 /* Endpoint.swift in Sources */,
 				29D79D2F2E01BE320050FBD1 /* AuthEndpoint.swift in Sources */,
+				B293AB8F2E0B49B3006CC68F /* MyViewModel.swift in Sources */,
 				B293AB8B2E0B44E2006CC68F /* MyModel.swift in Sources */,
 				29D79D302E01BE320050FBD1 /* URLManage.swift in Sources */,
 				29D79D312E01BE320050FBD1 /* KeyChainService.swift in Sources */,
