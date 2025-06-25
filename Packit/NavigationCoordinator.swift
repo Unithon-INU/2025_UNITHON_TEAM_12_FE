@@ -11,6 +11,7 @@ import SwiftUI
 enum AuthFlow: Hashable {
     case login
     case join
+    case logout
 }
 
 // MARK: - 계획 화면 전환 Flow
@@ -55,7 +56,7 @@ enum AppRoute: Hashable {
                 JoinView()
                     .navigationBarBackButtonHidden(true)
             case .logout:
-                JoinView()
+                MyView(title: "마이페이지")
                     .navigationBarBackButtonHidden(true)
             }
             

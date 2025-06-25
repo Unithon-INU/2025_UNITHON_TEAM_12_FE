@@ -23,13 +23,13 @@ struct MainView: View {
                 
                 Spacer()
                 Button(action: {
-                    coordinator.push(.plan(.title))
+                    coordinator.push(.myPage(.myPage(title: "마이페이지")))
                 }, label: {
                     Image("user")
                         .resizable()
                         .scaledToFit()
-                        .frame(height: 50)
-                        .padding(.leading, 25)
+                        .frame(height: 19)
+                        .padding(.trailing, 25)
                         .padding(.bottom, 10)
                 })
             }

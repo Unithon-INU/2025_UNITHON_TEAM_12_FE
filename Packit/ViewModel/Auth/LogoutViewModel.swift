@@ -14,7 +14,7 @@ final class LogoutViewModel: ObservableObject {
     }
     
     // MARK: - 회원가입 API
-    func logout(void: Void) async -> Bool {
+    func logout() async -> Bool {
         let result = await authService.logout(void: ())
         
         switch result {

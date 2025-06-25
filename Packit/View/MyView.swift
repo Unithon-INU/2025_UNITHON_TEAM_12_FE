@@ -55,9 +55,9 @@ struct MyView: View {
             ZStack {
                 Rectangle()
                     .fill(Color.packitLightPurple)
+                    .cornerRadius(12)
                     .frame(height: 98)
                     .padding(.horizontal, 27)
-                    .cornerRadius(17)
 
                 HStack(spacing: 25) {
                     TextStyleView(
@@ -102,13 +102,14 @@ struct MyView: View {
                     Spacer()
 
                     Image(systemName: "chevron.right")
-                        .foregroundColor(.gray)
+                        .foregroundColor(Color.packitDarkGray)
                 }
                 .padding()
                 .background(Color.white)
                 .cornerRadius(12)
             }
             .padding(.horizontal, 27)
+            .padding(.top, 15)
 
             // MARK: - 짐 싸러 가기 버튼
             Button(action: {
@@ -126,7 +127,7 @@ struct MyView: View {
                     Spacer()
 
                     Image(systemName: "chevron.right")
-                        .foregroundColor(.gray)
+                        .foregroundColor(Color.packitDarkGray)
                 }
                 .padding()
                 .background(Color.white)
@@ -143,20 +144,16 @@ struct MyView: View {
                 HStack {
                     Text("로그아웃")
                         .font(.custom("Pretendard-Light", size: 16))
-                        .foregroundStyle(.red)
+                        .foregroundColor(.black)
 
                     Spacer()
 
                     Image(systemName: "chevron.right")
-                        .foregroundColor(.red)
+                        .foregroundColor(Color.packitDarkGray)
                 }
                 .padding()
                 .background(Color.white)
                 .cornerRadius(12)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 12)
-                        .stroke(Color.red.opacity(0.3), lineWidth: 1)
-                )
             }
             .padding(.horizontal, 27)
             .padding(.bottom, 30)
@@ -172,8 +169,8 @@ struct MyView: View {
 
     private func handleLogout() {
         Task {
-            await logoutVM.logout(void: ())
-            coordinator.popToRoot()
+            await logoutVM.logout()
+            coordinator.push(.auth(.login))
         }
     }
 }
