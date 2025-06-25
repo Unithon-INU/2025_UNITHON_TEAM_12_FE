@@ -11,6 +11,7 @@ import SwiftUI
 struct MyView: View {
     let title: String
     @ObservedObject var viewModel = MyViewModel()
+    @ObservedObject var logoutVM = LogoutViewModel()
     @EnvironmentObject var coordinator: NavigationCoordinator
     
     var body: some View {
@@ -170,8 +171,10 @@ struct MyView: View {
     }
 
     private func handleLogout() {
-        // 로그아웃 로직 추가 가능
-        coordinator.popToRoot()
+        Task {
+            await logoutVM.logout(void: ())
+            coordinator.popToRoot()
+        }
     }
 }
 
