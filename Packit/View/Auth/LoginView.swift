@@ -12,7 +12,6 @@ struct LoginView: View {
     @State private var password: String = ""
     @EnvironmentObject var coordinator: NavigationCoordinator
 
-//    @ObservedObject private var viewModel = LoginViewModel()
     @EnvironmentObject var viewModel: LoginViewModel
 
     var body: some View {

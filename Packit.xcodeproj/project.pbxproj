@@ -18,6 +18,8 @@
 		29275E382DFE6E84008CE582 /* Pretendard-ExtraBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 29275E282DFE6E84008CE582 /* Pretendard-ExtraBold.otf */; };
 		298783382DFD5750004FB6AD /* PlanPackitListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298783372DFD5750004FB6AD /* PlanPackitListView.swift */; };
 		2987833C2DFD640E004FB6AD /* PlanPackitModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2987833B2DFD640E004FB6AD /* PlanPackitModel.swift */; };
+		29B3EBC22E03FF920095A310 /* SelectedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B3EBC12E03FF920095A310 /* SelectedButton.swift */; };
+		29B3EBC42E0402AD0095A310 /* CustomAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B3EBC32E0402AD0095A310 /* CustomAlertView.swift */; };
 		29D79D2C2E01BE320050FBD1 /* NetworkResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29D79D2A2E01BE320050FBD1 /* NetworkResult.swift */; };
 		29D79D2D2E01BE320050FBD1 /* TripitemEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29D79D242E01BE320050FBD1 /* TripitemEndpoint.swift */; };
 		29D79D2E2E01BE320050FBD1 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29D79D212E01BE320050FBD1 /* Endpoint.swift */; };
@@ -101,6 +103,8 @@
 		298783372DFD5750004FB6AD /* PlanPackitListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanPackitListView.swift; sourceTree = "<group>"; };
 		2987833B2DFD640E004FB6AD /* PlanPackitModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanPackitModel.swift; sourceTree = "<group>"; };
 		29A1C5BB2DD83AE600467A03 /* Packit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Packit.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		29B3EBC12E03FF920095A310 /* SelectedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedButton.swift; sourceTree = "<group>"; };
+		29B3EBC32E0402AD0095A310 /* CustomAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlertView.swift; sourceTree = "<group>"; };
 		29D79D202E01BE320050FBD1 /* AuthEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthEndpoint.swift; sourceTree = "<group>"; };
 		29D79D212E01BE320050FBD1 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 		29D79D222E01BE320050FBD1 /* TripCategoryEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripCategoryEndpoint.swift; sourceTree = "<group>"; };
@@ -376,6 +380,8 @@
 				29F9DC012DE95C0E005ECBA3 /* PackitButton.swift */,
 				29F9DC022DE95C0E005ECBA3 /* PackitTextField.swift */,
 				29F9DC032DE95C0E005ECBA3 /* PackitToggleButton.swift */,
+				29B3EBC12E03FF920095A310 /* SelectedButton.swift */,
+				29B3EBC32E0402AD0095A310 /* CustomAlertView.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -633,6 +639,7 @@
 				29D79D662E01BF130050FBD1 /* SelectBoxComponent.swift in Sources */,
 				29D79D672E01BF130050FBD1 /* StartCheckPackitView.swift in Sources */,
 				29D79D682E01BF130050FBD1 /* CheckPackitListView.swift in Sources */,
+				29B3EBC22E03FF920095A310 /* SelectedButton.swift in Sources */,
 				29F9DC3D2DE95C0E005ECBA3 /* MainButtonView.swift in Sources */,
 				29F9DC3E2DE95C0E005ECBA3 /* MainView.swift in Sources */,
 				29D79D5C2E01BEDC0050FBD1 /* AuthService.swift in Sources */,
@@ -650,6 +657,7 @@
 				29F9DC432DE95C0E005ECBA3 /* PlanPackitTripPropertyView.swift in Sources */,
 				29D79D562E01BEBC0050FBD1 /* NavigationCoordinator.swift in Sources */,
 				29F9DC442DE95C0E005ECBA3 /* MainViewModel.swift in Sources */,
+				29B3EBC42E0402AD0095A310 /* CustomAlertView.swift in Sources */,
 				29F9DC452DE95C0E005ECBA3 /* PackingListCellViewModel.swift in Sources */,
 				29F9DC462DE95C0E005ECBA3 /* PackitApp.swift in Sources */,
 			);
