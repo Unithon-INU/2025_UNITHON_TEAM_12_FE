@@ -8,11 +8,12 @@
 import Foundation
 
 struct MyInfoModel: Codable {
-    let email: String
-    let nickname: String
+    var email: String = ""
+    var nickname: String = ""
 }
 
 struct MyTripModel: Codable {
-    let totalCount: Int
-    let plannedCount: Int
+    var totalCount: Int = 0
+    var plannedCount: Int = 0
+    var completedCount: Int = 0
 }
