@@ -8,7 +8,12 @@
 import SwiftUI
 
 struct CalendarView: View {
-    let calendar = Calendar(identifier: .gregorian)
+    let calendar: Calendar = {
+        var calendar = Calendar(identifier: .gregorian)
+        calendar.timeZone = TimeZone(identifier: "Asia/Seoul")!
+        return calendar
+    }()
+
     let monthOffset: Int
     @Binding var startDate: Date?
     @Binding var endDate: Date?
@@ -62,7 +67,7 @@ struct CalendarView: View {
             .padding(.leading, 13)
             .padding(.bottom, 10)
             
-            LazyVGrid(columns: Array(repeating: GridItem(), count: 7)) {
+            LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 10), count: 7)) {
                 ForEach(dates.indices, id: \.self) { index in
                     if let date = dates[index] {
                         ZStack {
@@ -96,6 +101,7 @@ struct CalendarView: View {
                                     .padding(.vertical, 10)
                             }
                         }
+                        .contentShape(Rectangle())
                         .onTapGesture {
                             if startDate == nil && endDate == nil {
                                 startDate = date
@@ -122,7 +128,6 @@ struct CalendarView: View {
                 }
             }
         }
-        .padding()
     }
 }
 
