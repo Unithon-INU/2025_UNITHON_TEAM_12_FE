@@ -10,6 +10,7 @@ import Foundation
 enum AuthEndpoint: Endpoint {
     case signUp(body: JoinReqDto)
     case signIn(email: String, password: String)
+    case logout(Void)
     case checkDuplicateNickname(nickname: String)
     case checkDuplicateEmail(email: String)
     
@@ -21,13 +22,15 @@ enum AuthEndpoint: Endpoint {
         case .signIn: "auth/login"
         case .checkDuplicateNickname: "api/users/check/nickname"
         case .checkDuplicateEmail: "api/users/check/email"
+        case .logout: "auth/logout"
         }
     }
     
     var method: HTTPMethod {
         switch self {
         case .signIn,
-            .signUp:
+            .signUp,
+            .logout:
                 .post
 
         case .checkDuplicateNickname,

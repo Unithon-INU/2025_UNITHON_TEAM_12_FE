@@ -11,6 +11,7 @@ import SwiftUI
 enum AuthFlow: Hashable {
     case login
     case join
+    case logout
 }
 
 // MARK: - 계획 화면 전환 Flow
@@ -32,11 +33,16 @@ enum CheckListFlow: Hashable {
     case checkList(title: String, tripId: Int)
 }
 
+enum MyPageFlow: Hashable {
+    case myPage(title: String)
+}
+
 enum AppRoute: Hashable {
     case auth(AuthFlow)
     case plan(PlanFlow)
     case trip(TripFlow)
     case checkList(CheckListFlow)
+    case myPage(MyPageFlow)
     
     @ViewBuilder
     func destinationView() -> some View {
@@ -48,6 +54,9 @@ enum AppRoute: Hashable {
                     .navigationBarBackButtonHidden(true)
             case .join:
                 JoinView()
+                    .navigationBarBackButtonHidden(true)
+            case .logout:
+                MyView(title: "마이페이지")
                     .navigationBarBackButtonHidden(true)
             }
             
@@ -81,6 +90,13 @@ enum AppRoute: Hashable {
                     .navigationBarBackButtonHidden(true)
             case .checkList(let title, let tripId):
                 CheckPackitListView(title: title, tripId: tripId)
+                    .navigationBarBackButtonHidden(true)
+            }
+            
+        case .myPage(let myPageRoute):
+            switch myPageRoute {
+            case .myPage:
+                MyView(title: "마이페이지")
                     .navigationBarBackButtonHidden(true)
             }
         }

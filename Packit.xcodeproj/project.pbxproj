@@ -86,6 +86,12 @@
 		29F9DC462DE95C0E005ECBA3 /* PackitApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F9DC2E2DE95C0E005ECBA3 /* PackitApp.swift */; };
 		29F9DC472DE95C0E005ECBA3 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 29F9DC0C2DE95C0E005ECBA3 /* Preview Assets.xcassets */; };
 		29F9DC4A2DE95C0E005ECBA3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 29F9DC2C2DE95C0E005ECBA3 /* Assets.xcassets */; };
+		B293AB872E0AF979006CC68F /* MyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B293AB862E0AF979006CC68F /* MyView.swift */; };
+		B293AB892E0B43AD006CC68F /* MyEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = B293AB882E0B43AD006CC68F /* MyEndpoint.swift */; };
+		B293AB8B2E0B44E2006CC68F /* MyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B293AB8A2E0B44E2006CC68F /* MyModel.swift */; };
+		B293AB8D2E0B45B0006CC68F /* MyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B293AB8C2E0B45B0006CC68F /* MyService.swift */; };
+		B293AB8F2E0B49B3006CC68F /* MyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B293AB8E2E0B49B3006CC68F /* MyViewModel.swift */; };
+		B293AB912E0BE51E006CC68F /* LogoutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B293AB902E0BE51E006CC68F /* LogoutViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -170,6 +176,12 @@
 		29F9DC2C2DE95C0E005ECBA3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		29F9DC2D2DE95C0E005ECBA3 /* Packit.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Packit.entitlements; sourceTree = "<group>"; };
 		29F9DC2E2DE95C0E005ECBA3 /* PackitApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PackitApp.swift; sourceTree = "<group>"; };
+		B293AB862E0AF979006CC68F /* MyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MyView.swift; path = Packit/View/MyView.swift; sourceTree = SOURCE_ROOT; };
+		B293AB882E0B43AD006CC68F /* MyEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyEndpoint.swift; sourceTree = "<group>"; };
+		B293AB8A2E0B44E2006CC68F /* MyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyModel.swift; sourceTree = "<group>"; };
+		B293AB8C2E0B45B0006CC68F /* MyService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyService.swift; sourceTree = "<group>"; };
+		B293AB8E2E0B49B3006CC68F /* MyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MyViewModel.swift; path = Packit/ViewModel/MyViewModel.swift; sourceTree = SOURCE_ROOT; };
+		B293AB902E0BE51E006CC68F /* LogoutViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -242,6 +254,7 @@
 				29D79D222E01BE320050FBD1 /* TripCategoryEndpoint.swift */,
 				29D79D232E01BE320050FBD1 /* TripEndpoint.swift */,
 				29D79D242E01BE320050FBD1 /* TripitemEndpoint.swift */,
+				B293AB882E0B43AD006CC68F /* MyEndpoint.swift */,
 			);
 			path = Endpoint;
 			sourceTree = "<group>";
@@ -289,6 +302,7 @@
 				29D79D4D2E01BEA40050FBD1 /* TripCategory.swift */,
 				29D79D4E2E01BEA40050FBD1 /* TripItemCategory.swift */,
 				29D79D4F2E01BEA40050FBD1 /* TripItemModel.swift */,
+				B293AB8A2E0B44E2006CC68F /* MyModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -300,6 +314,7 @@
 				29D79D582E01BEDC0050FBD1 /* TripCategoryService.swift */,
 				29D79D592E01BEDC0050FBD1 /* TripItemService.swift */,
 				29D79D5A2E01BEDC0050FBD1 /* TripService.swift */,
+				B293AB8C2E0B45B0006CC68F /* MyService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -331,6 +346,7 @@
 			children = (
 				29D79D742E01BF7C0050FBD1 /* JoinViewModel.swift */,
 				29D79D752E01BF7C0050FBD1 /* LoginViewModel.swift */,
+				B293AB902E0BE51E006CC68F /* LogoutViewModel.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -422,6 +438,7 @@
 		29F9DC1D2DE95C0E005ECBA3 /* MyPage */ = {
 			isa = PBXGroup;
 			children = (
+				B293AB862E0AF979006CC68F /* MyView.swift */,
 			);
 			path = MyPage;
 			sourceTree = "<group>";
@@ -460,6 +477,7 @@
 		29F9DC292DE95C0E005ECBA3 /* MyPage */ = {
 			isa = PBXGroup;
 			children = (
+				B293AB8E2E0B49B3006CC68F /* MyViewModel.swift */,
 			);
 			path = MyPage;
 			sourceTree = "<group>";
@@ -615,6 +633,7 @@
 				29D79D842E01BFA80050FBD1 /* PlanPackitFormViewModel.swift in Sources */,
 				29D79D852E01BFA80050FBD1 /* PlanPackitListViewModel.swift in Sources */,
 				29D79D2C2E01BE320050FBD1 /* NetworkResult.swift in Sources */,
+				B293AB912E0BE51E006CC68F /* LogoutViewModel.swift in Sources */,
 				29D79D2D2E01BE320050FBD1 /* TripitemEndpoint.swift in Sources */,
 				29D79D512E01BEA40050FBD1 /* PlanPackitModel.swift in Sources */,
 				29D79D522E01BEA40050FBD1 /* TripCategory.swift in Sources */,
@@ -623,10 +642,14 @@
 				29D79D362E01BE740050FBD1 /* ContentView.swift in Sources */,
 				29D79D2E2E01BE320050FBD1 /* Endpoint.swift in Sources */,
 				29D79D2F2E01BE320050FBD1 /* AuthEndpoint.swift in Sources */,
+				B293AB8F2E0B49B3006CC68F /* MyViewModel.swift in Sources */,
+				B293AB8B2E0B44E2006CC68F /* MyModel.swift in Sources */,
 				29D79D302E01BE320050FBD1 /* URLManage.swift in Sources */,
 				29D79D312E01BE320050FBD1 /* KeyChainService.swift in Sources */,
+				B293AB872E0AF979006CC68F /* MyView.swift in Sources */,
 				29D79D322E01BE320050FBD1 /* NetworkService.swift in Sources */,
 				29D79D332E01BE320050FBD1 /* TripCategoryEndpoint.swift in Sources */,
+				B293AB892E0B43AD006CC68F /* MyEndpoint.swift in Sources */,
 				29D79D342E01BE320050FBD1 /* TripEndpoint.swift in Sources */,
 				29F9DC342DE95C0E005ECBA3 /* String+.swift in Sources */,
 				29F9DC352DE95C0E005ECBA3 /* View+.swift in Sources */,
@@ -642,6 +665,7 @@
 				29D79D5E2E01BEDC0050FBD1 /* TripCategoryService.swift in Sources */,
 				29D79D5F2E01BEDC0050FBD1 /* TripItemService.swift in Sources */,
 				29F9DC3F2DE95C0E005ECBA3 /* PackingListCell.swift in Sources */,
+				B293AB8D2E0B45B0006CC68F /* MyService.swift in Sources */,
 				29F9DC402DE95C0E005ECBA3 /* CalendarView.swift in Sources */,
 				2987833C2DFD640E004FB6AD /* PlanPackitModel.swift in Sources */,
 				298783382DFD5750004FB6AD /* PlanPackitListView.swift in Sources */,

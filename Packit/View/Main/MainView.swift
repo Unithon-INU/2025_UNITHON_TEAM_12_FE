@@ -22,6 +22,16 @@ struct MainView: View {
                     .padding(.bottom, 10)
                 
                 Spacer()
+                Button(action: {
+                    coordinator.push(.myPage(.myPage(title: "마이페이지")))
+                }, label: {
+                    Image("user")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(height: 19)
+                        .padding(.trailing, 25)
+                        .padding(.bottom, 10)
+                })
             }
             
             // MARK: - MainButtonView HStack
