@@ -11,5 +11,5 @@ struct APIResDto<T: Codable>: Codable {
     let success: Bool
     let code: Int
     let message: String
-    let data: T
+    let data: T?
 }

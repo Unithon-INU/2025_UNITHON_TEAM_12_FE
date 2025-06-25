@@ -14,6 +14,9 @@ protocol AuthServiceProtocol {
     // MARK: - 회원가입 API
     func signup(body: JoinReqDto) async -> NetworkResult<APIResDto<String?>>
     
+    // MARK: - 로그아웃 API
+    func logout(void: Void) async -> NetworkResult<APIResDto<String?>>
+    
     // MARK: - 닉네임 중복 체크 API
     func checkDuplicateNickname(nickname: String) async -> NetworkResult<APIResDto<String>>
     
@@ -36,6 +39,11 @@ final class AuthService: AuthServiceProtocol {
     // MARK: - 회원가입 API
     func signup(body: JoinReqDto) async -> NetworkResult<APIResDto<String?>> {
         return await networkService.request(AuthEndpoint.signUp(body: body))
+    }
+    
+    // MARK: - 로그아웃 API
+    func logout(void: Void) async -> NetworkResult<APIResDto<String?>> {
+        return await networkService.request(AuthEndpoint.logout(void))
     }
     
     // MARK: - 닉네임 중복 체크 API

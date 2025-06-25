@@ -91,6 +91,7 @@
 		B293AB8B2E0B44E2006CC68F /* MyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B293AB8A2E0B44E2006CC68F /* MyModel.swift */; };
 		B293AB8D2E0B45B0006CC68F /* MyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B293AB8C2E0B45B0006CC68F /* MyService.swift */; };
 		B293AB8F2E0B49B3006CC68F /* MyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B293AB8E2E0B49B3006CC68F /* MyViewModel.swift */; };
+		B293AB912E0BE51E006CC68F /* LogoutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B293AB902E0BE51E006CC68F /* LogoutViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -180,6 +181,7 @@
 		B293AB8A2E0B44E2006CC68F /* MyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyModel.swift; sourceTree = "<group>"; };
 		B293AB8C2E0B45B0006CC68F /* MyService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyService.swift; sourceTree = "<group>"; };
 		B293AB8E2E0B49B3006CC68F /* MyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MyViewModel.swift; path = Packit/ViewModel/MyViewModel.swift; sourceTree = SOURCE_ROOT; };
+		B293AB902E0BE51E006CC68F /* LogoutViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -344,6 +346,7 @@
 			children = (
 				29D79D742E01BF7C0050FBD1 /* JoinViewModel.swift */,
 				29D79D752E01BF7C0050FBD1 /* LoginViewModel.swift */,
+				B293AB902E0BE51E006CC68F /* LogoutViewModel.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -630,6 +633,7 @@
 				29D79D842E01BFA80050FBD1 /* PlanPackitFormViewModel.swift in Sources */,
 				29D79D852E01BFA80050FBD1 /* PlanPackitListViewModel.swift in Sources */,
 				29D79D2C2E01BE320050FBD1 /* NetworkResult.swift in Sources */,
+				B293AB912E0BE51E006CC68F /* LogoutViewModel.swift in Sources */,
 				29D79D2D2E01BE320050FBD1 /* TripitemEndpoint.swift in Sources */,
 				29D79D512E01BEA40050FBD1 /* PlanPackitModel.swift in Sources */,
 				29D79D522E01BEA40050FBD1 /* TripCategory.swift in Sources */,
