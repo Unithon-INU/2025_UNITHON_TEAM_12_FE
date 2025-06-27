@@ -17,28 +17,28 @@ struct MainButtonView: View {
         ZStack(alignment: .bottomTrailing) {
             VStack(alignment: .leading, spacing: 12) {
                 Text(title)
-                    .font(.custom("Pretendard-Bold", size: 15))
+                    .font(.custom("Pretendard-Bold", size: 16))
                     .foregroundStyle(Color.black)
                 
                 if let highlight = highlight {
                     Text("아직 완료되지 않은 ")
-                        .font(.custom("Pretendard-Light", size: 12))
+                        .font(.custom("Pretendard-Light", size: 14))
                         .padding(.bottom, -8)
                         .foregroundStyle(Color.black)
 
                     Text("\(highlight)")
-                        .font(.custom("Pretendard-Bold", size: 13))
+                        .font(.custom("Pretendard-Bold", size: 14))
                         .foregroundStyle(Color.packitPurple)
                         .padding(.bottom, -8)
                     
                     Text(description)
-                        .font(.custom("Pretendard-Light", size: 12))
+                        .font(.custom("Pretendard-Light", size: 14))
                         .foregroundStyle(Color.black)
                 }
                 
                 else {
                     Text(description)
-                        .font(.custom("Pretendard-Light", size: 12))
+                        .font(.custom("Pretendard-Light", size: 14))
                         .lineSpacing(5)
                         .foregroundStyle(Color.black)
                         .multilineTextAlignment(.leading)
