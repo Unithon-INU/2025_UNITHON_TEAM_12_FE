@@ -10,5 +10,5 @@ import Foundation
 struct TripProgressResDto: Codable {
     let totalCategoryCount: Int
     let completedCategoryCount: Int
-    let progressRate: Float
+    let progressRate: Double
 }

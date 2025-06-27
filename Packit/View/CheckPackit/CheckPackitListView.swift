@@ -16,6 +16,8 @@ struct CheckPackitListView: View {
 
     @State private var selectedCategory: Int = 0
     
+    @State private var showPopup: Bool = false
+    
     var body: some View {
         VStack {
             HStack {
@@ -38,29 +40,54 @@ struct CheckPackitListView: View {
             .padding(.vertical, 10)
             .padding(.horizontal, 30)
             
+            HStack(alignment: .center) {
+                Text(String(Int(viewModel.tripProgressRate))+"%")
+                    .font(.custom("Pretendard-Medium", size: 20))
+                
+                ProgressView(value: viewModel.tripProgressRate)
+                    .progressViewStyle(LinearProgressViewStyle(tint: Color.packitPurple))
+            }
+            .onAppear {
+                Task {
+                    await viewModel.fetchTripProgressRate(tripId: tripId)
+                }
+            }
+            .padding(.horizontal, 20)
+            .padding(.vertical, 10)
+            
             // MARK: - 카테고리 상단 탭
-            ScrollView(.horizontal, showsIndicators: false) {
-                HStack(spacing: 12) {
-                    ForEach(viewModel.categories) { category in
-                        CategoryButtonComponent(
-                            title: category.name,
-                            isSelected: selectedCategory == category.id,
-                            onTap: {
-                                Task {
-                                    selectedCategory = category.id
-                                    await viewModel.fetchTripItem(tripCategoryId: selectedCategory)
+            ScrollViewReader { proxy in
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack(spacing: 12) {
+                        ForEach(viewModel.categories) { category in
+                            CategoryButtonComponent(
+                                title: category.name,
+                                isSelected: selectedCategory == category.id,
+                                onTap: {
+                                    Task {
+                                        selectedCategory = category.id
+                                        await viewModel.fetchTripItem(tripCategoryId: selectedCategory)
+                                    }
                                 }
-                            }
-                        )
+                            )
+                        }
                     }
+                    .onAppear {
+                        Task {
+                            await viewModel.fetchItemCategory(tripId: tripId)
+                            selectedCategory = viewModel.categories.first?.id ?? 0
+                            await viewModel.fetchTripItem(tripCategoryId: selectedCategory)
+                        }
+                    }.padding(.horizontal)
                 }
                 .onAppear {
-                    Task {
-                        await viewModel.fetchItemCategory(tripId: tripId)
-                        selectedCategory = viewModel.categories.first?.id ?? 0
-                        await viewModel.fetchTripItem(tripCategoryId: selectedCategory)
+                    proxy.scrollTo(selectedCategory, anchor: .center)
+                }
+                .onChange(of: selectedCategory) { _, newValue in
+                    withAnimation {
+                        proxy.scrollTo(newValue, anchor: .center)
                     }
-                }.padding(.horizontal)
+                }
             }
             
             // MARK: - 체크박스 리스트
@@ -74,6 +101,7 @@ struct CheckPackitListView: View {
                             onTap: {
                                 Task {
                                     await viewModel.toggleItemStatus(tripItemId: item.id)
+                                    await viewModel.fetchTripProgressRate(tripId: tripId)
                                 }
                             }
                         )
@@ -82,16 +110,22 @@ struct CheckPackitListView: View {
             }
             
             Button(action: {
+                /// - NOTE: 마지막 카테고리 일시에
                 if selectedCategory == viewModel.categories.last?.id {
                     Task {
                         await viewModel.fetchTripItem(tripCategoryId: selectedCategory)
-                        /// - NOTE: 마지막 카테고리 일시에
-                        coordinator.popToRoot()
+                        
+                        viewModel.addUncheckedItem(items: viewModel.tripItems.filter { $0.isChecked == false })
+                        withAnimation {
+                            showPopup = true
+                        }
                     }
                 } else {
                     Task{
                         selectedCategory += 1
                         await viewModel.fetchTripItem(tripCategoryId: selectedCategory)
+                        
+                        viewModel.addUncheckedItem(items: viewModel.tripItems.filter { $0.isChecked == false })
                     }
                 }
             }, label: {
@@ -99,6 +133,15 @@ struct CheckPackitListView: View {
                     .padding(.horizontal, 23)
                     .padding(.bottom, 10)
             })
+        }
+        .overlay {
+            UnCheckedPopup(
+                isPresented: $showPopup,
+                onTap: {
+                    coordinator.popToRoot()
+                },
+                unCheckedItems: viewModel.unCheckedItems
+            ).animation(.easeOut(duration: 0.3), value: showPopup)
         }
     }
 }

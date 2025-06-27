@@ -11,7 +11,7 @@ import Foundation
 final class MainViewModel: ObservableObject {
     @Published var tripList = [TripResDto]()
     @Published var firstTrip: TripResDto?
-    @Published var tripProgressRate: Float?
+    @Published var tripProgressRate: Double?
     
     private let tripService: TripServiceProtocol
     

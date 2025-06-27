@@ -17,6 +17,7 @@
 		29275E372DFE6E84008CE582 /* Pretendard-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 29275E2B2DFE6E84008CE582 /* Pretendard-Medium.otf */; };
 		29275E382DFE6E84008CE582 /* Pretendard-ExtraBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 29275E282DFE6E84008CE582 /* Pretendard-ExtraBold.otf */; };
 		2961374F2E0E2F120063E14C /* TripProgressResDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2961374E2E0E2F120063E14C /* TripProgressResDto.swift */; };
+		296137532E0E5CB70063E14C /* UnCheckedPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296137522E0E5CB70063E14C /* UnCheckedPopup.swift */; };
 		298783382DFD5750004FB6AD /* PlanPackitListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298783372DFD5750004FB6AD /* PlanPackitListView.swift */; };
 		2987833C2DFD640E004FB6AD /* PlanPackitModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2987833B2DFD640E004FB6AD /* PlanPackitModel.swift */; };
 		29B3EBC22E03FF920095A310 /* SelectedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B3EBC12E03FF920095A310 /* SelectedButton.swift */; };
@@ -108,6 +109,7 @@
 		29275E2D2DFE6E84008CE582 /* Pretendard-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-SemiBold.otf"; sourceTree = "<group>"; };
 		29275E2E2DFE6E84008CE582 /* Pretendard-Thin.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Thin.otf"; sourceTree = "<group>"; };
 		2961374E2E0E2F120063E14C /* TripProgressResDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripProgressResDto.swift; sourceTree = "<group>"; };
+		296137522E0E5CB70063E14C /* UnCheckedPopup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnCheckedPopup.swift; sourceTree = "<group>"; };
 		298783372DFD5750004FB6AD /* PlanPackitListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanPackitListView.swift; sourceTree = "<group>"; };
 		2987833B2DFD640E004FB6AD /* PlanPackitModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanPackitModel.swift; sourceTree = "<group>"; };
 		29A1C5BB2DD83AE600467A03 /* Packit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Packit.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -332,6 +334,7 @@
 				29D79D622E01BF130050FBD1 /* CheckPackitListView.swift */,
 				29D79D632E01BF130050FBD1 /* SelectBoxComponent.swift */,
 				29D79D642E01BF130050FBD1 /* StartCheckPackitView.swift */,
+				296137522E0E5CB70063E14C /* UnCheckedPopup.swift */,
 			);
 			path = CheckPackit;
 			sourceTree = "<group>";
@@ -559,7 +562,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1620;
-				LastUpgradeCheck = 1630;
+				LastUpgradeCheck = 1640;
 				TargetAttributes = {
 					29A1C5BA2DD83AE600467A03 = {
 						CreatedOnToolsVersion = 16.2;
@@ -679,6 +682,7 @@
 				B293AB8D2E0B45B0006CC68F /* MyService.swift in Sources */,
 				29F9DC402DE95C0E005ECBA3 /* CalendarView.swift in Sources */,
 				2987833C2DFD640E004FB6AD /* PlanPackitModel.swift in Sources */,
+				296137532E0E5CB70063E14C /* UnCheckedPopup.swift in Sources */,
 				298783382DFD5750004FB6AD /* PlanPackitListView.swift in Sources */,
 				29F9DC412DE95C0E005ECBA3 /* FlowLayout.swift in Sources */,
 				29F9DC422DE95C0E005ECBA3 /* PlanPackitTitleView.swift in Sources */,

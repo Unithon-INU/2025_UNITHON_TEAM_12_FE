@@ -169,7 +169,7 @@ struct MyView: View {
 
     private func handleLogout() {
         Task {
-            await logoutVM.logout()
+            let _ = await logoutVM.logout()
             coordinator.push(.auth(.login))
         }
     }

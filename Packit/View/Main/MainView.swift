@@ -99,7 +99,7 @@ struct MainView: View {
 struct UpcomingTrip: View {
     @EnvironmentObject var coordinator: NavigationCoordinator
     let trip: TripResDto?
-    let progressRate: Float?
+    let progressRate: Double?
     
     var body: some View {
         HStack {

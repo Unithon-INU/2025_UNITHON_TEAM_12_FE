@@ -10,15 +10,21 @@ import Foundation
 final class CheckPackitListViewModel: ObservableObject {
     private let tripCategoryService: TripCategoryServiceProtocol
     private let tripItemService: TripItemServiceProtocol
+    private let tripService: TripServiceProtocol
     
     @Published var categories = [TripItemCategory]()
     @Published var tripItems = [TripItemResDto]()
+    @Published var tripProgressRate: Double = 0.0
+    @Published var unCheckedItems = [TripItemResDto]()
     
     init(
         tripCategoryService: TripCategoryServiceProtocol=TripCategoryService(),
-        tripItemService: TripItemServiceProtocol=TripItemService()) {
+        tripItemService: TripItemServiceProtocol=TripItemService(),
+        tripService: TripServiceProtocol=TripService()
+    ) {
         self.tripCategoryService = tripCategoryService
         self.tripItemService = tripItemService
+        self.tripService = tripService
     }
     
     // MARK: - 아이템의 카테고리 리스트 조회
@@ -56,6 +62,27 @@ final class CheckPackitListViewModel: ObservableObject {
             }
         case .failure(let statusCode, let message):
             print("[toggleItemStatus] - [\(statusCode)]: \(message ?? "알 수 없는 오류")")
+        }
+    }
+    
+    // MARK: - 여행 아이템 진행률 API
+    func fetchTripProgressRate(tripId: Int) async {
+        let result = await tripService.fetchTripProgress(tripId: tripId)
+        
+        switch result {
+        case .success(let data, _):
+            self.tripProgressRate = data.data.progressRate
+        case .failure(let statusCode, let message):
+            print("[fetchTripProgressRate] - [\(statusCode)]: \(message ?? "알 수 없는 오류")")
+        }
+    }
+    
+    // MARK: - 체크되지 않은 아이템 추가 메서드
+    func addUncheckedItem(items: [TripItemResDto]) {
+//        let items = tripItems.filter { $0.isChecked == false }
+        
+        items.forEach {
+            unCheckedItems.append($0)
         }
     }
 }

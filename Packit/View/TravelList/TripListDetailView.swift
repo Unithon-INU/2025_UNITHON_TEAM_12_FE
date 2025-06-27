@@ -52,27 +52,37 @@ struct TripListDetailView: View {
             .padding(.horizontal, 30)
             
             // MARK: - 상단 카테고리 탭
-            ScrollView(.horizontal, showsIndicators: false) {
-                HStack(spacing: 12) {
-                    ForEach(viewModel.categories) { category in
-                        CategoryButtonComponent(
-                            title: category.name,
-                            isSelected: selectedCategory == category.id,
-                            onTap: {
-                                Task {
-                                    selectedCategory = category.id
-                                    await viewModel.fetchTripItem(tripCategoryId: selectedCategory)
+            ScrollViewReader { proxy in
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack(spacing: 12) {
+                        ForEach(viewModel.categories) { category in
+                            CategoryButtonComponent(
+                                title: category.name,
+                                isSelected: selectedCategory == category.id,
+                                onTap: {
+                                    Task {
+                                        selectedCategory = category.id
+                                        await viewModel.fetchTripItem(tripCategoryId: selectedCategory)
+                                    }
                                 }
-                            }
-                        )
+                            )
+                        }
+                    }.onAppear {
+                        Task {
+                            await viewModel.fetchTripItemCategory(tripId: tripId)
+                            selectedCategory = viewModel.categories.first?.id ?? 0
+                            await viewModel.fetchTripItem(tripCategoryId: selectedCategory)
+                        }
+                    }.padding(.horizontal)
+                }
+                .onAppear {
+                    proxy.scrollTo(selectedCategory, anchor: .center)
+                }
+                .onChange(of: selectedCategory) { _, newValue in
+                    withAnimation {
+                        proxy.scrollTo(newValue, anchor: .center)
                     }
-                }.onAppear {
-                    Task {
-                        await viewModel.fetchTripItemCategory(tripId: tripId)
-                        selectedCategory = viewModel.categories.first?.id ?? 0
-                        await viewModel.fetchTripItem(tripCategoryId: selectedCategory)
-                    }
-                }.padding(.horizontal)
+                }
             }
             
             // MARK: - 짐 리스트

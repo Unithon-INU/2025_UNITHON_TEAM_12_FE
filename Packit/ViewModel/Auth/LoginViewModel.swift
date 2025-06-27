@@ -24,7 +24,7 @@ final class LoginViewModel: ObservableObject {
         let result = await authService.signin(email: email, password: password)
         
         switch result {
-        case .success(let data, _):
+        case .success(_, _):
             isLoggedIn = true
             return true
         case .failure(let statusCode, let message):

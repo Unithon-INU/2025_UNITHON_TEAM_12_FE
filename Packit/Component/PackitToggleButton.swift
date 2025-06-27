@@ -30,7 +30,3 @@ struct PackitToggleButton: View {
         })
     }
 }
-
-#Preview {
-    PackitToggleButton(content: "혼자서", isSelected: false, onTap: {})
-}

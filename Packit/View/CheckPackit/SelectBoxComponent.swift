@@ -15,8 +15,6 @@ struct SelectBoxComponent: View {
     
     var body: some View {
         Button(action: onTap) {
-            
-            
             VStack(alignment: .leading, spacing: 10){
                 HStack(spacing: 8) {
                     Circle()
@@ -56,5 +54,4 @@ struct SelectBoxComponent: View {
             .padding(.vertical, 6)
             .padding(.horizontal, 26)
         }
-
     }
