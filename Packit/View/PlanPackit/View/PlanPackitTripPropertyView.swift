@@ -35,49 +35,48 @@ struct PlanPackitTripPropertyView: View {
         
         ScrollView {
             VStack(alignment: .leading) {
-                HStack {
-                    Text("언제 여행을 떠나시나요?")
+                VStack(alignment: .leading) {
+                    HStack {
+                        Text("언제 여행을 떠나시나요?")
+                            .font(.custom("Pretendard-Bold", size: 13))
+                            .padding(.leading, 4)
+                        
+                        Spacer()
+                    }.padding(.bottom, 2)
+                    
+                    ScrollableCalendarView(startDate: $startDate, endDate: $endDate)
+                        .frame(height: 430)
+                        .padding(.vertical, 15)
+                        .padding(.horizontal,10)
+                        .overlay {
+                            RoundedRectangle(cornerRadius: 10)
+                                .stroke(Color.packitPurple, lineWidth: 1)
+                        }
+                }
+                .padding(.vertical, 10)
+                .padding(.horizontal, 27)
+                
+                VStack(alignment: .leading) {
+                    Text("어디로 여행을 가시나요?")
                         .font(.custom("Pretendard-Bold", size: 13))
                         .padding(.leading, 4)
                     
-                    Spacer()
-                }.padding(.bottom, 2)
+                    PackitTextField(text: $tripDestination, placeholder: "여행 지역을 입력해주세요!")
+                }
+                .padding(.vertical, 10)
+                .padding(.horizontal, 27)
                 
-                ScrollableCalendarView(startDate: $startDate, endDate: $endDate)
-                    .frame(height: 430)
-                    .padding(.vertical, 15)
-                    .padding(.horizontal,10)
-                    .overlay {
-                        RoundedRectangle(cornerRadius: 10)
-                            .stroke(Color.packitPurple, lineWidth: 1)
-                    }
-                
-                Text("startDate: \(startDate?.description ?? "nil")")
-                Text("endDate: \(endDate?.description ?? "nil")")
+                VStack(alignment: .leading, spacing: 10) {
+                    Text("어행 컨셉을 알려주세요!")
+                        .font(.custom("Pretendard-Bold", size: 13))
+                        .padding(.leading, 4)
+                    
+                    SelectTripProperty(selectedTag: $tripType)
+                }
+                .padding(.top, 10)
+                .padding(.bottom, 60)
+                .padding(.leading, 25)
             }
-            .padding(.vertical, 10)
-            .padding(.horizontal, 27)
-            
-            VStack(alignment: .leading) {
-                Text("어디로 여행을 가시나요?")
-                    .font(.custom("Pretendard-Bold", size: 13))
-                    .padding(.leading, 4)
-                
-                PackitTextField(text: $tripDestination, placeholder: "여행 지역을 입력해주세요!")
-            }
-            .padding(.vertical, 10)
-            .padding(.horizontal, 27)
-            
-            VStack(alignment: .leading, spacing: 10) {
-                Text("어행 컨셉을 알려주세요!")
-                    .font(.custom("Pretendard-Bold", size: 13))
-                    .padding(.leading, 4)
-                
-                SelectTripProperty(selectedTag: $tripType)
-            }
-            .padding(.top, 10)
-            .padding(.bottom, 60)
-            .padding(.leading, 25)
         }
         .onTapGesture {
             self.endTextEditing()

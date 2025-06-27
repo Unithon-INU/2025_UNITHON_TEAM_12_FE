@@ -57,15 +57,15 @@ struct CalendarView: View {
                 .padding(.bottom, 12)
                 .padding(.leading, 12)
 
-            HStack(spacing: 29) {
+            HStack {
                 ForEach(week, id: \.self) { day in
+                    Spacer()
                     Text(day)
                         .font(.custom("Pretendard-Regular", size: 15))
                         .foregroundStyle(day == "일" ? .red : .black)
+                    Spacer()
                 }
             }
-            .padding(.leading, 13)
-            .padding(.bottom, 10)
             
             LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 10), count: 7)) {
                 ForEach(dates.indices, id: \.self) { index in
