@@ -41,17 +41,20 @@ struct CheckPackitListView: View {
             // MARK: - 카테고리 상단 탭
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 12) {
-                    ForEach(viewModel.categories) { category in CategoryButtonComponent(
-                        title: category.name,
-                        isSelected: selectedCategory == category.id,
-                        onTap: {
-                            Task {
-                                selectedCategory = category.id
-                                await viewModel.fetchTripItem(tripCategoryId: selectedCategory)
+                    ForEach(viewModel.categories) { category in
+                        CategoryButtonComponent(
+                            title: category.name,
+                            isSelected: selectedCategory == category.id,
+                            onTap: {
+                                Task {
+                                    selectedCategory = category.id
+                                    await viewModel.fetchTripItem(tripCategoryId: selectedCategory)
+                                }
                             }
-                        })
+                        )
                     }
-                }.onAppear {
+                }
+                .onAppear {
                     Task {
                         await viewModel.fetchItemCategory(tripId: tripId)
                         selectedCategory = viewModel.categories.first?.id ?? 0
@@ -87,8 +90,8 @@ struct CheckPackitListView: View {
                     }
                 } else {
                     Task{
-                        await viewModel.fetchTripItem(tripCategoryId: selectedCategory)
                         selectedCategory += 1
+                        await viewModel.fetchTripItem(tripCategoryId: selectedCategory)
                     }
                 }
             }, label: {
