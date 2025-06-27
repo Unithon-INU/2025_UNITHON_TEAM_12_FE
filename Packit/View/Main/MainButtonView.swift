@@ -62,6 +62,6 @@ struct MainButtonView: View {
                 .frame(width: 23, height: 30)
                 .foregroundStyle(Color.packitPurple)
                 .offset(CGSize(width: -12, height: -12))
-        }
+        }.frame(minHeight: 140, maxHeight: 160)
     }
 }

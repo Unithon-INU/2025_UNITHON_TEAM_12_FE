@@ -16,6 +16,9 @@ protocol TripServiceProtocol {
     
     // MARK: - 여행 짐싸기 진행률 API
     func fetchTripProgress(tripId: Int) async  -> NetworkResult<APIResDto<TripProgressResDto>>
+    
+    // MARK: - 다가오는 여정 API
+    func fetchUpcomingTrip() async -> NetworkResult<APIResDto<TripNeareastModel>>
 }
 
 final class TripService: TripServiceProtocol {
@@ -38,5 +41,10 @@ final class TripService: TripServiceProtocol {
     // MARK: - 여행 짐싸기 진행률 API
     func fetchTripProgress(tripId: Int) async -> NetworkResult<APIResDto<TripProgressResDto>> {
         return await networkService.request(TripEndpoint.fetchTripProgress(tripId: tripId))
+    }
+    
+    // MARK: - 다가오는 여정 API
+    func fetchUpcomingTrip() async -> NetworkResult<APIResDto<TripNeareastModel>> {
+        return await networkService.request(TripEndpoint.fetchUpcomingTrip)
     }
 }

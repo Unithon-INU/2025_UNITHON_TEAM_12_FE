@@ -56,7 +56,9 @@ final class CheckPackitListViewModel: ObservableObject {
         let result = await tripItemService.toggleItemStatus(tripItemId: tripItemId)
 
         switch result {
-        case .success(_, _):
+        case .success(let data, _):
+            print(data.data)
+            self.tripProgressRate = data.data.progressPercent
             if let index = tripItems.firstIndex(where: { $0.id == tripItemId }) {
                 tripItems[index].isChecked.toggle()
             }
@@ -79,10 +81,13 @@ final class CheckPackitListViewModel: ObservableObject {
     
     // MARK: - 체크되지 않은 아이템 추가 메서드
     func addUncheckedItem(items: [TripItemResDto]) {
-//        let items = tripItems.filter { $0.isChecked == false }
-        
         items.forEach {
             unCheckedItems.append($0)
         }
+    }
+    
+    // MARK: - 체크되지 않은 아이템 추가되었다가 다시 제거하는 메서드
+    func deleteInUncheckedItem(item: TripItemResDto) {
+        
     }
 }

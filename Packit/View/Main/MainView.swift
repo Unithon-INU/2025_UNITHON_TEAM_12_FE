@@ -74,11 +74,11 @@ struct MainView: View {
             }
             .frame(height: 120)
             
-            if let trip = viewModel.firstTrip {
-                UpcomingTrip(trip: trip, progressRate: viewModel.tripProgressRate)
+            if let trip = viewModel.upcomingTrip {
+                UpcomingTrip(trip: trip)
                     .padding(.horizontal, 30)
             } else {
-                UpcomingTrip(trip: nil, progressRate: nil)
+                UpcomingTrip(trip: nil)
                     .padding(.horizontal, 30)
             }
             
@@ -87,9 +87,7 @@ struct MainView: View {
         .onAppear {
             Task{
                 await viewModel.fetchMyTrips()
-                if let id = viewModel.firstTrip?.id {
-                    await viewModel.fetchTripProgress(tripId: id)
-                }
+                await viewModel.fetchUpcomingTrip()
             }
         }
     }
@@ -98,8 +96,7 @@ struct MainView: View {
 // MARK: - "다가오는 여정" View
 struct UpcomingTrip: View {
     @EnvironmentObject var coordinator: NavigationCoordinator
-    let trip: TripResDto?
-    let progressRate: Double?
+    let trip: TripNeareastModel?
     
     var body: some View {
         HStack {
@@ -147,20 +144,21 @@ struct UpcomingTrip: View {
                 .padding(.top, 14)
                 
                 VStack(alignment: .leading) {
-                    if let trip = trip, let rate = progressRate {
-                        Text(trip.startDate?.toDateString() ?? "")
+                    if let trip = trip {
+                        Text(trip.startDate.toDateString() ?? "")
                             .font(.custom("Pretendard-Regular", size: 15))
                             .padding(.horizontal, 20)
                         
                         Spacer()
                         
                         VStack(alignment: .trailing) {
-                            Text("진행률 \(Int(rate))%")
+                            Text("진행률 \(Int(trip.progressRate))%")
                                 .font(.custom("Pretendard-Light", size: 12))
                                 .padding(.horizontal, 20)
                             
-                            ProgressView(value: rate)
+                            ProgressView(value: trip.progressRate/100)
                                 .padding(.horizontal, 20)
+                                .progressViewStyle(LinearProgressViewStyle(tint: Color.packitPurple))
                         }.padding(.bottom, 30)
                     }
                 }
@@ -177,7 +175,7 @@ struct UpcomingTrip: View {
             // MARK: - 다가오는 여정의 짐챙기기 시작 버튼
             if let trip = trip {
                 Button(action: {
-                    coordinator.push(.checkList(.start(title: trip.title, tripId: trip.id)))
+                    coordinator.push(.checkList(.start(title: trip.title, tripId: trip.tripId)))
                 }, label: {
                     Text("\(trip.title) 짐 챙기기 START!")
                         .foregroundStyle(.white)

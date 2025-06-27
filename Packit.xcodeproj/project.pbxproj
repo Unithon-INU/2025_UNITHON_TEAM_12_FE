@@ -19,6 +19,8 @@
 		2961374F2E0E2F120063E14C /* TripProgressResDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2961374E2E0E2F120063E14C /* TripProgressResDto.swift */; };
 		296137532E0E5CB70063E14C /* UnCheckedPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296137522E0E5CB70063E14C /* UnCheckedPopup.swift */; };
 		296137552E0E86600063E14C /* FinishCheckPackitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296137542E0E86600063E14C /* FinishCheckPackitView.swift */; };
+		297F17B42E0EC11D006CC790 /* TripNeareastModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 297F17B32E0EC11D006CC790 /* TripNeareastModel.swift */; };
+		297F17B62E0EC572006CC790 /* TripItemToggleResDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 297F17B52E0EC572006CC790 /* TripItemToggleResDto.swift */; };
 		298783382DFD5750004FB6AD /* PlanPackitListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298783372DFD5750004FB6AD /* PlanPackitListView.swift */; };
 		2987833C2DFD640E004FB6AD /* PlanPackitModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2987833B2DFD640E004FB6AD /* PlanPackitModel.swift */; };
 		29B3EBC22E03FF920095A310 /* SelectedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B3EBC12E03FF920095A310 /* SelectedButton.swift */; };
@@ -112,6 +114,8 @@
 		2961374E2E0E2F120063E14C /* TripProgressResDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripProgressResDto.swift; sourceTree = "<group>"; };
 		296137522E0E5CB70063E14C /* UnCheckedPopup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnCheckedPopup.swift; sourceTree = "<group>"; };
 		296137542E0E86600063E14C /* FinishCheckPackitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishCheckPackitView.swift; sourceTree = "<group>"; };
+		297F17B32E0EC11D006CC790 /* TripNeareastModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripNeareastModel.swift; sourceTree = "<group>"; };
+		297F17B52E0EC572006CC790 /* TripItemToggleResDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripItemToggleResDto.swift; sourceTree = "<group>"; };
 		298783372DFD5750004FB6AD /* PlanPackitListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanPackitListView.swift; sourceTree = "<group>"; };
 		2987833B2DFD640E004FB6AD /* PlanPackitModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanPackitModel.swift; sourceTree = "<group>"; };
 		29A1C5BB2DD83AE600467A03 /* Packit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Packit.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -302,6 +306,7 @@
 				29D79D3F2E01BE880050FBD1 /* TripItemResDto.swift */,
 				29D79D402E01BE880050FBD1 /* TripResDto.swift */,
 				2961374E2E0E2F120063E14C /* TripProgressResDto.swift */,
+				297F17B52E0EC572006CC790 /* TripItemToggleResDto.swift */,
 			);
 			path = DTO;
 			sourceTree = "<group>";
@@ -314,6 +319,7 @@
 				29D79D4E2E01BEA40050FBD1 /* TripItemCategory.swift */,
 				29D79D4F2E01BEA40050FBD1 /* TripItemModel.swift */,
 				B293AB8A2E0B44E2006CC68F /* MyModel.swift */,
+				297F17B32E0EC11D006CC790 /* TripNeareastModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -621,6 +627,7 @@
 				29F9DC302DE95C0E005ECBA3 /* PackitButton.swift in Sources */,
 				29F9DC312DE95C0E005ECBA3 /* PackitTextField.swift in Sources */,
 				29D79D422E01BE880050FBD1 /* JoinReqDto.swift in Sources */,
+				297F17B62E0EC572006CC790 /* TripItemToggleResDto.swift in Sources */,
 				29D79D432E01BE880050FBD1 /* AddTripReqDto.swift in Sources */,
 				29D79D942E01C19A0050FBD1 /* TripItemModel.swift in Sources */,
 				29D79D952E01C19A0050FBD1 /* TripCategory.swift in Sources */,
@@ -642,6 +649,7 @@
 				29D79D722E01BF480050FBD1 /* TripListView.swift in Sources */,
 				29D79D732E01BF480050FBD1 /* CategoryButtonComponent.swift in Sources */,
 				29D79D772E01BF7C0050FBD1 /* LoginViewModel.swift in Sources */,
+				297F17B42E0EC11D006CC790 /* TripNeareastModel.swift in Sources */,
 				29D79D782E01BF7C0050FBD1 /* JoinViewModel.swift in Sources */,
 				29F9DC322DE95C0E005ECBA3 /* PackitToggleButton.swift in Sources */,
 				29F9DC332DE95C0E005ECBA3 /* Color+.swift in Sources */,

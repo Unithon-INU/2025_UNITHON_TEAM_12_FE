@@ -11,6 +11,7 @@ enum TripEndpoint: Endpoint {
     case fetchMyTrips
     case addTrip(body: AddTripReqDto)
     case fetchTripProgress(tripId: Int)
+    case fetchUpcomingTrip
     
     var baseURL: URL { URLManager.shared.baseURL }
 
@@ -22,12 +23,16 @@ enum TripEndpoint: Endpoint {
             "api/trips"
         case .fetchTripProgress(let tripId):
             "api/trips/\(tripId)/progress"
+        case .fetchUpcomingTrip:
+            "api/trips/trips/nearest-completed"
         }
     }
     
     var method: HTTPMethod {
         switch self {
-        case .fetchMyTrips, .fetchTripProgress:
+        case .fetchMyTrips,
+            .fetchTripProgress,
+            .fetchUpcomingTrip:
                 .get
         case .addTrip:
                 .post

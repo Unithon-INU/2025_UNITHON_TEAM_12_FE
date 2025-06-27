@@ -101,7 +101,6 @@ struct CheckPackitListView: View {
                             onTap: {
                                 Task {
                                     await viewModel.toggleItemStatus(tripItemId: item.id)
-                                    await viewModel.fetchTripProgressRate(tripId: tripId)
                                 }
                             }
                         )
