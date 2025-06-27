@@ -10,6 +10,8 @@ import Foundation
 @MainActor
 final class MainViewModel: ObservableObject {
     @Published var tripList = [TripResDto]()
+    @Published var firstTrip: TripResDto?
+    @Published var tripProgressRate: Float?
     
     private let tripService: TripServiceProtocol
     
@@ -23,11 +25,24 @@ final class MainViewModel: ObservableObject {
         
         switch result {
         case .success(let data, _):
-            DispatchQueue.main.async {
-                self.tripList = data.data
-            }
+            self.tripList = data.data
+            self.firstTrip = data.data.first
         case .failure(let statusCode, let message):
             print("[fetchMyTrips] - [\(statusCode)]: \(message ?? "알 수 없는 오류")")
+        }
+    }
+    
+    func fetchTripProgress(tripId: Int) async {
+        let result = await tripService.fetchTripProgress(tripId: tripId)
+        
+        switch result {
+        case .success(let data, _):
+            DispatchQueue.main.async {
+                print(data.data)
+                self.tripProgressRate = data.data.progressRate
+            }
+        case .failure(let statusCode, let message):
+            print("[fetchTripProgress] - [\(statusCode)]: \(message ?? "알 수 없는 오류")")
         }
     }
 }

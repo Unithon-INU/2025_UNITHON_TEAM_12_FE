@@ -31,7 +31,6 @@ final class NetworkService: NetworkServiceProtocol {
             
             if let newToken = httpResponse.value(forHTTPHeaderField: "Authorization"),
                 let token = newToken.data(using: .utf8) {
-                print("신규 토큰 수신: \(token)")
                 try KeychainManager.save(token: token)
             }
 

@@ -51,7 +51,6 @@ struct LoginView: View {
                     Task {
                         let result = await viewModel.signin(email: email, password: password)
                         if result {
-                            print("결과로 들어옴")
                             coordinator.popToRoot()
                         }
                     }

@@ -16,6 +16,7 @@
 		29275E362DFE6E84008CE582 /* Pretendard-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = 29275E262DFE6E84008CE582 /* Pretendard-Black.otf */; };
 		29275E372DFE6E84008CE582 /* Pretendard-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 29275E2B2DFE6E84008CE582 /* Pretendard-Medium.otf */; };
 		29275E382DFE6E84008CE582 /* Pretendard-ExtraBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 29275E282DFE6E84008CE582 /* Pretendard-ExtraBold.otf */; };
+		2961374F2E0E2F120063E14C /* TripProgressResDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2961374E2E0E2F120063E14C /* TripProgressResDto.swift */; };
 		298783382DFD5750004FB6AD /* PlanPackitListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298783372DFD5750004FB6AD /* PlanPackitListView.swift */; };
 		2987833C2DFD640E004FB6AD /* PlanPackitModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2987833B2DFD640E004FB6AD /* PlanPackitModel.swift */; };
 		29B3EBC22E03FF920095A310 /* SelectedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B3EBC12E03FF920095A310 /* SelectedButton.swift */; };
@@ -106,6 +107,7 @@
 		29275E2C2DFE6E84008CE582 /* Pretendard-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Regular.otf"; sourceTree = "<group>"; };
 		29275E2D2DFE6E84008CE582 /* Pretendard-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-SemiBold.otf"; sourceTree = "<group>"; };
 		29275E2E2DFE6E84008CE582 /* Pretendard-Thin.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Thin.otf"; sourceTree = "<group>"; };
+		2961374E2E0E2F120063E14C /* TripProgressResDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripProgressResDto.swift; sourceTree = "<group>"; };
 		298783372DFD5750004FB6AD /* PlanPackitListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanPackitListView.swift; sourceTree = "<group>"; };
 		2987833B2DFD640E004FB6AD /* PlanPackitModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanPackitModel.swift; sourceTree = "<group>"; };
 		29A1C5BB2DD83AE600467A03 /* Packit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Packit.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -295,6 +297,7 @@
 				29D79D3D2E01BE880050FBD1 /* TemplateItemResDto.swift */,
 				29D79D3F2E01BE880050FBD1 /* TripItemResDto.swift */,
 				29D79D402E01BE880050FBD1 /* TripResDto.swift */,
+				2961374E2E0E2F120063E14C /* TripProgressResDto.swift */,
 			);
 			path = DTO;
 			sourceTree = "<group>";
@@ -665,6 +668,7 @@
 				29B3EBC22E03FF920095A310 /* SelectedButton.swift in Sources */,
 				29F9DC3D2DE95C0E005ECBA3 /* MainButtonView.swift in Sources */,
 				29F9DC3E2DE95C0E005ECBA3 /* MainView.swift in Sources */,
+				2961374F2E0E2F120063E14C /* TripProgressResDto.swift in Sources */,
 				29D79D5C2E01BEDC0050FBD1 /* AuthService.swift in Sources */,
 				29D79D5D2E01BEDC0050FBD1 /* TripService.swift in Sources */,
 				29D79D892E01BFF80050FBD1 /* JoinView.swift in Sources */,

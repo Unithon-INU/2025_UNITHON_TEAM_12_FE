@@ -13,6 +13,9 @@ protocol TripServiceProtocol {
     
     // MARK: - 여행 생성 API
     func addTrip(body: AddTripReqDto) async -> NetworkResult<APIResDto<TripResDto>>
+    
+    // MARK: - 여행 짐싸기 진행률 API
+    func fetchTripProgress(tripId: Int) async  -> NetworkResult<APIResDto<TripProgressResDto>>
 }
 
 final class TripService: TripServiceProtocol {
@@ -30,5 +33,10 @@ final class TripService: TripServiceProtocol {
     // MARK: - 여행 생성 API
     func addTrip(body: AddTripReqDto) async -> NetworkResult<APIResDto<TripResDto>> {
         return await networkService.request(TripEndpoint.addTrip(body: body))
+    }
+    
+    // MARK: - 여행 짐싸기 진행률 API
+    func fetchTripProgress(tripId: Int) async -> NetworkResult<APIResDto<TripProgressResDto>> {
+        return await networkService.request(TripEndpoint.fetchTripProgress(tripId: tripId))
     }
 }

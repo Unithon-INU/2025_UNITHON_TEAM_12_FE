@@ -25,7 +25,6 @@ final class LoginViewModel: ObservableObject {
         
         switch result {
         case .success(let data, _):
-            print(data.message)
             isLoggedIn = true
             return true
         case .failure(let statusCode, let message):

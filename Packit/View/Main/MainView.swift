@@ -74,11 +74,11 @@ struct MainView: View {
             }
             .frame(height: 120)
             
-            if let trip = viewModel.tripList.first {
-                UpcomingTrip(trip: trip)
+            if let trip = viewModel.firstTrip {
+                UpcomingTrip(trip: trip, progressRate: viewModel.tripProgressRate)
                     .padding(.horizontal, 30)
             } else {
-                UpcomingTrip(trip: nil)
+                UpcomingTrip(trip: nil, progressRate: nil)
                     .padding(.horizontal, 30)
             }
             
@@ -87,6 +87,9 @@ struct MainView: View {
         .onAppear {
             Task{
                 await viewModel.fetchMyTrips()
+                if let id = viewModel.firstTrip?.id {
+                    await viewModel.fetchTripProgress(tripId: id)
+                }
             }
         }
     }
@@ -96,6 +99,7 @@ struct MainView: View {
 struct UpcomingTrip: View {
     @EnvironmentObject var coordinator: NavigationCoordinator
     let trip: TripResDto?
+    let progressRate: Float?
     
     var body: some View {
         HStack {
@@ -109,7 +113,7 @@ struct UpcomingTrip: View {
 
         ZStack(alignment: .bottom) {
             VStack {
-                HStack(alignment: .center,spacing: 15) {
+                HStack(alignment: .center, spacing: 15) {
                     if let trip = trip {
                         Image(systemName: "pin.fill")
                             .resizable()
@@ -121,7 +125,7 @@ struct UpcomingTrip: View {
                         
                         Spacer()
                         
-                        Text(trip.startDate?.toDateString() ?? "")
+                        Text(trip.periodText)
                             .font(.custom("Pretendard-Thin", size: 20))
                     }
                     
@@ -139,8 +143,27 @@ struct UpcomingTrip: View {
                         Spacer()
                     }
                 }
-                .padding([.leading, .trailing], 15)
+                .padding(.horizontal, 20)
                 .padding(.top, 14)
+                
+                VStack(alignment: .leading) {
+                    if let trip = trip, let rate = progressRate {
+                        Text(trip.startDate?.toDateString() ?? "")
+                            .font(.custom("Pretendard-Regular", size: 15))
+                            .padding(.horizontal, 20)
+                        
+                        Spacer()
+                        
+                        VStack(alignment: .trailing) {
+                            Text("진행률 \(Int(rate))%")
+                                .font(.custom("Pretendard-Light", size: 12))
+                                .padding(.horizontal, 20)
+                            
+                            ProgressView(value: rate)
+                                .padding(.horizontal, 20)
+                        }.padding(.bottom, 30)
+                    }
+                }
                 
                 Spacer()
             }
