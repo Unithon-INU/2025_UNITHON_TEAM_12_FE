@@ -43,13 +43,17 @@ struct PlanPackitTripPropertyView: View {
                     Spacer()
                 }.padding(.bottom, 2)
                 
-                CalendarView(startDate: $startDate, endDate: $endDate)
+                ScrollableCalendarView(startDate: $startDate, endDate: $endDate)
+                    .frame(height: 430)
                     .padding(.vertical, 15)
                     .padding(.horizontal,10)
                     .overlay {
                         RoundedRectangle(cornerRadius: 10)
                             .stroke(Color.packitPurple, lineWidth: 1)
                     }
+                
+                Text("startDate: \(startDate?.description ?? "nil")")
+                Text("endDate: \(endDate?.description ?? "nil")")
             }
             .padding(.vertical, 10)
             .padding(.horizontal, 27)
