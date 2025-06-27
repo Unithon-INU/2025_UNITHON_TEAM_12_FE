@@ -44,10 +44,18 @@ struct PlanPackitTitleView: View {
                 coordinator.formViewModel.reqBody.title = title
                 coordinator.push(.plan(.tripProperty))
             }, label: {
-                PackitButton(title: "다음")
+                Text("다음")
+                    .font(.custom("Pretendard-Bold", size: 20))
+                    .foregroundStyle(title.isEmpty ? Color.packitPurple : .white)
+                    .padding(.vertical, 16)
+                    .frame(maxWidth: .infinity)
+                    .background {
+                        RoundedRectangle(cornerRadius: 8)
+                            .fill(title.isEmpty ? Color.packitLightPurple : Color.packitPurple)
+                    }
                     .padding(.horizontal, 20)
                     .padding(.bottom, 15)
-            })
+            }).disabled(title.isEmpty)
         }
     }
 }

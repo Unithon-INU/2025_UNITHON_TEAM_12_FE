@@ -15,7 +15,7 @@ struct PlanPackitTripPropertyView: View {
     @State private var endDate: Date? = nil
     
     @State private var tripType = TripType(index: "")
-        
+            
     var body: some View {
         HStack {
             Button(action: {
@@ -101,16 +101,22 @@ struct PlanPackitTripPropertyView: View {
             }
             
         }, label: {
-            PackitButton(title: "다음")
-                .padding(.horizontal, 23)
-                .padding(.bottom, 10)
-        })
+            Text("다음")
+                .font(.custom("Pretendard-Bold", size: 20))
+                .foregroundStyle(startDate == nil || endDate == nil || tripDestination.isEmpty ? Color.packitPurple : .white)
+                .padding(.vertical, 16)
+                .frame(maxWidth: .infinity)
+                .background {
+                    RoundedRectangle(cornerRadius: 8)
+                        .fill(startDate == nil || endDate == nil || tripDestination.isEmpty ? Color.packitLightPurple : Color.packitPurple)
+                }
+                .padding(.horizontal, 20)
+                .padding(.bottom, 15)
+        }).disabled(startDate == nil || endDate == nil || tripDestination.isEmpty)
     }
 }
 
 struct SelectTripProperty: View {
-//    let tags: [String] = ["혼자가는 여행1", "둘이 가는 여행2", "세심한3", "1454", "1235", "12346", "456787", "6779438", "가벼운 여행9","세심한1", "1452", "1233", "12344", "456785", "6779436", "가벼운 여행7","둘이 가는 여행8", "세심한9", "1451", "1232", "1234"]
-    
     let tags: [String] = TripType.orderedCases.map { $0.toUIName() }
     
     @Binding var selectedTag: TripType?
