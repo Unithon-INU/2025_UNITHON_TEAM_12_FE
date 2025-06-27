@@ -15,7 +15,6 @@ struct CheckPackitListView: View {
     @ObservedObject var viewModel = CheckPackitListViewModel()
 
     @State private var selectedCategory: Int = 0
-    
     @State private var showPopup: Bool = false
     
     var body: some View {
@@ -143,9 +142,7 @@ struct CheckPackitListView: View {
                     viewModel.unCheckedItems.forEach {
                         body.tripItemIds.append($0.id)
                     }
-                    
-                    let _ = print(body)
-                    
+                                        
                     Task{
                         await viewModel.deleteItems(body: body)
                     }

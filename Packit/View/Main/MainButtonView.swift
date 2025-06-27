@@ -26,7 +26,7 @@ struct MainButtonView: View {
                         .padding(.bottom, -8)
                         .foregroundStyle(Color.black)
 
-                    Text("\(highlight)")
+                    Text("\(highlight) 짐 챙기기")
                         .font(.custom("Pretendard-Bold", size: 14))
                         .foregroundStyle(Color.packitPurple)
                         .padding(.bottom, -8)

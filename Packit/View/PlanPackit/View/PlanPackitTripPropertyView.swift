@@ -15,6 +15,8 @@ struct PlanPackitTripPropertyView: View {
     @State private var endDate: Date? = nil
     
     @State private var tripType = TripType(index: "")
+    
+    @FocusState private var isTextFieldFocused: Bool
             
     var body: some View {
         HStack {
@@ -61,7 +63,22 @@ struct PlanPackitTripPropertyView: View {
                         .font(.custom("Pretendard-Bold", size: 13))
                         .padding(.leading, 4)
                     
-                    PackitTextField(text: $tripDestination, placeholder: "여행 지역을 입력해주세요!")
+                    ZStack(alignment: .leading) {
+                        if tripDestination.isEmpty {
+                            Text("여행 지역을 입력해주세요!")
+                                .font(.custom("Pretendard-Medium", size: 16))
+                                .foregroundStyle(Color.packitLightGray)
+                                .padding(.leading, 10)
+                        }
+                        
+                        TextField("", text: $tripDestination)
+                            .padding(.leading, 10)
+                    }
+                    .padding(.vertical, 13)
+                    .overlay {
+                        RoundedRectangle(cornerRadius: 8)
+                            .stroke(Color.packitPurple, lineWidth: 1)
+                    }
                 }
                 .padding(.vertical, 10)
                 .padding(.horizontal, 27)
@@ -77,9 +94,6 @@ struct PlanPackitTripPropertyView: View {
                 .padding(.bottom, 60)
                 .padding(.leading, 25)
             }
-        }
-        .onTapGesture {
-            self.endTextEditing()
         }
         
         Button(action: {

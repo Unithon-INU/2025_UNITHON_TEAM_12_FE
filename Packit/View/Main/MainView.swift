@@ -48,7 +48,7 @@ struct MainView: View {
                 })
                 
                 /// - NOTE: 남은 짐 챙기기, 계획 완성하기 부분 처리 방법 생각해보기
-                if let trip = viewModel.tripList.first {
+                if let trip = viewModel.upcomingTrip {
                     Button(action: {
                         coordinator.push(.plan(.title))
                     }, label: {
@@ -64,9 +64,9 @@ struct MainView: View {
 
                     }, label: {
                         MainButtonView(
-                            title: "짐 마저 계획하기",
-                            description: "계획이 있어요!",
-                            highlight: "민지와 부산 짐싸기",
+                            title: "남은 짐 챙기기",
+                            description: "를 시작해주세요!",
+                            highlight: "",
                             iconName: "packageTag"
                         )
                     })

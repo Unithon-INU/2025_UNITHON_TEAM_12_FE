@@ -70,6 +70,8 @@ struct CalendarView: View {
             LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 10), count: 7)) {
                 ForEach(dates.indices, id: \.self) { index in
                     if let date = dates[index] {
+                        let isPast = calendar.startOfDay(for: date) < calendar.startOfDay(for: Date())
+
                         ZStack {
                             let isStart = calendar.isDate(date, equalTo: startDate ?? .distantPast, toGranularity: .day)
                             let isEnd = calendar.isDate(date, equalTo: endDate ?? .distantPast, toGranularity: .day)
@@ -98,11 +100,14 @@ struct CalendarView: View {
                                 Text("\(calendar.component(.day, from: date))")
                                     .font(.custom("Pretendard-SemiBold", size: 13))
                                     .frame(width: 34, height: 33)
+                                    .foregroundStyle(isPast ? .gray : .black)
                                     .padding(.vertical, 10)
                             }
                         }
                         .contentShape(Rectangle())
                         .onTapGesture {
+                            guard !isPast else { return } 
+                            
                             if startDate == nil && endDate == nil {
                                 startDate = date
                             } else if startDate != nil && endDate == nil {
