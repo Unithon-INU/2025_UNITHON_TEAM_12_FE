@@ -202,16 +202,6 @@ struct JoinView: View {
                                     }
                                 }
                             ))
-                            
-                            SelectedButton(title: "Other", isSelected: Binding(
-                                get: { selectedGender == "OTHER" },
-                                set: { isSelected in
-                                    if isSelected {
-                                        selectedGender = "OTHER"
-                                        gender = "OTHER"
-                                    }
-                                }
-                            ))
                         }
                     }
                     .padding(.horizontal)
