@@ -24,7 +24,7 @@ struct TripListView: View {
             
             pastSection
         }
-        .padding(.bottom, 50)
+        .ignoresSafeArea(edges: .bottom)
         .background(Color.white)
         .navigationBarHidden(true)
     }
@@ -55,7 +55,8 @@ struct TripListView: View {
                     .frame(height: 19)
                     .padding(.trailing, 25)
                     .padding(.bottom, 10)
-            })        }
+            })
+        }
         .padding(.horizontal)
     }
 
@@ -121,7 +122,7 @@ struct TripListView: View {
             .padding(.top, 20)
 
             if !viewModel.pastTrips.isEmpty {
-                ScrollView{
+                ScrollView(showsIndicators: false) {
                     LazyVGrid(columns: columns, spacing: 19) {
                         ForEach(viewModel.pastTrips) { trip in
                             Button {
@@ -155,7 +156,7 @@ struct TripListView: View {
             
             Spacer()
         }
-        .frame(maxHeight: .infinity)
+        .frame(maxHeight: .infinity, alignment: .bottom)
         .background(
             UnevenRoundedRectangle(
                 topLeadingRadius: 15,
@@ -165,7 +166,8 @@ struct TripListView: View {
             )
             .fill(Color.packitLightPurple)
             .shadow(color: Color.black.opacity(0.15), radius: 10, x: 0, y: -5)
-            .ignoresSafeArea(edges: .bottom)
+            .frame(maxHeight: .infinity, alignment: .bottom)
+            .edgesIgnoringSafeArea(.bottom)
         )
     }
 }

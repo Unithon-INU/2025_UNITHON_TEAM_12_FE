@@ -138,7 +138,7 @@ struct CheckPackitListView: View {
             UnCheckedPopup(
                 isPresented: $showPopup,
                 onTap: {
-                    coordinator.popToRoot()
+                    coordinator.push(.checkList(.finish(title: self.title, tripId: self.tripId)))
                 },
                 unCheckedItems: viewModel.unCheckedItems
             ).animation(.easeOut(duration: 0.3), value: showPopup)

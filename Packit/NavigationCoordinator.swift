@@ -31,6 +31,7 @@ enum TripFlow: Hashable {
 enum CheckListFlow: Hashable {
     case start(title: String, tripId: Int)
     case checkList(title: String, tripId: Int)
+    case finish(title: String, tripId: Int)
 }
 
 enum MyPageFlow: Hashable {
@@ -90,6 +91,9 @@ enum AppRoute: Hashable {
                     .navigationBarBackButtonHidden(true)
             case .checkList(let title, let tripId):
                 CheckPackitListView(title: title, tripId: tripId)
+                    .navigationBarBackButtonHidden(true)
+            case .finish(let title, let tripId):
+                FinishCheckPackitView(title: title, tripId: tripId)
                     .navigationBarBackButtonHidden(true)
             }
             

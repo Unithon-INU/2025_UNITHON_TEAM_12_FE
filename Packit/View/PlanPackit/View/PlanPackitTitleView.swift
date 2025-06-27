@@ -37,7 +37,7 @@ struct PlanPackitTitleView: View {
             
             PackitTextField(text: $title, placeholder: "제목을 입력해주세요!")
                 .padding(.horizontal, 30)
-                .padding(.top, 20)
+                .padding(.top, 10)
             
             VStack(alignment: .leading) {
                 Text("이번 여행에 대해 설명해주세요!")
