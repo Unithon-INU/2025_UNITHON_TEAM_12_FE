@@ -36,7 +36,7 @@ final class MainViewModel: ObservableObject {
         let result = await tripService.fetchUpcomingTrip()
         
         switch result {
-        case .success(let data, let statusCode):
+        case .success(let data, _):
             self.upcomingTrip = data.data
         case .failure(let statusCode, let message):
             print("[fetchUpcomingTrip] - [\(statusCode)]: \(message ?? "알 수 없는 오류")")

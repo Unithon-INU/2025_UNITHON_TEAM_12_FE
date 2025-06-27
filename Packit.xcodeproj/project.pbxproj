@@ -21,6 +21,7 @@
 		296137552E0E86600063E14C /* FinishCheckPackitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296137542E0E86600063E14C /* FinishCheckPackitView.swift */; };
 		297F17B42E0EC11D006CC790 /* TripNeareastModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 297F17B32E0EC11D006CC790 /* TripNeareastModel.swift */; };
 		297F17B62E0EC572006CC790 /* TripItemToggleResDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 297F17B52E0EC572006CC790 /* TripItemToggleResDto.swift */; };
+		297F17B82E0EF251006CC790 /* DeleteItemsReqDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 297F17B72E0EF251006CC790 /* DeleteItemsReqDto.swift */; };
 		298783382DFD5750004FB6AD /* PlanPackitListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298783372DFD5750004FB6AD /* PlanPackitListView.swift */; };
 		2987833C2DFD640E004FB6AD /* PlanPackitModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2987833B2DFD640E004FB6AD /* PlanPackitModel.swift */; };
 		29B3EBC22E03FF920095A310 /* SelectedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B3EBC12E03FF920095A310 /* SelectedButton.swift */; };
@@ -116,6 +117,7 @@
 		296137542E0E86600063E14C /* FinishCheckPackitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishCheckPackitView.swift; sourceTree = "<group>"; };
 		297F17B32E0EC11D006CC790 /* TripNeareastModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripNeareastModel.swift; sourceTree = "<group>"; };
 		297F17B52E0EC572006CC790 /* TripItemToggleResDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripItemToggleResDto.swift; sourceTree = "<group>"; };
+		297F17B72E0EF251006CC790 /* DeleteItemsReqDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteItemsReqDto.swift; sourceTree = "<group>"; };
 		298783372DFD5750004FB6AD /* PlanPackitListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanPackitListView.swift; sourceTree = "<group>"; };
 		2987833B2DFD640E004FB6AD /* PlanPackitModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanPackitModel.swift; sourceTree = "<group>"; };
 		29A1C5BB2DD83AE600467A03 /* Packit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Packit.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -307,6 +309,7 @@
 				29D79D402E01BE880050FBD1 /* TripResDto.swift */,
 				2961374E2E0E2F120063E14C /* TripProgressResDto.swift */,
 				297F17B52E0EC572006CC790 /* TripItemToggleResDto.swift */,
+				297F17B72E0EF251006CC790 /* DeleteItemsReqDto.swift */,
 			);
 			path = DTO;
 			sourceTree = "<group>";
@@ -697,6 +700,7 @@
 				296137532E0E5CB70063E14C /* UnCheckedPopup.swift in Sources */,
 				298783382DFD5750004FB6AD /* PlanPackitListView.swift in Sources */,
 				29F9DC412DE95C0E005ECBA3 /* FlowLayout.swift in Sources */,
+				297F17B82E0EF251006CC790 /* DeleteItemsReqDto.swift in Sources */,
 				29F9DC422DE95C0E005ECBA3 /* PlanPackitTitleView.swift in Sources */,
 				29F9DC432DE95C0E005ECBA3 /* PlanPackitTripPropertyView.swift in Sources */,
 				29D79D562E01BEBC0050FBD1 /* NavigationCoordinator.swift in Sources */,

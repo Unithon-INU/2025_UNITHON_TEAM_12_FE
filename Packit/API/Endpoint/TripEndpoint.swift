@@ -22,7 +22,7 @@ enum TripEndpoint: Endpoint {
         case .addTrip:
             "api/trips"
         case .fetchTripProgress(let tripId):
-            "api/trips/\(tripId)/progress"
+            "api/trips/\(tripId)/progress-count"
         case .fetchUpcomingTrip:
             "api/trips/trips/nearest-completed"
         }

@@ -30,7 +30,7 @@ struct TripListView: View {
     }
 
     private var headerView: some View {
-        HStack(spacing: 21) {
+        HStack(alignment: .center, spacing: 21) {
             Button(action: {
                 coordinator.popToRoot()
             }) {
@@ -41,7 +41,7 @@ struct TripListView: View {
             }
 
             Text("짐 리스트")
-                .font(.custom("Pretendard-bold", size: 25))
+                .font(.custom("Pretendard-Bold", size: 25))
                 .foregroundColor(.black)
 
             Spacer()
@@ -52,12 +52,11 @@ struct TripListView: View {
                 Image("user")
                     .resizable()
                     .scaledToFit()
-                    .frame(height: 19)
-                    .padding(.trailing, 25)
-                    .padding(.bottom, 10)
+                    .frame(height: 20)
             })
         }
         .padding(.horizontal)
+        .padding(.top, 10)
     }
 
     private var upcomingSection: some View {
@@ -70,7 +69,7 @@ struct TripListView: View {
                             .scaledToFit()
                             .frame(width: 20, height: 22)
                         Text("예정된 짐 싸기")
-                            .font(.custom("Pretendard-bold", size: 16))
+                            .font(.custom("Pretendard-Bold", size: 16))
                             .foregroundColor(.black)
                         Spacer()
                     }
@@ -96,9 +95,9 @@ struct TripListView: View {
                         .scaledToFit()
                         .frame(width: 40, height: 40)
                     Text("예정된 여행이 없습니다")
-                        .font(.custom("Pretendard", size: 16))
+                        .font(.custom("Pretendard-Bold", size: 16))
                     Text("새로운 여행을 계획해보세요!")
-                        .font(.custom("Pretendard", size: 14))
+                        .font(.custom("Pretendard-Bold", size: 14))
                 }
                 .foregroundColor(.gray)
                 .frame(height: 200)
@@ -114,7 +113,7 @@ struct TripListView: View {
                     .scaledToFit()
                     .frame(width: 16, height: 21)
                 Text("과거 짐 싸기 기록")
-                    .font(.custom("Pretendard-bold", size: 16))
+                    .font(.custom("Pretendard-Bold", size: 16))
                     .foregroundColor(.black)
                 Spacer()
             }
@@ -143,9 +142,9 @@ struct TripListView: View {
                             .scaledToFit()
                             .frame(width: 40, height: 40)
                         Text("아직 완료된 여행이 없습니다")
-                            .font(.custom("Pretendard", size: 16))
+                            .font(.custom("Pretendard-Bold", size: 16))
                         Text("첫 번째 여행을 떠나보세요!")
-                            .font(.custom("Pretendard", size: 14))
+                            .font(.custom("Pretendard-Bold", size: 14))
                     }
                     .foregroundColor(.gray)
                     .frame(height: 200)

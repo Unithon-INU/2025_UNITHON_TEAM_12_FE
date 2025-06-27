@@ -8,7 +8,8 @@
 import Foundation
 
 struct TripProgressResDto: Codable {
-    let totalCategoryCount: Int
-    let completedCategoryCount: Int
-    let progressRate: Double
+    let tripId: Int
+    let totalCount: Int
+    let checkedCount: Int
+    let progressPercent: Int
 }

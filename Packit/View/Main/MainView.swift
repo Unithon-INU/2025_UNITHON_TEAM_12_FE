@@ -145,14 +145,20 @@ struct UpcomingTrip: View {
                 
                 VStack(alignment: .leading) {
                     if let trip = trip {
-                        Text(trip.startDate.toDateString() ?? "")
+                        Text("\(trip.startDate.toDateString() ?? "") ~ \(trip.endDate.toDateString() ?? "")")
+                            .font(.custom("Pretendard-Bold", size: 15))
+                            .padding(.horizontal, 20)
+                            .padding(.top, 15)
+                        
+                        Text(trip.description)
                             .font(.custom("Pretendard-Regular", size: 15))
                             .padding(.horizontal, 20)
+                            .padding(.top, 5)
                         
                         Spacer()
                         
                         VStack(alignment: .trailing) {
-                            Text("진행률 \(Int(trip.progressRate))%")
+                            Text("짐 챙기기 진행률 \(Int(trip.progressRate))%")
                                 .font(.custom("Pretendard-Light", size: 12))
                                 .padding(.horizontal, 20)
                             

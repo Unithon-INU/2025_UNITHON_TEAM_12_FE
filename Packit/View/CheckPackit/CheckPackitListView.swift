@@ -44,7 +44,7 @@ struct CheckPackitListView: View {
                 Text(String(Int(viewModel.tripProgressRate))+"%")
                     .font(.custom("Pretendard-Medium", size: 20))
                 
-                ProgressView(value: viewModel.tripProgressRate)
+                ProgressView(value: Float(viewModel.tripProgressRate)/100)
                     .progressViewStyle(LinearProgressViewStyle(tint: Color.packitPurple))
             }
             .onAppear {
@@ -77,6 +77,7 @@ struct CheckPackitListView: View {
                             await viewModel.fetchItemCategory(tripId: tripId)
                             selectedCategory = viewModel.categories.first?.id ?? 0
                             await viewModel.fetchTripItem(tripCategoryId: selectedCategory)
+                            viewModel.addUncheckedItem(items: viewModel.tripItems.filter { $0.isChecked == false })
                         }
                     }.padding(.horizontal)
                 }
@@ -115,6 +116,7 @@ struct CheckPackitListView: View {
                         await viewModel.fetchTripItem(tripCategoryId: selectedCategory)
                         
                         viewModel.addUncheckedItem(items: viewModel.tripItems.filter { $0.isChecked == false })
+                        viewModel.unCheckedItems = viewModel.unCheckedItems.filter { !$0.isChecked }
                         withAnimation {
                             showPopup = true
                         }
@@ -136,7 +138,20 @@ struct CheckPackitListView: View {
         .overlay {
             UnCheckedPopup(
                 isPresented: $showPopup,
-                onTap: {
+                onTapDelete: {
+                    var body = DeleteItemsReqDto(tripItemIds: [])
+                    viewModel.unCheckedItems.forEach {
+                        body.tripItemIds.append($0.id)
+                    }
+                    
+                    let _ = print(body)
+                    
+                    Task{
+                        await viewModel.deleteItems(body: body)
+                    }
+                    coordinator.push(.checkList(.finish(title: self.title, tripId: self.tripId)))
+                },
+                onTapNext: {
                     coordinator.push(.checkList(.finish(title: self.title, tripId: self.tripId)))
                 },
                 unCheckedItems: viewModel.unCheckedItems

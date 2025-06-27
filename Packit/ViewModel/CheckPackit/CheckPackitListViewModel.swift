@@ -14,7 +14,7 @@ final class CheckPackitListViewModel: ObservableObject {
     
     @Published var categories = [TripItemCategory]()
     @Published var tripItems = [TripItemResDto]()
-    @Published var tripProgressRate: Double = 0.0
+    @Published var tripProgressRate: Int = 0
     @Published var unCheckedItems = [TripItemResDto]()
     
     init(
@@ -57,10 +57,18 @@ final class CheckPackitListViewModel: ObservableObject {
 
         switch result {
         case .success(let data, _):
-            print(data.data)
             self.tripProgressRate = data.data.progressPercent
             if let index = tripItems.firstIndex(where: { $0.id == tripItemId }) {
                 tripItems[index].isChecked.toggle()
+                
+                let item = tripItems[index]
+                if item.isChecked {
+                    unCheckedItems.removeAll { $0.id == item.id }
+                } else {
+                    if !unCheckedItems.contains(where: { $0.id == item.id }) {
+                        unCheckedItems.append(item)
+                    }
+                }
             }
         case .failure(let statusCode, let message):
             print("[toggleItemStatus] - [\(statusCode)]: \(message ?? "알 수 없는 오류")")
@@ -73,7 +81,7 @@ final class CheckPackitListViewModel: ObservableObject {
         
         switch result {
         case .success(let data, _):
-            self.tripProgressRate = data.data.progressRate
+            self.tripProgressRate = data.data.progressPercent
         case .failure(let statusCode, let message):
             print("[fetchTripProgressRate] - [\(statusCode)]: \(message ?? "알 수 없는 오류")")
         }
@@ -81,13 +89,22 @@ final class CheckPackitListViewModel: ObservableObject {
     
     // MARK: - 체크되지 않은 아이템 추가 메서드
     func addUncheckedItem(items: [TripItemResDto]) {
-        items.forEach {
-            unCheckedItems.append($0)
+        print(items)
+        for item in items {
+            if !unCheckedItems.contains(where: { $0.id == item.id }) {
+                unCheckedItems.append(item)
+            }
         }
     }
     
-    // MARK: - 체크되지 않은 아이템 추가되었다가 다시 제거하는 메서드
-    func deleteInUncheckedItem(item: TripItemResDto) {
+    func deleteItems(body: DeleteItemsReqDto) async {
+        let result = await tripItemService.deleteItems(body: body)
         
+        switch result {
+        case .success(let data, _):
+            print(data.message)
+        case .failure(let statusCode, let message):
+            print("[deleteItems] - [\(statusCode)]: \(message ?? "알 수 없는 오류")")
+        }
     }
 }

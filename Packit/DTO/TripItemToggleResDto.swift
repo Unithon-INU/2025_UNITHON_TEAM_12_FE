@@ -11,5 +11,5 @@ struct TripItemToggleResDto: Codable {
     let tripId: Int
     let totalCount: Int
     let checkedCount: Int
-    let progressPercent: Double
+    let progressPercent: Int
 }

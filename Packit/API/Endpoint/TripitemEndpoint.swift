@@ -13,6 +13,7 @@ enum TripItemEndpoint: Endpoint {
     case toggleItemStatus(tripItemId: Int)
     case addTripItems(tripId: Int, tripCategoryId: Int, body: AddTripItemsReqDto)
     case fetchTemplateItems(categoryId: Int)
+    case deleteItems(body: DeleteItemsReqDto)
     
     var baseURL: URL { URLManager.shared.baseURL }
 
@@ -28,6 +29,8 @@ enum TripItemEndpoint: Endpoint {
             "api/trips/\(tripId)/categories/\(tripCategoryId)/items"
         case .fetchTemplateItems(let categoryId):
             "api/categories/\(categoryId)/template-items"
+        case .deleteItems:
+            "api/trip-items"
         }
     }
     
@@ -39,6 +42,8 @@ enum TripItemEndpoint: Endpoint {
                 .get
         case .toggleItemStatus:
                 .patch
+        case .deleteItems:
+                .delete
         }
     }
     
@@ -50,6 +55,9 @@ enum TripItemEndpoint: Endpoint {
             return try? JSONEncoder().encode(body)
             
         case .addTripItems(_, _, let body):
+            return try? JSONEncoder().encode(body)
+            
+        case .deleteItems(let body):
             return try? JSONEncoder().encode(body)
 
         default:

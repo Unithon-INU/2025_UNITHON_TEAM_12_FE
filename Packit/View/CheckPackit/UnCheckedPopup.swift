@@ -10,7 +10,8 @@ import SwiftUI
 struct UnCheckedPopup: View {
     @Binding var isPresented: Bool
     
-    let onTap: () -> Void
+    let onTapDelete: () -> Void
+    let onTapNext: () -> Void
     let unCheckedItems: [TripItemResDto]
         
     var body: some View {
@@ -21,6 +22,21 @@ struct UnCheckedPopup: View {
                     .transition(.opacity)
                 
                 VStack {
+                    HStack{
+                        Spacer()
+                        
+                        Button(action: {
+                            isPresented = false
+                        }, label: {
+                            Image(systemName: "xmark")
+                                .resizable()
+                                .frame(width: 10, height: 10)
+                                .foregroundStyle(.black)
+                        })
+                    }
+                    .padding(.vertical, 20)
+                    .padding(.horizontal, 30)
+                    
                     HStack(alignment: .bottom, spacing: 50) {
                         Text("잠깐!\n안 챙긴 짐이 있어요!")
                             .font(.custom("Pretendard-Bold", size: 24))
@@ -46,7 +62,7 @@ struct UnCheckedPopup: View {
                     Button(action: {
                         withAnimation {
                             isPresented = false
-                            onTap()
+                            onTapDelete()
                         }
                     }, label: {
                         PackitButton(title: "안 챙겨도 되는 짐이에요!")
@@ -56,7 +72,7 @@ struct UnCheckedPopup: View {
                     Button(action: {
                         withAnimation {
                             isPresented = false
-                            onTap()
+                            onTapNext()
                         }
                     }, label: {
                         Text("다음에 챙기고 싶어요!")
