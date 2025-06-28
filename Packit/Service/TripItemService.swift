@@ -25,6 +25,9 @@ protocol TripItemServiceProtocol {
     
     // MARK: - 아이템 여러개 삭제하는 API
     func deleteItems(body: DeleteItemsReqDto) async -> NetworkResult<APIResDto<CommonResDto>>
+    
+    // MARK: - AI로 생성한 템플릿 아이템 조회 API
+    func fetchTemplateItemsWithAI(tripCategoryId: Int) async -> NetworkResult<APIResDto<[AIRecommendedItemResponse]>>
 }
 
 final class TripItemService: TripItemServiceProtocol {
@@ -62,5 +65,10 @@ final class TripItemService: TripItemServiceProtocol {
     // MARK: - 아이템 여러개 삭제하는 API
     func deleteItems(body: DeleteItemsReqDto) async -> NetworkResult<APIResDto<CommonResDto>> {
         return await networkService.request(TripItemEndpoint.deleteItems(body: body))
+    }
+    
+    // MARK: - AI로 생성한 템플릿 아이템 조회 API
+    func fetchTemplateItemsWithAI(tripCategoryId: Int) async -> NetworkResult<APIResDto<[AIRecommendedItemResponse]>> {
+        return await networkService.request(TripItemEndpoint.fetchTemplateItemsWithAI(tripCategoryId: tripCategoryId))
     }
 }

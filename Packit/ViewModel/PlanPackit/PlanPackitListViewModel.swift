@@ -60,7 +60,7 @@ final class PlanPackitListViewModel: ObservableObject {
 //            print("[fetchTripItemWithCategory] - [\(statusCode)]: \(message ?? "알 수 없는 오류")")
 //        }
 //    }
-//    
+
     // MARK: - 여행 아이템 리스트 생성
     func addTripItems(tripId: Int, tripCategoryId: Int) async {
         itemList = planList.map { item in
@@ -98,6 +98,24 @@ final class PlanPackitListViewModel: ObservableObject {
             }
         case .failure(let statusCode, let message):
             print("[fetchTemplateItem] - [\(statusCode)]: \(message ?? "알 수 없는 오류")")
+        }
+    }
+    
+    // MARK: - AI로 템플릿 아이템 생성
+    func fetchTemplateItemWithAI(tripCategoryId: Int) async {
+        let result = await tripItemService.fetchTemplateItemsWithAI(tripCategoryId: tripCategoryId)
+        
+        switch result {
+        case .success(let data, _):
+            self.planList = data.data.map { template in
+                TripItemModel(
+                    name: template.name,
+                    quantity: template.quantity,
+                    memo: nil
+                )
+            }
+        case .failure(let statusCode, let message):
+            print("[fetchTemplateItemWithAI] - [\(statusCode)]: \(message ?? "알 수 없는 오류")")
         }
     }
     

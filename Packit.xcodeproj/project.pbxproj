@@ -22,6 +22,7 @@
 		297F17B42E0EC11D006CC790 /* TripNeareastModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 297F17B32E0EC11D006CC790 /* TripNeareastModel.swift */; };
 		297F17B62E0EC572006CC790 /* TripItemToggleResDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 297F17B52E0EC572006CC790 /* TripItemToggleResDto.swift */; };
 		297F17B82E0EF251006CC790 /* DeleteItemsReqDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 297F17B72E0EF251006CC790 /* DeleteItemsReqDto.swift */; };
+		297F17BC2E0F5EDA006CC790 /* AIRecommendedItemResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 297F17BB2E0F5EDA006CC790 /* AIRecommendedItemResponse.swift */; };
 		298783382DFD5750004FB6AD /* PlanPackitListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298783372DFD5750004FB6AD /* PlanPackitListView.swift */; };
 		2987833C2DFD640E004FB6AD /* PlanPackitModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2987833B2DFD640E004FB6AD /* PlanPackitModel.swift */; };
 		29B3EBC22E03FF920095A310 /* SelectedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B3EBC12E03FF920095A310 /* SelectedButton.swift */; };
@@ -118,6 +119,7 @@
 		297F17B32E0EC11D006CC790 /* TripNeareastModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripNeareastModel.swift; sourceTree = "<group>"; };
 		297F17B52E0EC572006CC790 /* TripItemToggleResDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripItemToggleResDto.swift; sourceTree = "<group>"; };
 		297F17B72E0EF251006CC790 /* DeleteItemsReqDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteItemsReqDto.swift; sourceTree = "<group>"; };
+		297F17BB2E0F5EDA006CC790 /* AIRecommendedItemResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIRecommendedItemResponse.swift; sourceTree = "<group>"; };
 		298783372DFD5750004FB6AD /* PlanPackitListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanPackitListView.swift; sourceTree = "<group>"; };
 		2987833B2DFD640E004FB6AD /* PlanPackitModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanPackitModel.swift; sourceTree = "<group>"; };
 		29A1C5BB2DD83AE600467A03 /* Packit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Packit.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -310,6 +312,7 @@
 				2961374E2E0E2F120063E14C /* TripProgressResDto.swift */,
 				297F17B52E0EC572006CC790 /* TripItemToggleResDto.swift */,
 				297F17B72E0EF251006CC790 /* DeleteItemsReqDto.swift */,
+				297F17BB2E0F5EDA006CC790 /* AIRecommendedItemResponse.swift */,
 			);
 			path = DTO;
 			sourceTree = "<group>";
@@ -666,6 +669,7 @@
 				296137552E0E86600063E14C /* FinishCheckPackitView.swift in Sources */,
 				29D79D532E01BEA40050FBD1 /* TripItemCategory.swift in Sources */,
 				29D79D542E01BEA40050FBD1 /* TripItemModel.swift in Sources */,
+				297F17BC2E0F5EDA006CC790 /* AIRecommendedItemResponse.swift in Sources */,
 				29D79D362E01BE740050FBD1 /* ContentView.swift in Sources */,
 				29D79D2E2E01BE320050FBD1 /* Endpoint.swift in Sources */,
 				29D79D2F2E01BE320050FBD1 /* AuthEndpoint.swift in Sources */,

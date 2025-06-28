@@ -14,7 +14,7 @@ struct TripNeareastModel: Codable {
     let description: String
     let startDate: String
     let endDate: String
-    let tripType: String
+    let tripTypes: [String]
     let progressRate: Double
 }
 

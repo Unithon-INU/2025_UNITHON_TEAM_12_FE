@@ -11,7 +11,7 @@ struct TripResDto: Identifiable, Codable {
     let id: Int
     let title: String
     let region: String
-    let tripType: String
+    let tripTypes: [String]
     let startDate: String?
     let endDate: String?
     let description: String
@@ -78,15 +78,20 @@ extension TripResDto {
         }
 
         let calendar = Calendar.current
-        let components = calendar.dateComponents([.day], from: startDate, to: endDate)
 
-        if let days = components.day {
+        // 날짜만 추출
+        let start = calendar.startOfDay(for: startDate)
+        let end = calendar.startOfDay(for: endDate)
+        print(start, end)
+
+        if let days = calendar.dateComponents([.day], from: start, to: end).day {
             if days == 0 {
                 return "당일 치기 일정"
             } else {
                 return "\(days)박 \(days + 1)일 일정"
             }
         }
+
         return "기간 정보 없음"
     }
 }

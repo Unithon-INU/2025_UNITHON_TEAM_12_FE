@@ -15,6 +15,7 @@ final class NetworkService: NetworkServiceProtocol {
     func request<T: Decodable>(_ endpoint: Endpoint) async -> NetworkResult<T>  {
         var request = endpoint.urlRequest
         print(request.url)
+        print(request.httpBody)
         
         if let token = KeychainManager.getToken() {
             request.addValue("\(token)", forHTTPHeaderField: "Authorization")

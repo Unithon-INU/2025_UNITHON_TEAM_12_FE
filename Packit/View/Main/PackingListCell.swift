@@ -45,7 +45,7 @@ struct PackingListCell: View {
                         .font(.custom("Pretendard-Regular", size: 14))
                         .foregroundStyle(.black)
                     
-                    Text("1박 2일")
+                    Text(viewModel.trip.durationText)
                         .font(.custom("Pretendard-Regular", size: 14))
                         .foregroundStyle(.black)
 

@@ -10,7 +10,7 @@ import Foundation
 struct AddTripReqDto: Codable {
     var title: String
     var region: String
-    var tripType: String
+    var tripTypes: [String]
     var startDate: String
     var endDate: String
     var description: String

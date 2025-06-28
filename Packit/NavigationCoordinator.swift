@@ -18,7 +18,7 @@ enum AuthFlow: Hashable {
 enum PlanFlow: Hashable {
     case title
     case tripProperty
-    case list
+    case list(tripId: Int)
 }
 
 // MARK: - 여행 리스트 화면 전환 Flow
@@ -69,8 +69,8 @@ enum AppRoute: Hashable {
             case .tripProperty:
                 PlanPackitTripPropertyView()
                     .navigationBarBackButtonHidden(true)
-            case .list:
-                PlanPackitListView()
+            case .list(let tripId):
+                PlanPackitListView(tripId: tripId)
                     .navigationBarBackButtonHidden(true)
             }
             

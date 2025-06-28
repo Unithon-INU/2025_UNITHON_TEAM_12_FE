@@ -50,7 +50,7 @@ struct MainView: View {
                 /// - NOTE: 남은 짐 챙기기, 계획 완성하기 부분 처리 방법 생각해보기
                 if let trip = viewModel.upcomingTrip {
                     Button(action: {
-                        coordinator.push(.plan(.title))
+                        coordinator.push(.checkList(.checkList(title: trip.title, tripId: trip.tripId)))
                     }, label: {
                         MainButtonView(
                             title: "남은 짐 챙기기",

@@ -12,10 +12,8 @@ struct PlanPackitListView: View {
     @State private var addListText: String = ""
     @State private var selectedCategory: Int = 0
     @EnvironmentObject var coordinator: NavigationCoordinator
-    
-    @State private var templateCategory: Int = 1
-    
-    @State private var tripId: Int = 0
+        
+    let tripId: Int
 
     var body: some View {
         VStack(spacing: 14) {
@@ -39,10 +37,7 @@ struct PlanPackitListView: View {
             HStack(spacing: 5) {
                 ForEach(viewModel.category) { category in
                     Button(action: {
-//                        Task{
-//                            selectedCategory = category.id
-//                            await viewModel.fetchTripItemWithCategory(tripCategoryId: selectedCategory)
-//                        }
+                        selectedCategory = category.id
                     }, label: {
                         Text(category.name)
                             .font(.custom("Pretendard-Bold", size: 12))
@@ -137,8 +132,8 @@ struct PlanPackitListView: View {
                     Task{
                         await viewModel.addTripItems(tripId: self.tripId, tripCategoryId: selectedCategory)
                         selectedCategory += 1
-                        templateCategory += 1
-                        await viewModel.fetchTemplateItem(categoryId: templateCategory)
+//                        templateCategory += 1
+                        await viewModel.fetchTemplateItemWithAI(tripCategoryId: selectedCategory)
                     }
                 }
             }, label: {
@@ -148,10 +143,9 @@ struct PlanPackitListView: View {
             })
         }.onAppear {
             Task {
-                self.tripId = coordinator.formViewModel.result.id
                 await viewModel.fetchTripCategory(tripId: self.tripId)
                 selectedCategory = viewModel.category.first?.id ?? 0
-                await viewModel.fetchTemplateItem(categoryId: templateCategory)
+                await viewModel.fetchTemplateItemWithAI(tripCategoryId: selectedCategory)
             }
         }
     }

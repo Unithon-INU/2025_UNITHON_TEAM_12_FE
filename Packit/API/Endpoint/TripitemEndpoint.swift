@@ -14,6 +14,7 @@ enum TripItemEndpoint: Endpoint {
     case addTripItems(tripId: Int, tripCategoryId: Int, body: AddTripItemsReqDto)
     case fetchTemplateItems(categoryId: Int)
     case deleteItems(body: DeleteItemsReqDto)
+    case fetchTemplateItemsWithAI(tripCategoryId: Int)
     
     var baseURL: URL { URLManager.shared.baseURL }
 
@@ -31,6 +32,8 @@ enum TripItemEndpoint: Endpoint {
             "api/categories/\(categoryId)/template-items"
         case .deleteItems:
             "api/trip-items"
+        case .fetchTemplateItemsWithAI:
+            "api/ai/recommend/items"
         }
     }
     
@@ -38,7 +41,7 @@ enum TripItemEndpoint: Endpoint {
         switch self {
         case .addTripItem, .addTripItems:
                 .post
-        case .fetchTripItemWithCategory, .fetchTemplateItems:
+        case .fetchTripItemWithCategory, .fetchTemplateItems, .fetchTemplateItemsWithAI:
                 .get
         case .toggleItemStatus:
                 .patch
@@ -65,5 +68,14 @@ enum TripItemEndpoint: Endpoint {
         }
     }
     
-    var queryItems: [URLQueryItem]? { return nil }
+    var queryItems: [URLQueryItem]? {
+        switch self {
+        case .fetchTemplateItemsWithAI(let tripCategoryId):
+            var items: [URLQueryItem] = []
+            items.append(URLQueryItem(name: "tripCategoryId", value: String(tripCategoryId)))
+            return items
+        default:
+            return nil
+        }
+    }
 }
